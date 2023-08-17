@@ -39,6 +39,7 @@ export default function Payment() {
             <Controller
               name='fullName'
               control={control}
+              defaultValue=''
               render={({ field }) => (
                 <input type='text' id='fullName' autoComplete='name' {...field} />
               )}
@@ -52,6 +53,7 @@ export default function Payment() {
               <Controller
                 name='email'
                 control={control}
+                defaultValue=''
                 render={({ field }) => (
                   <input type='email' id='email' autoComplete='email' {...field} />
                 )}
@@ -64,6 +66,7 @@ export default function Payment() {
               <Controller
                 name='mobile'
                 control={control}
+                defaultValue=''
                 render={({ field }) => (
                   <IMaskInput
                     type='tel'
@@ -82,6 +85,7 @@ export default function Payment() {
               <Controller
                 name='document'
                 control={control}
+                defaultValue=''
                 render={({ field }) => (
                   <IMaskInput
                     type='text'
@@ -105,6 +109,7 @@ export default function Payment() {
             <Controller
               name='zipCode'
               control={control}
+              defaultValue=''
               render={({ field }) => (
                 <IMaskInput
                   type='text'
@@ -123,6 +128,7 @@ export default function Payment() {
             <Controller
               name='street'
               control={control}
+              defaultValue=''
               render={({ field }) => <input type='text' id='street' {...field} />}
             />
             {errors.street && <p className='error'>{errors.street.message}</p>}
@@ -134,6 +140,7 @@ export default function Payment() {
               <Controller
                 name='number'
                 control={control}
+                defaultValue=''
                 render={({ field }) => <input type='text' id='number' {...field} />}
               />
               {errors.number && <p className='error'>{errors.number.message}</p>}
@@ -144,6 +151,7 @@ export default function Payment() {
               <Controller
                 name='complement'
                 control={control}
+                defaultValue=''
                 render={({ field }) => <input type='text' id='complement' {...field} />}
               />
               {errors.complement && <p className='error'>{errors.complement.message}</p>}
@@ -156,6 +164,7 @@ export default function Payment() {
               <Controller
                 name='neighborhood'
                 control={control}
+                defaultValue=''
                 render={({ field }) => <input type='text' id='neighborhood' {...field} />}
               />
               {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
@@ -166,6 +175,7 @@ export default function Payment() {
               <Controller
                 name='city'
                 control={control}
+                defaultValue=''
                 render={({ field }) => <input type='text' id='city' {...field} />}
               />
               {errors.city && <p className='error'>{errors.city.message}</p>}
@@ -176,6 +186,7 @@ export default function Payment() {
               <Controller
                 name='state'
                 control={control}
+                defaultValue=''
                 render={({ field }) => (
                   <select id='state' {...field}>
                     <option value=''>Selecione</option>
@@ -220,6 +231,7 @@ export default function Payment() {
             <Controller
               name='creditCardNumber'
               control={control}
+              defaultValue=''
               render={({ field }) => (
                 <IMaskInput
                   type='text'
@@ -249,6 +261,7 @@ export default function Payment() {
             <Controller
               name='creditCardHolder'
               control={control}
+              defaultValue=''
               render={({ field }) => <input type='text' id='creditCardHolder' {...field} />}
             />
             {errors.creditCardHolder && <p className='error'>{errors.creditCardHolder.message}</p>}
@@ -260,6 +273,7 @@ export default function Payment() {
               <Controller
                 name='creditCardExpiration'
                 control={control}
+                defaultValue=''
                 render={({ field }) => (
                   <IMaskInput
                     type='text'
@@ -295,6 +309,7 @@ export default function Payment() {
               <Controller
                 name='creditCardSecurityCode'
                 control={control}
+                defaultValue=''
                 render={({ field }) => (
                   <IMaskInput type='text' id='creditCardSecurityCode' mask={'0000'} {...field} />
                 )}
