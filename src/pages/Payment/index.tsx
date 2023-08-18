@@ -40,8 +40,15 @@ export default function Payment() {
               name='fullName'
               control={control}
               defaultValue=''
-              render={({ field }) => (
-                <input type='text' id='fullName' autoComplete='name' {...field} />
+              render={({ field: { onChange, onBlur, value } }) => (
+                <input
+                  type='text'
+                  id='fullName'
+                  autoComplete='name'
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                />
               )}
             />
             {errors.fullName && <p className='error'>{errors.fullName.message}</p>}
@@ -54,8 +61,15 @@ export default function Payment() {
                 name='email'
                 control={control}
                 defaultValue=''
-                render={({ field }) => (
-                  <input type='email' id='email' autoComplete='email' {...field} />
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input
+                    type='email'
+                    id='email'
+                    autoComplete='email'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
                 )}
               />
               {errors.email && <p className='error'>{errors.email.message}</p>}
@@ -67,13 +81,15 @@ export default function Payment() {
                 name='mobile'
                 control={control}
                 defaultValue=''
-                render={({ field }) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <IMaskInput
                     type='tel'
                     id='mobile'
                     autoComplete='phone'
                     mask={'(00) 90000-0000'}
-                    {...field}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
                   />
                 )}
               />
@@ -86,7 +102,7 @@ export default function Payment() {
                 name='document'
                 control={control}
                 defaultValue=''
-                render={({ field }) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <IMaskInput
                     type='text'
                     id='document'
@@ -94,7 +110,9 @@ export default function Payment() {
                       { mask: '000.000.000-00', maxLength: 11 },
                       { mask: '00.000.000/0000-00' },
                     ]}
-                    {...field}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
                   />
                 )}
               />
@@ -110,13 +128,15 @@ export default function Payment() {
               name='zipCode'
               control={control}
               defaultValue=''
-              render={({ field }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <IMaskInput
                   type='text'
                   id='zipCode'
                   style={{ width: '120px' }}
                   mask={'00000-000'}
-                  {...field}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
                 />
               )}
             />
@@ -129,7 +149,9 @@ export default function Payment() {
               name='street'
               control={control}
               defaultValue=''
-              render={({ field }) => <input type='text' id='street' {...field} />}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <input type='text' id='street' onChange={onChange} onBlur={onBlur} value={value} />
+              )}
             />
             {errors.street && <p className='error'>{errors.street.message}</p>}
           </div>
@@ -141,7 +163,15 @@ export default function Payment() {
                 name='number'
                 control={control}
                 defaultValue=''
-                render={({ field }) => <input type='text' id='number' {...field} />}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input
+                    type='text'
+                    id='number'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
+                )}
               />
               {errors.number && <p className='error'>{errors.number.message}</p>}
             </div>
@@ -152,7 +182,15 @@ export default function Payment() {
                 name='complement'
                 control={control}
                 defaultValue=''
-                render={({ field }) => <input type='text' id='complement' {...field} />}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input
+                    type='text'
+                    id='complement'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
+                )}
               />
               {errors.complement && <p className='error'>{errors.complement.message}</p>}
             </div>
@@ -165,7 +203,15 @@ export default function Payment() {
                 name='neighborhood'
                 control={control}
                 defaultValue=''
-                render={({ field }) => <input type='text' id='neighborhood' {...field} />}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input
+                    type='text'
+                    id='neighborhood'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
+                )}
               />
               {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
             </div>
@@ -176,7 +222,9 @@ export default function Payment() {
                 name='city'
                 control={control}
                 defaultValue=''
-                render={({ field }) => <input type='text' id='city' {...field} />}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input type='text' id='city' onChange={onChange} onBlur={onBlur} value={value} />
+                )}
               />
               {errors.city && <p className='error'>{errors.city.message}</p>}
             </div>
@@ -187,8 +235,8 @@ export default function Payment() {
                 name='state'
                 control={control}
                 defaultValue=''
-                render={({ field }) => (
-                  <select id='state' {...field}>
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <select id='state' onChange={onChange} onBlur={onBlur} value={value}>
                     <option value=''>Selecione</option>
                     <option value='AC'>Acre</option>
                     <option value='AL'>Alagoas</option>
@@ -232,7 +280,7 @@ export default function Payment() {
               name='creditCardNumber'
               control={control}
               defaultValue=''
-              render={({ field }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <IMaskInput
                   type='text'
                   id='creditCardNumber'
@@ -249,7 +297,9 @@ export default function Payment() {
                       mask: '0000 0000 0000 0000',
                     },
                   ]}
-                  {...field}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
                 />
               )}
             />
@@ -262,7 +312,15 @@ export default function Payment() {
               name='creditCardHolder'
               control={control}
               defaultValue=''
-              render={({ field }) => <input type='text' id='creditCardHolder' {...field} />}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <input
+                  type='text'
+                  id='creditCardHolder'
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                />
+              )}
             />
             {errors.creditCardHolder && <p className='error'>{errors.creditCardHolder.message}</p>}
           </div>
@@ -274,7 +332,7 @@ export default function Payment() {
                 name='creditCardExpiration'
                 control={control}
                 defaultValue=''
-                render={({ field }) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <IMaskInput
                     type='text'
                     id='creditCardExpiration'
@@ -295,7 +353,9 @@ export default function Payment() {
                         },
                       },
                     ]}
-                    {...field}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
                   />
                 )}
               />
@@ -310,8 +370,15 @@ export default function Payment() {
                 name='creditCardSecurityCode'
                 control={control}
                 defaultValue=''
-                render={({ field }) => (
-                  <IMaskInput type='text' id='creditCardSecurityCode' mask={'0000'} {...field} />
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <IMaskInput
+                    type='text'
+                    id='creditCardSecurityCode'
+                    mask={'0000'}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
                 )}
               />
               {errors.creditCardSecurityCode && (
