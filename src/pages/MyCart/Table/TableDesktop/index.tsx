@@ -11,7 +11,7 @@ import plusImg from '../../../../assets/circle-plus.svg'
 import { Container } from './styles'
 
 export function TableDesktop() {
-  const { cart, removeSnackFromCart, snackCartIncrement, snackCartDecrement } = useCart()
+  const { cart, removeProductFromCart, productCartIncrement, productCartDecrement } = useCart()
 
   return (
     <Container>
@@ -27,7 +27,7 @@ export function TableDesktop() {
         </thead>
         <tbody>
           {cart.map((item) => (
-            <tr key={`${item.snack}-${item.id}`}>
+            <tr key={`${item.product}-${item.id}`}>
               <td>
                 <img src={item.image} alt={item.name} />
               </td>
@@ -37,11 +37,11 @@ export function TableDesktop() {
               </td>
               <td>
                 <div>
-                  <button type='button' onClick={() => snackCartDecrement(item)}>
+                  <button type='button' onClick={() => productCartDecrement(item)}>
                     <img src={minusImg} alt='Remover quantidade' />
                   </button>
                   <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                  <button type='button' onClick={() => snackCartIncrement(item)}>
+                  <button type='button' onClick={() => productCartIncrement(item)}>
                     <img src={plusImg} alt='Adicionar quantidade' />
                   </button>
                 </div>
@@ -50,7 +50,7 @@ export function TableDesktop() {
                 <h5>{currencyFormat(item.subtotal)}</h5>
               </td>
               <td>
-                <button type='button' onClick={() => removeSnackFromCart(item)}>
+                <button type='button' onClick={() => removeProductFromCart(item)}>
                   <FaTrashAlt />
                 </button>
               </td>

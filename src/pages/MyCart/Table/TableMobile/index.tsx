@@ -11,12 +11,12 @@ import plusImg from '../../../../assets/circle-plus.svg'
 import { Container } from './style'
 
 export function TableMobile() {
-  const { cart, removeSnackFromCart, snackCartIncrement, snackCartDecrement } = useCart()
+  const { cart, removeProductFromCart, productCartIncrement, productCartDecrement } = useCart()
 
   return (
     <Container>
       {cart.map((item) => (
-        <div key={`${item.snack}-${item.id}`} className='order-item'>
+        <div key={`${item.product}-${item.id}`} className='order-item'>
           <div>
             <img src={item.image} alt={item.name} />
           </div>
@@ -25,15 +25,15 @@ export function TableMobile() {
             <span>{currencyFormat(item.price)}</span>
             <div>
               <div>
-                <button type='button' onClick={() => snackCartDecrement(item)}>
+                <button type='button' onClick={() => productCartDecrement(item)}>
                   <img src={minusImg} alt='Remover quantidade' />
                 </button>
                 <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                <button type='button' onClick={() => snackCartIncrement(item)}>
+                <button type='button' onClick={() => productCartIncrement(item)}>
                   <img src={plusImg} alt='Adicionar quantidade' />
                 </button>
               </div>
-              <button type='button' onClick={() => removeSnackFromCart(item)}>
+              <button type='button' onClick={() => removeProductFromCart(item)}>
                 <FaTrashAlt />
               </button>
             </div>

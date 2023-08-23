@@ -2,7 +2,7 @@ import { Skeleton } from '../../Skeleton'
 
 import { Container } from './styles'
 
-export function SkeletonSnack() {
+export function SkeletonProduct() {
   return (
     <div className='skeleton-wrapper'>
       <Container>

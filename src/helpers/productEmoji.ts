@@ -1,4 +1,4 @@
-export function snackEmoji(name: string) {
+export function productEmoji(name: string) {
   switch (name.toLowerCase()) {
     case 'burger':
       return '🍔'

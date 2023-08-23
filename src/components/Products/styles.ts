@@ -11,7 +11,7 @@ export const Container = styled.div`
     grid-template-columns: 1fr;
   }
 
-  .snack {
+  .product {
     position: relative;
     background: ${({ theme }) => theme.colors.black};
     padding: 1.75rem 1.5rem;

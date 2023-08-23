@@ -1,17 +1,17 @@
-import { useSnack } from '../../../hooks/useSnack'
+import { useProduct } from '../../../hooks/useProduct'
 
 import { Head } from '../../../components/Head'
-import { Snacks } from '../../../components/Snacks'
-import { SnackTitle } from '../../../components/SnackTitle'
+import { Products } from '../../../components/Products'
+import { ProductTitle } from '../../../components/ProductTitle'
 
 export default function Drinks() {
-  const { drinks } = useSnack()
+  const { drinks } = useProduct()
 
   return (
     <>
       <Head title='Bebidas' />
-      <SnackTitle>Bebidas</SnackTitle>
-      <Snacks snacks={drinks}></Snacks>
+      <ProductTitle>Bebidas</ProductTitle>
+      <Products products={drinks}></Products>
     </>
   )
 }

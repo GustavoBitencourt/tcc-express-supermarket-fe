@@ -1,27 +1,27 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 
-import { SnackData } from '../interfaces/SnackData'
+import { ProductData } from '../interfaces/ProductData'
 
 import { getBurgers, getDrinks, getIceCreams, getPizzas } from '../services/api'
 
-interface SnackContextProps {
-  burgers: SnackData[]
-  pizzas: SnackData[]
-  drinks: SnackData[]
-  iceCreams: SnackData[]
+interface ProductContextProps {
+  burgers: ProductData[]
+  pizzas: ProductData[]
+  drinks: ProductData[]
+  iceCreams: ProductData[]
 }
 
-interface SnackProviderProps {
+interface ProductProviderProps {
   children: ReactNode
 }
 
-export const SnackContext = createContext({} as SnackContextProps)
+export const ProductContext = createContext({} as ProductContextProps)
 
-export function SnackProvider({ children }: SnackProviderProps) {
-  const [burgers, setBurgers] = useState<SnackData[]>([])
-  const [pizzas, setPizzas] = useState<SnackData[]>([])
-  const [drinks, setDrinks] = useState<SnackData[]>([])
-  const [iceCreams, setIceCreams] = useState<SnackData[]>([])
+export function ProductProvider({ children }: ProductProviderProps) {
+  const [burgers, setBurgers] = useState<ProductData[]>([])
+  const [pizzas, setPizzas] = useState<ProductData[]>([])
+  const [drinks, setDrinks] = useState<ProductData[]>([])
+  const [iceCreams, setIceCreams] = useState<ProductData[]>([])
 
   useEffect(() => {
     ;(async () => {
@@ -51,8 +51,8 @@ export function SnackProvider({ children }: SnackProviderProps) {
   }, [])
 
   return (
-    <SnackContext.Provider value={{ burgers, pizzas, drinks, iceCreams }}>
+    <ProductContext.Provider value={{ burgers, pizzas, drinks, iceCreams }}>
       {children}
-    </SnackContext.Provider>
+    </ProductContext.Provider>
   )
 }
