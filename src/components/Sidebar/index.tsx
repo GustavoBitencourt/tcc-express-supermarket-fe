@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom'
 
 import { Container } from './styles'
 
-import { ReactComponent as BurgerIcon } from '../../assets/burger.svg'
-import { ReactComponent as PizzaIcon } from '../../assets/pizza.svg'
+import { ReactComponent as LimpezaIcon } from '../../assets/limpeza.svg'
+import { ReactComponent as CarneIcon } from '../../assets/carne.svg'
 import { ReactComponent as SodaPopIcon } from '../../assets/soda.svg'
-import { ReactComponent as IceCreamIcon } from '../../assets/ice-cream.svg'
+import { ReactComponent as PadariaIcon } from '../../assets/padaria.svg'
 
 import menuImg from '../../assets/menu.svg'
 
@@ -26,25 +26,25 @@ export function Sidebar() {
         <ul>
           <li>
             <NavLink to='/'>
-              <BurgerIcon />
+              <LimpezaIcon />
               <span>Hambúrgueres</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to='pizzas'>
-              <PizzaIcon />
-              <span>Pizzas</span>
+            <NavLink to='carnes'>
+              <CarneIcon />
+              <span>Carnes</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to='drinks'>
+            <NavLink to='hortifrutis'>
               <SodaPopIcon />
               <span>Bebidas</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to='ice-creams'>
-              <IceCreamIcon />
+            <NavLink to='padarias'>
+              <PadariaIcon />
               <span>Sorvetes</span>
             </NavLink>
           </li>

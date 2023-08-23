@@ -2,13 +2,13 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 
 import { ProductData } from '../interfaces/ProductData'
 
-import { getBurgers, getDrinks, getIceCreams, getPizzas } from '../services/api'
+import { getLimpezas, getHortifrutis, getPadarias, getCarnes } from '../services/api'
 
 interface ProductContextProps {
-  burgers: ProductData[]
-  pizzas: ProductData[]
-  drinks: ProductData[]
-  iceCreams: ProductData[]
+  limpezas: ProductData[]
+  carnes: ProductData[]
+  hortifrutis: ProductData[]
+  padarias: ProductData[]
 }
 
 interface ProductProviderProps {
@@ -18,32 +18,32 @@ interface ProductProviderProps {
 export const ProductContext = createContext({} as ProductContextProps)
 
 export function ProductProvider({ children }: ProductProviderProps) {
-  const [burgers, setBurgers] = useState<ProductData[]>([])
-  const [pizzas, setPizzas] = useState<ProductData[]>([])
-  const [drinks, setDrinks] = useState<ProductData[]>([])
-  const [iceCreams, setIceCreams] = useState<ProductData[]>([])
+  const [limpezas, setLimpezas] = useState<ProductData[]>([])
+  const [carnes, setCarnes] = useState<ProductData[]>([])
+  const [hortifrutis, setHortifrutis] = useState<ProductData[]>([])
+  const [padarias, setPadarias] = useState<ProductData[]>([])
 
   useEffect(() => {
     ;(async () => {
       try {
-        const burgerRequest = await getBurgers()
-        const pizzaRequest = await getPizzas()
-        const drinkRequest = await getDrinks()
-        const iceCreamRequest = await getIceCreams()
+        const limpezaRequest = await getLimpezas()
+        const carneRequest = await getCarnes()
+        const hortifrutiRequest = await getHortifrutis()
+        const padariaRequest = await getPadarias()
 
-        const requests = [burgerRequest, pizzaRequest, drinkRequest, iceCreamRequest]
+        const requests = [limpezaRequest, carneRequest, hortifrutiRequest, padariaRequest]
 
         const [
-          { data: burgerResponse },
-          { data: pizzaResponse },
-          { data: drinkResponse },
-          { data: iceCreamResponse },
+          { data: limpezaResponse },
+          { data: carneResponse },
+          { data: hortifrutiResponse },
+          { data: padariaResponse },
         ] = await Promise.all(requests)
 
-        setBurgers(burgerResponse)
-        setPizzas(pizzaResponse)
-        setDrinks(drinkResponse)
-        setIceCreams(iceCreamResponse)
+        setLimpezas(limpezaResponse)
+        setCarnes(carneResponse)
+        setHortifrutis(hortifrutiResponse)
+        setPadarias(padariaResponse)
       } catch (error) {
         console.error(error)
       }
@@ -51,7 +51,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
   }, [])
 
   return (
-    <ProductContext.Provider value={{ burgers, pizzas, drinks, iceCreams }}>
+    <ProductContext.Provider value={{ limpezas, carnes, hortifrutis, padarias }}>
       {children}
     </ProductContext.Provider>
   )

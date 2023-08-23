@@ -4,14 +4,14 @@ import { Head } from '../../../components/Head'
 import { Products } from '../../../components/Products'
 import { ProductTitle } from '../../../components/ProductTitle'
 
-export default function Pizzas() {
-  const { pizzas } = useProduct()
+export default function Carnes() {
+  const { carnes } = useProduct()
 
   return (
     <>
-      <Head title='Pizzas' />
-      <ProductTitle>Pizzas</ProductTitle>
-      <Products products={pizzas}></Products>
+      <Head title='Carnes' />
+      <ProductTitle>Carnes</ProductTitle>
+      <Products products={carnes}></Products>
     </>
   )
 }

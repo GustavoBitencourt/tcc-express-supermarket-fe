@@ -8,10 +8,10 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 })
 
-export const getBurgers = () => api.get<ProductData[]>('/products?product=burger')
-export const getPizzas = () => api.get<ProductData[]>('/products?product=pizza')
-export const getDrinks = () => api.get<ProductData[]>('/products?product=drink')
-export const getIceCreams = () => api.get<ProductData[]>('/products?product=ice-cream')
+export const getLimpezas = () => api.get<ProductData[]>('/products?product=limpeza')
+export const getCarnes = () => api.get<ProductData[]>('/products?product=carne')
+export const getHortifrutis = () => api.get<ProductData[]>('/products?product=hortifruti')
+export const getPadarias = () => api.get<ProductData[]>('/products?product=padaria')
 
 export const processCheckout = (cart: Product[], customer: CustomerData) =>
   api.post('/checkout', {
