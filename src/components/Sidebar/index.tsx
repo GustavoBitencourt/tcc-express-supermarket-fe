@@ -5,7 +5,7 @@ import { Container } from './styles'
 
 import { ReactComponent as LimpezaIcon } from '../../assets/limpeza.svg'
 import { ReactComponent as CarneIcon } from '../../assets/carne.svg'
-import { ReactComponent as SodaPopIcon } from '../../assets/soda.svg'
+import { ReactComponent as SodaPopIcon } from '../../assets/hortifruti.svg'
 import { ReactComponent as PadariaIcon } from '../../assets/padaria.svg'
 
 import menuImg from '../../assets/menu.svg'
@@ -27,7 +27,7 @@ export function Sidebar() {
           <li>
             <NavLink to='/'>
               <LimpezaIcon />
-              <span>Hambúrgueres</span>
+              <span>Limpeza</span>
             </NavLink>
           </li>
           <li>
@@ -39,13 +39,13 @@ export function Sidebar() {
           <li>
             <NavLink to='hortifrutis'>
               <SodaPopIcon />
-              <span>Bebidas</span>
+              <span>Hortifruti</span>
             </NavLink>
           </li>
           <li>
             <NavLink to='padarias'>
               <PadariaIcon />
-              <span>Sorvetes</span>
+              <span>Padaria</span>
             </NavLink>
           </li>
         </ul>
