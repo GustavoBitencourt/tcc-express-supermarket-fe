@@ -9,8 +9,8 @@ export default function Hortifrutis() {
 
   return (
     <>
-      <Head title='Bebidas' />
-      <ProductTitle>Bebidas</ProductTitle>
+      <Head title='Hortifruti' />
+      <ProductTitle>Hortifruti</ProductTitle>
       <Products products={hortifrutis}></Products>
     </>
   )

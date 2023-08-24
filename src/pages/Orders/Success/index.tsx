@@ -21,8 +21,8 @@ export default function OrderSuccessPage() {
         <SubTitle>Dados de Contato da Loja</SubTitle>
 
         <ul>
-          <li>Endereço: Av Central, 123</li>
-          <li>Tel: 11 98412-4578</li>
+          <li>Endereço: Rua Major Francisco Nunes de Souza, 4559</li>
+          <li>Tel: (53) 3228-1840</li>
         </ul>
 
         <br />

@@ -9,8 +9,8 @@ export default function Limpezas() {
 
   return (
     <>
-      <Head title='Hambúrgueres' />
-      <ProductTitle>Hambúrgueres</ProductTitle>
+      <Head title='Limpeza' />
+      <ProductTitle>Limpeza</ProductTitle>
       <Products products={limpezas}></Products>
     </>
   )

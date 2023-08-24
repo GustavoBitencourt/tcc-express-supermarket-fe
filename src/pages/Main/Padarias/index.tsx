@@ -9,8 +9,8 @@ export default function Padarias() {
 
   return (
     <>
-      <Head title='Sorvetes' />
-      <ProductTitle>Sorvetes</ProductTitle>
+      <Head title='Padaria' />
+      <ProductTitle>Padaria</ProductTitle>
       <Products products={padarias}></Products>
     </>
   )

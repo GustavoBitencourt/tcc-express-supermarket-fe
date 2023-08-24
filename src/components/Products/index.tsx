@@ -33,6 +33,7 @@ export function Products({ products }: ProductsProps) {
                 <div>
                   <strong>{currencyFormat(product.price)}</strong>
                   <button type='button' onClick={() => addProductIntoCart(product)}>
+                    <p>Adicionar</p>
                     <FiPlus />
                   </button>
                 </div>

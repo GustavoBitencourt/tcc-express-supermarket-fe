@@ -1,13 +1,13 @@
 export function productEmoji(name: string) {
   switch (name.toLowerCase()) {
     case 'limpeza':
-      return '🍔'
+      return '🧼'
     case 'carne':
-      return '🍕'
+      return '🥩'
     case 'hortifruti':
-      return '🥤'
+      return '🍎'
     case 'padaria':
-      return '🍨'
+      return '🍞'
     default:
       return '🧑‍🍳'
   }

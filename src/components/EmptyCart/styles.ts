@@ -24,7 +24,7 @@ export const Container = styled.section`
 export const Button = styled(Link)`
   display: block;
 
-  background: ${({ theme }) => theme.colors.red};
+  background: ${({ theme }) => theme.colors.green};
   width: 100%;
   max-width: 13rem;
   height: 3rem;
@@ -39,6 +39,6 @@ export const Button = styled(Link)`
   transition: background 0.3s;
 
   &:hover {
-    background: ${darken(0.1, '#AA2424')};
+    background: ${darken(0.1, '#56BA50')};
   }
 `

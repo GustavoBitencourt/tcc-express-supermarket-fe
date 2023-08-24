@@ -22,7 +22,7 @@ export const Container = styled.div`
       top: -0.5rem;
       left: -0.5rem;
 
-      background: ${({ theme }) => theme.colors.red};
+      background: ${({ theme }) => theme.colors.green};
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
@@ -67,24 +67,29 @@ export const Container = styled.div`
       }
 
       button {
-        background: ${({ theme }) => theme.colors.red};
-        width: 3rem;
-        height: 3rem;
+        background: ${({ theme }) => theme.colors.green};
+        width: 6rem;
+        height: 2.5rem;
         border: none;
-        border-radius: 50%;
-
+        border-radius: 7%;
         display: flex;
         align-items: center;
         justify-content: center;
 
+        p {
+          color: ${({ theme }) => theme.colors.white};
+          margin-right: 0.1rem;
+        }
+
         svg {
           stroke: ${({ theme }) => theme.colors.white};
-          width: 1.5rem;
-          height: 1.5rem;
+          stroke-width: 0.23rem;
+          width: 1.3rem;
+          height: 1.3rem;
         }
 
         &:hover {
-          background: ${darken(0.1, '#AA2424')};
+          background: ${darken(0.1, '#56BA50')};
         }
       }
     }

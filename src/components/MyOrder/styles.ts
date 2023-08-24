@@ -7,7 +7,7 @@ export const Container = styled(Link)`
   right: 1.5rem;
   bottom: 0.5rem;
 
-  background: ${({ theme }) => theme.colors.red};
+  background: ${({ theme }) => theme.colors.green};
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 
@@ -17,7 +17,7 @@ export const Container = styled(Link)`
   transition: background 0.3s;
 
   &:hover {
-    background: ${darken(0.1, '#AA2424')};
+    background: ${darken(0.1, '#56BA50')};
   }
 
   span:first-child {

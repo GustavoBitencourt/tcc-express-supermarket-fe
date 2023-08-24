@@ -1,6 +1,6 @@
 {
   "short_name": "Aplicação React",
-  "name": "Templade Dev Samurai de aplicação React",
+  "name": "Aplicação React tsx",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#F83600",
-  "background_color": "#141518"
+  "theme_color": "#56BA50",
+  "background_color": "#F0F0F0"
 }

@@ -13,7 +13,7 @@ export function OrderHeader() {
   return (
     <Container>
       <Link to='/'>
-        <img src={logoImg} alt='Food Commerce' />
+        <img src={logoImg} alt='Mercado Expresso' />
       </Link>
       <div>
         <div>
