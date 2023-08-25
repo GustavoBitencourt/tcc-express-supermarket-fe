@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.98ec47ca.css",
+    "main.js": "/static/js/main.400deec0.js",
+    "static/js/787.18dd5cbe.chunk.js": "/static/js/787.18dd5cbe.chunk.js",
+    "static/media/logo.svg": "/static/media/logo.6f8e7503e3a0f6279a3b23a25301f615.svg",
+    "static/media/man-and-limpeza.svg": "/static/media/man-and-limpeza.4b5c70211cf2dc3b74cd623bf08ed58c.svg",
+    "static/media/padaria.svg": "/static/media/padaria.b1f66e85437c21606dc4fd16dc21193d.svg",
+    "static/media/limpeza.svg": "/static/media/limpeza.5a9b33fa54121328b6f70c147c6d118b.svg",
+    "static/media/carne.svg": "/static/media/carne.9c0bde32eea0abcbdd8a607645763b12.svg",
+    "static/media/hortifruti.svg": "/static/media/hortifruti.d54354cc4d9a85f382dc1655fc1ffdac.svg",
+    "index.html": "/index.html",
+    "static/media/shopping-cart.svg": "/static/media/shopping-cart.b5bd33c30cf6cc90ce7eb6f59d7c87b0.svg",
+    "static/media/circle-plus.svg": "/static/media/circle-plus.001449881836016a4e97be030ba805a4.svg",
+    "static/media/circle-minus.svg": "/static/media/circle-minus.3d63ec4f41e86a2f236b092eda5375ad.svg",
+    "static/media/menu.svg": "/static/media/menu.bca51deca2ccf044433598ccc50a59f1.svg",
+    "main.98ec47ca.css.map": "/static/css/main.98ec47ca.css.map",
+    "main.400deec0.js.map": "/static/js/main.400deec0.js.map",
+    "787.18dd5cbe.chunk.js.map": "/static/js/787.18dd5cbe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.98ec47ca.css",
+    "static/js/main.400deec0.js"
+  ]
+}
