@@ -12,7 +12,7 @@ import { Theme } from './styles/Theme'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.REACT_APP_BASE_NAME}>
       <Theme>
         <ProductProvider>
           <CartProvider>
