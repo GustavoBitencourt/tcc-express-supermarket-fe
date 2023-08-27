@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.main`
   width: 100%;
@@ -12,19 +12,32 @@ export const Container = styled.main`
     overflow-y: auto;
     padding: 2rem 1.875rem;
 
-    img {
-      width: 10rem;
-      margin-bottom: 2rem;
-    }
-
     @media (max-width: 720px) {
       display: flex;
       flex-direction: column;
       padding-bottom: 8rem;
-
-      img {
-        align-self: center;
-      }
     }
   }
-`
+`;
+
+export const Header = styled.header`
+  background-color: white;
+  width: 100%;
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+
+  @media (max-width: 720px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+`;
+
+export const LogoSvg = styled.img`
+  width: 7rem;
+  margin-right: 1rem;
+`;
