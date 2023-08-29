@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.main`
   width: 100%;
@@ -18,7 +18,7 @@ export const Container = styled.main`
       padding-bottom: 8rem;
     }
   }
-`;
+`
 
 export const Header = styled.header`
   background-color: white;
@@ -35,9 +35,48 @@ export const Header = styled.header`
     justify-content: flex-start;
     align-items: center;
   }
-`;
+`
+export const LogoContainer = styled.div`
+  margin-left: 1rem;
+`
 
 export const LogoSvg = styled.img`
   width: 7rem;
-  margin-right: 1rem;
-`;
+`
+export const CarrouselContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: calc(200vh + 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -36rem;
+
+  .carousel {
+    width: 90%;
+  }
+
+  .carousel .slide img {
+    width: 100%;
+    height: auto;
+  }
+`
+export const ArrowRight = styled.div`
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  z-index: 1;
+  cursor: pointer;
+`
+
+export const ArrowLeft = styled.div`
+  position: absolute;
+  top: 50%;
+  left: -1rem;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  z-index: 1;
+  cursor: pointer;
+`
