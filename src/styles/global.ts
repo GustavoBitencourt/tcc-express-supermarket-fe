@@ -39,6 +39,10 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  .carousel.carousel-slider {
+    overflow: initial;
+  }
+
   ul,
   li {
     list-style: none;

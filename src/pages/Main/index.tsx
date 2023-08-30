@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Outlet } from 'react-router-dom';
-import { MyOrder } from '../../components/MyOrder';
-import { Sidebar } from '../../components/Sidebar';
+import React, { useState } from 'react'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Outlet, Link } from 'react-router-dom'
+import { MyOrder } from '../../components/MyOrder'
+import { Sidebar } from '../../components/Sidebar'
 import {
   Container,
   Header,
@@ -12,18 +12,18 @@ import {
   CarrouselContainer,
   ArrowLeft,
   ArrowRight,
-} from './styles';
-import logoSvg from '../../assets/logo.svg';
-import arrowLeftSvg from '../../assets/arrow-left.svg';
-import arrowRightSvg from '../../assets/arrow-right.svg';
-import image1 from '../../assets/banner-image1.svg';
-import image2 from '../../assets/banner-image2.svg';
-import image3 from '../../assets/banner-image3.svg';
+} from './styles'
+import logoSvg from '../../assets/logo.svg'
+import arrowLeftSvg from '../../assets/arrow-left.svg'
+import arrowRightSvg from '../../assets/arrow-right.svg'
+import image1 from '../../assets/banner-image1.svg'
+import image2 from '../../assets/banner-image2.svg'
+import image3 from '../../assets/banner-image3.svg'
 
-import { CarouselIndicators, SelectedIndicator } from './carouselIndicators';
+import { CarouselIndicators, SelectedIndicator } from './carouselIndicators'
 
 export default function Main() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   return (
     <Container>
@@ -31,7 +31,9 @@ export default function Main() {
       <section>
         <Header>
           <LogoContainer>
-            <LogoSvg src={logoSvg} alt='Logo' />
+            <Link to='/'>
+              <LogoSvg src={logoSvg} alt='Logo' />
+            </Link>
           </LogoContainer>
         </Header>
         <Outlet />
@@ -75,5 +77,5 @@ export default function Main() {
       </section>
       <MyOrder />
     </Container>
-  );
+  )
 }
