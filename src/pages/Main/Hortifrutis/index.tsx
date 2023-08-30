@@ -2,7 +2,7 @@ import { useProduct } from '../../../hooks/useProduct'
 
 import { Head } from '../../../components/Head'
 import { Products } from '../../../components/Products'
-import { ProductTitle } from '../../../components/ProductTitle'
+import { CategoryBar } from '../../../components/CategoryBar'
 
 export default function Hortifrutis() {
   const { hortifrutis } = useProduct()
@@ -10,7 +10,7 @@ export default function Hortifrutis() {
   return (
     <>
       <Head title='Hortifruti' />
-      <ProductTitle>Hortifruti</ProductTitle>
+      <CategoryBar show={true} title='Limpeza' />
       <Products products={hortifrutis}></Products>
     </>
   )

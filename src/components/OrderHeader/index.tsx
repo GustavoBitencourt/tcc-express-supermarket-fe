@@ -19,7 +19,7 @@ export function OrderHeader() {
         <div>
           <h3>Meus pedidos</h3>
           <span>
-            <strong>{`${cart.length}`.padStart(2, '0')}</strong> lanche(s)
+            <strong>{`${cart.length}`.padStart(2, '0')}</strong> produto(s)
           </span>
         </div>
         <CartIcon />

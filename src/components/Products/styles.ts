@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   .product {
     position: relative;
-    background: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.white};
     padding: 1.75rem 1.5rem;
     border-radius: 4px;
 
@@ -40,6 +40,7 @@ export const Container = styled.div`
       font-weight: 700;
       font-size: 1.5rem;
       text-align: center;
+      color: ${({ theme }) => theme.colors.blackgray};
     }
 
     img {
@@ -60,6 +61,7 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      color: ${({ theme }) => theme.colors.blackgray};
 
       strong {
         font-size: 2rem;

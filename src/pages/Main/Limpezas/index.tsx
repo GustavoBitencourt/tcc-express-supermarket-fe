@@ -2,7 +2,7 @@ import { useProduct } from '../../../hooks/useProduct'
 
 import { Head } from '../../../components/Head'
 import { Products } from '../../../components/Products'
-import { ProductTitle } from '../../../components/ProductTitle'
+import { CategoryBar } from '../../../components/CategoryBar'
 
 export default function Limpezas() {
   const { limpezas } = useProduct()
@@ -10,7 +10,7 @@ export default function Limpezas() {
   return (
     <>
       <Head title='Limpeza' />
-      <ProductTitle>Limpeza</ProductTitle>
+      <CategoryBar title='Limpeza' show={true} /> {/* Show the CategoryBar */}
       <Products products={limpezas}></Products>
     </>
   )

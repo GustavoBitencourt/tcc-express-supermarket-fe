@@ -2,7 +2,7 @@ import { useProduct } from '../../../hooks/useProduct'
 
 import { Head } from '../../../components/Head'
 import { Products } from '../../../components/Products'
-import { ProductTitle } from '../../../components/ProductTitle'
+import { CategoryBar } from '../../../components/CategoryBar'
 
 export default function Carnes() {
   const { carnes } = useProduct()
@@ -10,7 +10,7 @@ export default function Carnes() {
   return (
     <>
       <Head title='Carnes' />
-      <ProductTitle>Carnes</ProductTitle>
+      <CategoryBar show={true} title='Carnes' />
       <Products products={carnes}></Products>
     </>
   )

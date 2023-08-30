@@ -2,7 +2,7 @@ import { useProduct } from '../../../hooks/useProduct'
 
 import { Head } from '../../../components/Head'
 import { Products } from '../../../components/Products'
-import { ProductTitle } from '../../../components/ProductTitle'
+import { CategoryBar } from '../../../components/CategoryBar'
 
 export default function Padarias() {
   const { padarias } = useProduct()
@@ -10,7 +10,7 @@ export default function Padarias() {
   return (
     <>
       <Head title='Padaria' />
-      <ProductTitle>Padaria</ProductTitle>
+      <CategoryBar show={true} title='Padaria' />
       <Products products={padarias}></Products>
     </>
   )

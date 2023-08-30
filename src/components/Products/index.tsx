@@ -27,9 +27,8 @@ export function Products({ products }: ProductsProps) {
             return (
               <div key={product.id} className='product'>
                 {productExistent && <span>{productExistent.quantity}</span>}
-                <h2>{product.name}</h2>
                 <img src={product.image} alt={product.name} />
-                <p>{product.description}</p>
+                <h2>{product.name}</h2>
                 <div>
                   <strong>{currencyFormat(product.price)}</strong>
                   <button type='button' onClick={() => addProductIntoCart(product)}>
