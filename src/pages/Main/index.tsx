@@ -1,9 +1,9 @@
-import React from 'react'
-import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { Outlet } from 'react-router-dom'
-import { MyOrder } from '../../components/MyOrder'
-import { Sidebar } from '../../components/Sidebar'
+import React, { useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Outlet } from 'react-router-dom';
+import { MyOrder } from '../../components/MyOrder';
+import { Sidebar } from '../../components/Sidebar';
 import {
   Container,
   Header,
@@ -12,15 +12,19 @@ import {
   CarrouselContainer,
   ArrowLeft,
   ArrowRight,
-} from './styles'
-import logoSvg from '../../assets/logo.svg'
-import arrowLeftSvg from '../../assets/arrow-left.svg'
-import arrowRightSvg from '../../assets/arrow-right.svg'
-import image1 from '../../assets/banner-image1.svg'
-import image2 from '../../assets/banner-image2.svg'
-import image3 from '../../assets/banner-image3.svg'
+} from './styles';
+import logoSvg from '../../assets/logo.svg';
+import arrowLeftSvg from '../../assets/arrow-left.svg';
+import arrowRightSvg from '../../assets/arrow-right.svg';
+import image1 from '../../assets/banner-image1.svg';
+import image2 from '../../assets/banner-image2.svg';
+import image3 from '../../assets/banner-image3.svg';
+
+import { CarouselIndicators, SelectedIndicator } from './carouselIndicators';
 
 export default function Main() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   return (
     <Container>
       <Sidebar />
@@ -35,6 +39,7 @@ export default function Main() {
           <Carousel
             showThumbs={false}
             showStatus={false}
+            showIndicators={false}
             renderArrowPrev={(onClickHandler, hasPrev) =>
               hasPrev && (
                 <ArrowLeft onClick={onClickHandler}>
@@ -49,6 +54,7 @@ export default function Main() {
                 </ArrowRight>
               )
             }
+            onChange={(index) => setCurrentSlide(index)}
           >
             <div>
               <img src={image1} alt='Imagem 1' />
@@ -61,8 +67,13 @@ export default function Main() {
             </div>
           </Carousel>
         </CarrouselContainer>
+        <CarouselIndicators>
+          <SelectedIndicator isActive={currentSlide === 0} />
+          <SelectedIndicator isActive={currentSlide === 1} />
+          <SelectedIndicator isActive={currentSlide === 2} />
+        </CarouselIndicators>
       </section>
       <MyOrder />
     </Container>
-  )
+  );
 }

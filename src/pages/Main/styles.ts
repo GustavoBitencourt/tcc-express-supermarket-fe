@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 3rem);
   display: flex;
 
   > section {
@@ -21,7 +21,7 @@ export const Container = styled.main`
 `
 
 export const Header = styled.header`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
   height: 4rem;
   position: fixed;
@@ -44,13 +44,13 @@ export const LogoSvg = styled.img`
   width: 7rem;
 `
 export const CarrouselContainer = styled.div`
+  margin-top: 3rem;
   position: relative;
   width: 100%;
-  height: calc(200vh + 4rem);
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -36rem;
 
   .carousel {
     width: 90%;
@@ -60,7 +60,8 @@ export const CarrouselContainer = styled.div`
     width: 100%;
     height: auto;
   }
-`
+`;
+
 export const ArrowRight = styled.div`
   position: absolute;
   top: 50%;
