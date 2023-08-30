@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   .product {
     position: relative;
-    background: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.blue};
     padding: 1.75rem 1.5rem;
     border-radius: 4px;
 
