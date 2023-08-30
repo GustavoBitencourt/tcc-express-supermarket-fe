@@ -12,6 +12,7 @@ export const theme: DefaultTheme = {
   colors: {
     white: '#FFFFFF',
     black: '#0C0D0F',
+    blackgray: '#393939',
     red: '#E03131',
     orange: '#E8590C',
     yellow: '#FCC419',
@@ -25,7 +26,7 @@ export const theme: DefaultTheme = {
     gray100: '#F0F0F0',
     gray200: '#E9ECEF',
     gray300: '#DEE2E6',
-    gray400: '#CED4DA',
+    gray400: '#CBCBCB',
     gray500: '#A4ACB4',
     gray600: '#64666B',
     gray700: '#424449',

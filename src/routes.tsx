@@ -5,6 +5,7 @@ import LimpezasPage from './pages/Main/Limpezas'
 import HortifrutisPage from './pages/Main/Hortifrutis'
 import PadariasPage from './pages/Main/Padarias'
 import CarnesPage from './pages/Main/Carnes'
+import HomePage from './pages/Main/HomePage/index'
 
 import MyCartPage from './pages/MyCart'
 import OrderSuccessPage from './pages/Orders/Success'
@@ -13,7 +14,8 @@ import PaymentPage from './pages/Payment'
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<MainPage />}>
+      <Route element={<MainPage />}>
+        <Route path='/' element={<HomePage />} />
         <Route path='limpezas' element={<LimpezasPage />} />
         <Route path='carnes' element={<CarnesPage />} />
         <Route path='hortifrutis' element={<HortifrutisPage />} />
