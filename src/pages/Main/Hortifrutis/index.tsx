@@ -3,6 +3,7 @@ import { useProduct } from '../../../hooks/useProduct'
 import { Head } from '../../../components/Head'
 import { Products } from '../../../components/Products'
 import { CategoryBar } from '../../../components/CategoryBar'
+import hortiLogo from '../../../../src/assets/horti-logo.svg'
 
 export default function Hortifrutis() {
   const { hortifrutis } = useProduct()
@@ -10,7 +11,7 @@ export default function Hortifrutis() {
   return (
     <>
       <Head title='Hortifruti' />
-      <CategoryBar show={true} title='Limpeza' />
+      <CategoryBar show={true} title='Limpeza' icon={hortiLogo} />
       <Products products={hortifrutis}></Products>
     </>
   )
