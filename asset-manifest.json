@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tcc-express-supermarket-fe/static/css/main.7de12627.css",
-    "main.js": "/tcc-express-supermarket-fe/static/js/main.df24aa62.js",
+    "main.js": "/tcc-express-supermarket-fe/static/js/main.f84281db.js",
     "static/js/787.9c42c293.chunk.js": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js",
     "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.52c5e3e809faae0edf4eff181c754c68.svg",
     "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.52c5e3e809faae0edf4eff181c754c68.svg",
@@ -12,6 +12,10 @@
     "static/media/limpeza.svg": "/tcc-express-supermarket-fe/static/media/limpeza.14ac850a0fd4c7157973d4dad57fb3cb.svg",
     "static/media/carne.svg": "/tcc-express-supermarket-fe/static/media/carne.f08687720cdc2e71324c7ee0e76324f3.svg",
     "static/media/hortifruti.svg": "/tcc-express-supermarket-fe/static/media/hortifruti.da48a8d735128fca149ffe8c7657541b.svg",
+    "static/media/padaria-logo.svg": "/tcc-express-supermarket-fe/static/media/padaria-logo.3d734e211b04b0c32b52345ade8fe706.svg",
+    "static/media/limpeza-logo.svg": "/tcc-express-supermarket-fe/static/media/limpeza-logo.34a69090a405774c24527acafc40075a.svg",
+    "static/media/carne-logo.svg": "/tcc-express-supermarket-fe/static/media/carne-logo.bbc39304ab02a22bfb5a81a5440b0f00.svg",
+    "static/media/horti-logo.svg": "/tcc-express-supermarket-fe/static/media/horti-logo.881c420be42459b9075d4d3ee04d0d50.svg",
     "index.html": "/tcc-express-supermarket-fe/index.html",
     "static/media/shopping-cart.svg": "/tcc-express-supermarket-fe/static/media/shopping-cart.2ae1e32a27047d499953efbb4eb04564.svg",
     "static/media/circle-plus.svg": "/tcc-express-supermarket-fe/static/media/circle-plus.f3fa1bd9e75bc2b2225d8feea4fdd043.svg",
@@ -20,11 +24,11 @@
     "static/media/arrow-left.svg": "/tcc-express-supermarket-fe/static/media/arrow-left.38429eb15aca1383abcd6e6ec91eb766.svg",
     "static/media/arrow-right.svg": "/tcc-express-supermarket-fe/static/media/arrow-right.876e175cf0fc57f64e278c0be2014749.svg",
     "main.7de12627.css.map": "/tcc-express-supermarket-fe/static/css/main.7de12627.css.map",
-    "main.df24aa62.js.map": "/tcc-express-supermarket-fe/static/js/main.df24aa62.js.map",
+    "main.f84281db.js.map": "/tcc-express-supermarket-fe/static/js/main.f84281db.js.map",
     "787.9c42c293.chunk.js.map": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7de12627.css",
-    "static/js/main.df24aa62.js"
+    "static/js/main.f84281db.js"
   ]
 }
