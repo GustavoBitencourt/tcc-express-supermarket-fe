@@ -1,5 +1,14 @@
 import React from 'react'
-import { CategoryBarWrapper, CategoryTitle, CategoryIcon } from './styles'
+import {
+  CategoryBarWrapper,
+  CategoryTitle,
+  CategoryIcon,
+  SmallArrowIcon,
+  MagnifyGlassIcon,
+} from './styles'
+import arrowLeftIcon from '../../assets/arror-left-category.svg'
+import magnifyGlassIcon from '../../assets/magnifying-glass.svg'
+import { Link } from 'react-router-dom'
 
 interface CategoryBarProps {
   title: string
@@ -14,8 +23,12 @@ export function CategoryBar({ title, show, icon }: CategoryBarProps) {
 
   return (
     <CategoryBarWrapper>
+      <Link to='/'>
+        <SmallArrowIcon src={arrowLeftIcon} alt='Back' />
+      </Link>
       <CategoryIcon src={icon} alt={title} />
       <CategoryTitle>{title}</CategoryTitle>
+      <MagnifyGlassIcon src={magnifyGlassIcon} alt='Search' />
     </CategoryBarWrapper>
   )
 }
