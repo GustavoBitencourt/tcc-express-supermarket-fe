@@ -27,7 +27,9 @@ export const GlobalStyle = createGlobalStyle`
   select,
   textarea,
   button {
-    font: 400 1rem 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400; /* Peso da fonte (400 é regular) */
+    font-size: 1rem;
   }
 
   a {

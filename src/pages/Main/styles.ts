@@ -13,9 +13,8 @@ export const Container = styled.main`
     padding: 2rem 1.875rem;
 
     @media (max-width: 720px) {
-      display: flex;
-      flex-direction: column;
       padding-bottom: 8rem;
+      display: grid;
     }
   }
 `

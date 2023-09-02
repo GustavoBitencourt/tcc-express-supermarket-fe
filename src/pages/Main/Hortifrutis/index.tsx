@@ -11,7 +11,7 @@ export default function Hortifrutis() {
   return (
     <>
       <Head title='Hortifruti' />
-      <CategoryBar show={true} title='Limpeza' icon={hortiLogo} />
+      <CategoryBar show={true} title='Hortifruti' icon={hortiLogo} />
       <Products products={hortifrutis}></Products>
     </>
   )

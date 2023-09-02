@@ -30,7 +30,7 @@ export function Products({ products }: ProductsProps) {
                 <img src={product.image} alt={product.name} />
                 <h2>{product.name}</h2>
                 <div>
-                  <strong>{currencyFormat(product.price)}</strong>
+                  <strong className='price'>{currencyFormat(product.price)}</strong>
                   <button type='button' onClick={() => addProductIntoCart(product)}>
                     <p>Adicionar</p>
                     <FiPlus />

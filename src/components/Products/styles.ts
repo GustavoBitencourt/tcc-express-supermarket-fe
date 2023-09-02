@@ -55,6 +55,13 @@ export const Container = styled.div`
       font-size: 0.875rem;
     }
 
+    .price {
+      font-family: 'Baloo Bhai 2', cursive;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 2.2rem;
+    }
+
     div {
       margin-top: 0.875rem;
 
