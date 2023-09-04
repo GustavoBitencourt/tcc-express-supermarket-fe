@@ -16,8 +16,9 @@ export const Container = styled.div`
     padding: 1rem;
     border-radius: 4px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Alterado para flex-direction: column */
+    justify-content: space-between; /* Alinha os elementos no início e no final do card */
+    margin-top: 1rem;
 
     span {
       position: absolute;
@@ -45,8 +46,15 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.colors.blackgray};
     }
 
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
     img {
-      object-fit: cover;
+      object-fit: contain;
       width: 100%;
       height: 7.5rem; /* Altura da imagem */
       border-radius: 4px;
@@ -65,6 +73,7 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 2.5rem;
       color: ${({ theme }) => theme.colors.blackgray};
     }
 
@@ -75,18 +84,18 @@ export const Container = styled.div`
 
     button {
       background: ${({ theme }) => theme.colors.green};
-      width: 4rem;
+      width: 5.8rem;
       height: 1.75rem;
       border: none;
-      border-radius: 7%;
+      border-radius: 10%;
       display: flex;
       align-items: center;
       justify-content: center;
 
       p {
         color: ${({ theme }) => theme.colors.white};
-        margin-right: 0.1rem;
-        font-size: 0.75rem; /* Tamanho da fonte */
+        margin-right: 0.5rem;
+        font-size: 0.85rem; /* Tamanho da fonte */
       }
 
       svg {
