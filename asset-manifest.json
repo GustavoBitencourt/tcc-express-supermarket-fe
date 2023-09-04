@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tcc-express-supermarket-fe/static/css/main.7de12627.css",
-    "main.js": "/tcc-express-supermarket-fe/static/js/main.65d5b5f8.js",
+    "main.js": "/tcc-express-supermarket-fe/static/js/main.394bb4a3.js",
     "static/js/787.9c42c293.chunk.js": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js",
     "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.52c5e3e809faae0edf4eff181c754c68.svg",
     "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.52c5e3e809faae0edf4eff181c754c68.svg",
@@ -21,16 +21,17 @@
     "static/media/circle-plus.svg": "/tcc-express-supermarket-fe/static/media/circle-plus.f3fa1bd9e75bc2b2225d8feea4fdd043.svg",
     "static/media/circle-minus.svg": "/tcc-express-supermarket-fe/static/media/circle-minus.bd120921e59c43654c8b9f0108ac2671.svg",
     "static/media/magnifying-glass.svg": "/tcc-express-supermarket-fe/static/media/magnifying-glass.e976b814c3145409a3feee9673c1c099.svg",
+    "static/media/plus-icon.svg": "/tcc-express-supermarket-fe/static/media/plus-icon.36586205f35066af0264c3a889624436.svg",
     "static/media/arror-left-category.svg": "/tcc-express-supermarket-fe/static/media/arror-left-category.d9021ea5a1205bb055b46559addb57b7.svg",
     "static/media/menu.svg": "/tcc-express-supermarket-fe/static/media/menu.bca51deca2ccf044433598ccc50a59f1.svg",
     "static/media/arrow-left.svg": "/tcc-express-supermarket-fe/static/media/arrow-left.38429eb15aca1383abcd6e6ec91eb766.svg",
     "static/media/arrow-right.svg": "/tcc-express-supermarket-fe/static/media/arrow-right.876e175cf0fc57f64e278c0be2014749.svg",
     "main.7de12627.css.map": "/tcc-express-supermarket-fe/static/css/main.7de12627.css.map",
-    "main.65d5b5f8.js.map": "/tcc-express-supermarket-fe/static/js/main.65d5b5f8.js.map",
+    "main.394bb4a3.js.map": "/tcc-express-supermarket-fe/static/js/main.394bb4a3.js.map",
     "787.9c42c293.chunk.js.map": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7de12627.css",
-    "static/js/main.65d5b5f8.js"
+    "static/js/main.394bb4a3.js"
   ]
 }
