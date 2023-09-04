@@ -1,5 +1,3 @@
-import { FiPlus } from 'react-icons/fi'
-
 import { currencyFormat } from '../../helpers/currencyFormat'
 import { useCart } from '../../hooks/useCart'
 import { ProductData } from '../../interfaces/ProductData'
@@ -7,6 +5,7 @@ import { ProductData } from '../../interfaces/ProductData'
 import { SkeletonProduct } from './SkeletonProduct'
 
 import { Container } from './styles'
+import { ReactComponent as PlusIcon } from '../../assets/plus-icon.svg'
 
 interface ProductsProps {
   products: ProductData[]
@@ -28,12 +27,12 @@ export function Products({ products }: ProductsProps) {
               <div key={product.id} className='product'>
                 {productExistent && <span>{productExistent.quantity}</span>}
                 <img src={product.image} alt={product.name} />
-                <h2>{product.name}</h2>
-                <div>
+                <div className='product-info'>
+                  <h2>{product.name}</h2>
                   <strong className='price'>{currencyFormat(product.price)}</strong>
                   <button type='button' onClick={() => addProductIntoCart(product)}>
                     <p>Adicionar</p>
-                    <FiPlus />
+                    <PlusIcon />
                   </button>
                 </div>
               </div>

@@ -4,27 +4,29 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tamanho mínimo do produto */
+  gap: 1rem; /* Espaçamento entre os produtos */
 
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(2, 1fr); /* Exibir dois produtos por linha em telas menores */
   }
 
   .product {
-    position: relative;
     background: ${({ theme }) => theme.colors.white};
-    padding: 1.75rem 1.5rem;
+    padding: 1rem;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     span {
       position: absolute;
-      top: -0.5rem;
-      left: -0.5rem;
+      top: -0.25rem;
+      left: -0.25rem;
 
       background: ${({ theme }) => theme.colors.green};
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem; /* Tamanho do círculo */
+      height: 1.5rem; /* Tamanho do círculo */
       border-radius: 50%;
 
       display: flex;
@@ -32,13 +34,13 @@ export const Container = styled.div`
       justify-content: center;
 
       font-weight: 500;
-      font-size: 1.125rem;
+      font-size: 0.875rem; /* Tamanho da fonte */
     }
 
     h2 {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem; /* Margem inferior reduzida */
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1rem; /* Tamanho da fonte */
       text-align: center;
       color: ${({ theme }) => theme.colors.blackgray};
     }
@@ -46,60 +48,56 @@ export const Container = styled.div`
     img {
       object-fit: cover;
       width: 100%;
-      height: 11.25rem;
+      height: 7.5rem; /* Altura da imagem */
       border-radius: 4px;
-      margin-bottom: 0.375rem;
+      margin-bottom: 0.25rem; /* Margem inferior */
     }
 
     p {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
     }
 
     .price {
       font-family: 'Baloo Bhai 2', cursive;
       font-style: normal;
       font-weight: 700;
-      font-size: 2.2rem;
-    }
-
-    div {
-      margin-top: 0.875rem;
-
+      font-size: 2rem; /* Tamanho da fonte */
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       color: ${({ theme }) => theme.colors.blackgray};
+    }
 
-      strong {
-        font-size: 2rem;
-        font-weight: 500;
+    strong {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    button {
+      background: ${({ theme }) => theme.colors.green};
+      width: 4rem;
+      height: 1.75rem;
+      border: none;
+      border-radius: 7%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        color: ${({ theme }) => theme.colors.white};
+        margin-right: 0.1rem;
+        font-size: 0.75rem; /* Tamanho da fonte */
       }
 
-      button {
-        background: ${({ theme }) => theme.colors.green};
-        width: 6rem;
-        height: 2.5rem;
-        border: none;
-        border-radius: 7%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      svg {
+        stroke: ${({ theme }) => theme.colors.white};
+        stroke-width: 0.23rem;
+        width: 1rem; /* Tamanho do ícone */
+        height: 1rem; /* Tamanho do ícone */
+      }
 
-        p {
-          color: ${({ theme }) => theme.colors.white};
-          margin-right: 0.1rem;
-        }
-
-        svg {
-          stroke: ${({ theme }) => theme.colors.white};
-          stroke-width: 0.23rem;
-          width: 1.3rem;
-          height: 1.3rem;
-        }
-
-        &:hover {
-          background: ${darken(0.1, '#56BA50')};
-        }
+      &:hover {
+        background: ${darken(0.1, '#56BA50')};
       }
     }
   }
