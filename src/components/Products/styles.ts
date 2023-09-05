@@ -82,15 +82,37 @@ export const Container = styled.div`
       font-weight: 500;
     }
 
+    .buttons {
+      display: flex;
+      justify-content: flex-start; /* Alinhar à esquerda */
+      align-items: center; /* Alinhar verticalmente no centro */
+      margin-top: 1rem;
+
+      .map-button {
+        background: transparent; /* Fundo transparente para o botão de mapa */
+        border: none;
+        width: 2rem; /* Largura do botão de mapa (ajuste conforme necessário) */
+        height: 1.75rem; /* Altura do botão de mapa (ajuste conforme necessário) */
+        margin-right: 0.5rem; /* Espaçamento entre os botões */
+
+        svg {
+          width: 100%; /* Tamanho do ícone do mapa */
+          height: 100%; /* Tamanho do ícone do mapa */
+        }
+      }
+    }
+
     button {
+      flex: 1; /* Para dividir o espaço igualmente entre os botões */
       background: ${({ theme }) => theme.colors.green};
+      border: none;
       width: 5.8rem;
       height: 1.75rem;
-      border: none;
       border-radius: 10%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-right: 0.5rem; /* Espaçamento entre os botões */
 
       p {
         color: ${({ theme }) => theme.colors.white};
@@ -109,5 +131,8 @@ export const Container = styled.div`
         background: ${darken(0.1, '#56BA50')};
       }
     }
+  }
+  @media (min-width: 721px) {
+    margin-top: 5rem;
   }
 `
