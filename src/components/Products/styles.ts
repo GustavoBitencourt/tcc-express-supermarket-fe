@@ -19,6 +19,7 @@ export const Container = styled.div`
     flex-direction: column; /* Alterado para flex-direction: column */
     justify-content: space-between; /* Alinha os elementos no início e no final do card */
     margin-top: 1rem;
+    overflow: hidden;
 
     span {
       position: absolute;
@@ -69,45 +70,39 @@ export const Container = styled.div`
       font-family: 'Baloo Bhai 2', cursive;
       font-style: normal;
       font-weight: 700;
-      font-size: 2rem; /* Tamanho da fonte */
+      font-size: 2rem; /* Tamanho do valor principal */
+      color: ${({ theme }) => theme.colors.blackgray};
       display: flex;
       align-items: center;
       justify-content: center;
       margin-top: 2.5rem;
-      color: ${({ theme }) => theme.colors.blackgray};
-    }
-
-    strong {
-      font-size: 1.5rem;
-      font-weight: 500;
     }
 
     .buttons {
       display: flex;
       justify-content: flex-start; /* Alinhar à esquerda */
       align-items: center; /* Alinhar verticalmente no centro */
-      margin-top: 1rem;
+    }
 
-      .map-button {
-        background: transparent; /* Fundo transparente para o botão de mapa */
-        border: none;
-        width: 2rem; /* Largura do botão de mapa (ajuste conforme necessário) */
-        height: 1.75rem; /* Altura do botão de mapa (ajuste conforme necessário) */
-        margin-right: 0.5rem; /* Espaçamento entre os botões */
+    .map-button {
+      background: transparent; /* Fundo transparente para o botão de mapa */
+      border: none;
+      width: 3.5rem; /* largura do botão de mapa */
+      height: 3.5rem; /* altura do botão de mapa */
+      margin-right: 0.5rem; /* Espaçamento entre os botões */
 
-        svg {
-          width: 100%; /* Tamanho do ícone do mapa */
-          height: 100%; /* Tamanho do ícone do mapa */
-        }
+      svg {
+        width: 100%; /* Tamanho do ícone do mapa */
+        height: 100%; /* Tamanho do ícone do mapa */
       }
     }
 
     button {
-      flex: 1; /* Para dividir o espaço igualmente entre os botões */
+      flex: none; /* Para dividir o espaço igualmente entre os botões */
       background: ${({ theme }) => theme.colors.green};
       border: none;
       width: 5.8rem;
-      height: 1.75rem;
+      height: 2.8rem; /* altura dos botões */
       border-radius: 10%;
       display: flex;
       align-items: center;
@@ -118,13 +113,6 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.colors.white};
         margin-right: 0.5rem;
         font-size: 0.85rem; /* Tamanho da fonte */
-      }
-
-      svg {
-        stroke: ${({ theme }) => theme.colors.white};
-        stroke-width: 0.23rem;
-        width: 1rem; /* Tamanho do ícone */
-        height: 1rem; /* Tamanho do ícone */
       }
 
       &:hover {
