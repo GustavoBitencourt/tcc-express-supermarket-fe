@@ -7,9 +7,13 @@ import {
   CarrouselContainer,
   ArrowLeft,
   ArrowRight,
+  Title,
+  ViewMoreLink,
+  CarrouselContent,
 } from './styles'
 import arrowLeftSvg from '../../../assets/arrow-left.svg'
 import arrowRightSvg from '../../../assets/arrow-right.svg'
+import miniArrowSvg from '../../../assets/mini-arrow.svg'
 import image1 from '../../../assets/banner-image1.svg'
 import image2 from '../../../assets/banner-image2.svg'
 import image3 from '../../../assets/banner-image3.svg'
@@ -54,6 +58,14 @@ export default function HomePage() {
         <SelectedIndicator isActive={currentSlide === 1} />
         <SelectedIndicator isActive={currentSlide === 2} />
       </CarouselIndicators>
+
+      <CarrouselContent>
+        <Title>Ofertas do dia</Title>
+        <ViewMoreLink href='#'>
+          Ver mais
+          <img src={miniArrowSvg} alt='Seta para a direita' />
+        </ViewMoreLink>
+      </CarrouselContent>
     </CarrouselContainer>
   )
 }
