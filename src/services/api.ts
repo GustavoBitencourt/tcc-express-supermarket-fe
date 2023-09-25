@@ -7,7 +7,11 @@ import { ProductData } from '../interfaces/ProductData'
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 })
-
+export const getProducts = (category?: string) => {
+  // Se a categoria for especificada, faz a solicitação com a categoria como parâmetro
+  const endpoint = category ? `/products?product=${category}` : '/products'
+  return api.get<ProductData[]>(endpoint)
+}
 export const getLimpezas = () => api.get<ProductData[]>('/products?product=limpeza')
 export const getCarnes = () => api.get<ProductData[]>('/products?product=carne')
 export const getHortifrutis = () => api.get<ProductData[]>('/products?product=hortifruti')

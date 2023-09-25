@@ -4,7 +4,7 @@ import { ProductData } from '../../interfaces/ProductData'
 import { SkeletonProduct } from './SkeletonProduct'
 import { Container } from './styles'
 import { ReactComponent as PlusIcon } from '../../assets/plus-icon.svg'
-import { ReactComponent as MapIcon } from '../../assets/map-product.svg' // Importe o ícone do mapa
+import { ReactComponent as MapIcon } from '../../assets/map-product.svg'
 
 interface ProductsProps {
   products: ProductData[]

@@ -11,6 +11,7 @@ import {
   ViewMoreLink,
   CarrouselContent,
 } from './styles'
+import SalesProductCarousel from './SalesProductsCarousel/index'
 import arrowLeftSvg from '../../../assets/arrow-left.svg'
 import arrowRightSvg from '../../../assets/arrow-right.svg'
 import miniArrowSvg from '../../../assets/mini-arrow.svg'
@@ -66,6 +67,7 @@ export default function HomePage() {
           <img src={miniArrowSvg} alt='Seta para a direita' />
         </ViewMoreLink>
       </CarrouselContent>
+      <SalesProductCarousel />
     </CarrouselContainer>
   )
 }
