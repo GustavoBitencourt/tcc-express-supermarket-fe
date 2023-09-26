@@ -60,6 +60,7 @@ export default function SalesProductCarousel() {
               top: '50%',
               left: '-1.25rem',
               transform: 'translateY(-50%)',
+              cursor: 'pointer',
               zIndex: 1000,
             }}
           >
@@ -72,6 +73,7 @@ export default function SalesProductCarousel() {
               top: '50%',
               right: '-1.25rem',
               transform: 'translateY(-50%)',
+              cursor: 'pointer',
               zIndex: 1000,
             }}
           >
