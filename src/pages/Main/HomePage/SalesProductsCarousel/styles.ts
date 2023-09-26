@@ -7,10 +7,6 @@ export const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tamanho mínimo do produto */
   gap: 1rem; /* Espaçamento entre os produtos */
 
-  @media (max-width: 720px) {
-    grid-template-columns: repeat(2, 1fr); /* Exibir dois produtos por linha em telas menores */
-  }
-
   .product {
     background: ${({ theme }) => theme.colors.white};
     padding: 1rem;
@@ -119,8 +115,5 @@ export const Container = styled.div`
         background: ${darken(0.1, '#56BA50')};
       }
     }
-  }
-  @media (min-width: 721px) {
-    margin-top: 5rem;
   }
 `
