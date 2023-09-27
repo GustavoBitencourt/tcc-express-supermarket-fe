@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { CartProvider } from './contexts/CartContext'
 import { ProductProvider } from './contexts/ProductContext'
 import { AppRoutes } from './routes'
+import './styles/styles.css'
 
 import { Normalize } from 'styled-normalize'
 import { GlobalStyle } from './styles/global'

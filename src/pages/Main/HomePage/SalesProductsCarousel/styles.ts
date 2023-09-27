@@ -10,7 +10,7 @@ export const Container = styled.div`
   .product {
     background: ${({ theme }) => theme.colors.white};
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 3%;
     display: flex;
     flex-direction: column; /* Alterado para flex-direction: column */
     justify-content: space-between; /* Alinha os elementos no início e no final do card */

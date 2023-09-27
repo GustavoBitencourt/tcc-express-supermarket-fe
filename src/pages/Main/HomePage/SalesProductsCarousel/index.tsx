@@ -9,7 +9,7 @@ import { Container } from './styles'
 import arrowLeftSvg from '../../../../assets/arrow-left.svg'
 import arrowRightSvg from '../../../../assets/arrow-right.svg'
 
-// Importe os componentes Swiper React
+// Importação dos componentes Swiper React
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { Pagination, Navigation } from 'swiper/modules'
@@ -44,7 +44,7 @@ export default function SalesProductCarousel() {
   }, [])
 
   const openMapModal = (product: ProductData) => {
-    // Implemente a lógica para mostrar o modal ou realizar a ação do mapa aqui
+    // Implementar a lógica para mostrar o modal ou realizar a ação do mapa aqui
     console.log('Abrir modal do mapa para:', product.name)
   }
 
@@ -96,7 +96,7 @@ export default function SalesProductCarousel() {
                 spaceBetween: 32,
               },
             }}
-            modules={[Pagination, Navigation]} // Importe o módulo de navegação
+            modules={[Pagination, Navigation]}
             className='mySwiper'
             style={{ width: '100%', height: '100%' }}
             navigation={{
@@ -129,7 +129,7 @@ export default function SalesProductCarousel() {
           </Swiper>
         </div>
       ) : (
-        <p>Carregando...</p>
+        <p>Aguarde...</p>
       )}
     </Container>
   )

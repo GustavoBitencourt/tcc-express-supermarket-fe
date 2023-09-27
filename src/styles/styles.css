@@ -1,0 +1,35 @@
+.navLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  min-width: 70px;
+  width: 23%;
+  border-radius: 8%;
+  background: #ffffff;
+  padding: 0.85rem;
+  box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.5rem;
+}
+.navLink svg {
+  width: 5rem;
+  height: 5rem;
+}
+
+.navLink p {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.textgreen {
+  color: #125c40;
+}
+
+.textyellow {
+  color: #f2b600;
+}
