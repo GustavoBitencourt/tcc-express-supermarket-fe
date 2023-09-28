@@ -56,6 +56,12 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.blackgray};
   margin-top: 1rem;
 `
+export const TitleCategory = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: ${({ theme }) => theme.colors.blackgray};
+  margin-top: -1.25rem;
+`
 
 export const ViewMoreLink = styled.a`
   font-size: 1rem;
@@ -69,6 +75,20 @@ export const ViewMoreLink = styled.a`
     margin-left: 0.75rem;
   }
 `
+
+export const ViewMoreLinkCategory = styled.a`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.lightgreen};
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: -1rem;
+
+  img {
+    margin-left: 0.75rem;
+  }
+`
+
 export const CarrouselContent = styled.div`
   display: flex;
   justify-content: space-between;

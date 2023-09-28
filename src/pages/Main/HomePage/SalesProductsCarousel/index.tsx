@@ -98,7 +98,13 @@ export default function SalesProductCarousel() {
             }}
             modules={[Pagination, Navigation]}
             className='mySwiper'
-            style={{ width: '100%', height: '100%' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              paddingBottom: '15%',
+              paddingRight: '3%',
+              paddingLeft: '3%',
+            }}
             navigation={{
               prevEl: '.swiper-button-prev', // Classe CSS da seta de navegação anterior
               nextEl: '.swiper-button-next', // Classe CSS da seta de navegação seguinte

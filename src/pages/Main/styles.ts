@@ -39,6 +39,7 @@ export const Header = styled.header`
   left: 0;
   z-index: 2;
   display: none;
+  box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
 
   @media (max-width: 720px) {
     display: flex;

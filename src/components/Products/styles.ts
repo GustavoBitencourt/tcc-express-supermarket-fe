@@ -16,10 +16,11 @@ export const Container = styled.div`
     padding: 1rem;
     border-radius: 4px;
     display: flex;
-    flex-direction: column; /* Alterado para flex-direction: column */
+    flex-direction: column;
     justify-content: space-between; /* Alinha os elementos no início e no final do card */
     margin-top: 1rem;
     overflow: hidden;
+    box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
 
     span {
       position: absolute;

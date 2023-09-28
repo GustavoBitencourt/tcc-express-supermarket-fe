@@ -5,7 +5,8 @@ interface ContainerProps {
 }
 
 export const Container = styled.aside<ContainerProps>`
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.gray100};
+  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.1);
 
   ${({ isMenuOpen }) =>
     isMenuOpen
@@ -41,30 +42,35 @@ export const Container = styled.aside<ContainerProps>`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1.5rem; /* Espaçamento entre os itens do menu */
     }
 
     li {
       a {
         width: fit-content;
         position: relative;
-        padding-left: 1.875rem;
-        padding-right: 1.875rem;
+        padding-left: 1rem; /* espaçamento esquerdo */
+        padding-right: 1rem; /* espaçamento direito */
 
         display: flex;
+        flex-direction: column; /* texto abaixo do ícone */
         align-items: center;
-        gap: 2rem;
+        gap: 0.75rem; /* Espaçamento entre o ícone e o texto */
 
         svg {
-          fill: ${({ theme }) => theme.colors.white};
-          width: 4rem;
-          height: 4rem;
+          width: 2rem; /* Tamanho dos ícones */
+          height: 2rem; /* Tamanho dos ícones */
           transition: fill 0.3s;
         }
 
+        svg.active path {
+          stroke: ${({ theme }) => theme.colors.primary};
+        }
+
         span {
-          font-size: 1rem;
-          font-weight: 500;
+          font-size: 0.8rem; /* Tamanho menor para o texto */
+          font-weight: 700;
+          color: ${({ theme }) => theme.colors.blackgray};
           transition: color 0.3s;
         }
 
@@ -76,20 +82,10 @@ export const Container = styled.aside<ContainerProps>`
             top: 50%;
             bottom: 0;
             transform: translateY(-50%);
-
-            background-color: ${({ theme }) => theme.colors.yellow};
             width: 5px;
             height: calc(100% + 10px);
 
             border-radius: 0 5px 5px 0;
-          }
-
-          svg {
-            fill: ${({ theme }) => theme.colors.yellow};
-          }
-
-          span {
-            color: ${({ theme }) => theme.colors.yellow};
           }
         }
       }
@@ -123,15 +119,16 @@ export const Container = styled.aside<ContainerProps>`
       li {
         a {
           flex-direction: column;
-          padding: 0rem;
+          padding: 0;
 
           svg {
-            width: 3.25rem;
-            height: 3.25rem;
+            width: 1.5rem; /* Tamanho dos ícones em telas menores */
+            height: 1.5rem; /* Tamanho dos ícones em telas menores */
           }
 
           span {
-            display: none;
+            display: block; /* Mostrar o texto abaixo do ícone em telas menores */
+            font-size: 0.8rem; /* Tamanho menor para o texto em telas menores */
           }
 
           &.active {

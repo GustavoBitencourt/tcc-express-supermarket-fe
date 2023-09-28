@@ -26,7 +26,7 @@ export const theme: DefaultTheme = {
     purple: '#7E5CEF',
     pink: '#FE5895',
     gray100: '#F0F0F0',
-    gray200: '#E9ECEF',
+    gray200: '#FCFCFC',
     gray300: '#DEE2E6',
     gray400: '#CBCBCB',
     gray500: '#A4ACB4',
