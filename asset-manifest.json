@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tcc-express-supermarket-fe/static/css/main.48638d48.css",
-    "main.js": "/tcc-express-supermarket-fe/static/js/main.e5b0a093.js",
+    "main.js": "/tcc-express-supermarket-fe/static/js/main.a3918f28.js",
     "static/js/787.9c42c293.chunk.js": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js",
     "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.52c5e3e809faae0edf4eff181c754c68.svg",
     "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.52c5e3e809faae0edf4eff181c754c68.svg",
@@ -19,9 +19,13 @@
     "index.html": "/tcc-express-supermarket-fe/index.html",
     "static/media/shopping-cart.svg": "/tcc-express-supermarket-fe/static/media/shopping-cart.2ae1e32a27047d499953efbb4eb04564.svg",
     "static/media/circle-plus.svg": "/tcc-express-supermarket-fe/static/media/circle-plus.f3fa1bd9e75bc2b2225d8feea4fdd043.svg",
+    "static/media/price-reader.svg": "/tcc-express-supermarket-fe/static/media/price-reader.32a5c9758ec2e7d90096e4c9346da3e4.svg",
+    "static/media/my-account.svg": "/tcc-express-supermarket-fe/static/media/my-account.90ccde87e67144128ba3197c037aef6a.svg",
+    "static/media/magnifying-home.svg": "/tcc-express-supermarket-fe/static/media/magnifying-home.8139d68305f85d0d31840eb6ff4ddc45.svg",
     "static/media/circle-minus.svg": "/tcc-express-supermarket-fe/static/media/circle-minus.bd120921e59c43654c8b9f0108ac2671.svg",
     "static/media/magnifying-glass.svg": "/tcc-express-supermarket-fe/static/media/magnifying-glass.e976b814c3145409a3feee9673c1c099.svg",
     "static/media/plus-icon.svg": "/tcc-express-supermarket-fe/static/media/plus-icon.d1ed0005946bf775f1f21767fd93ba65.svg",
+    "static/media/home-page.svg": "/tcc-express-supermarket-fe/static/media/home-page.85a6676244c81d13da0fa66109edea34.svg",
     "static/media/arror-left-category.svg": "/tcc-express-supermarket-fe/static/media/arror-left-category.d9021ea5a1205bb055b46559addb57b7.svg",
     "static/media/menu.svg": "/tcc-express-supermarket-fe/static/media/menu.bca51deca2ccf044433598ccc50a59f1.svg",
     "static/media/arrow-left.svg": "/tcc-express-supermarket-fe/static/media/arrow-left.38429eb15aca1383abcd6e6ec91eb766.svg",
@@ -29,11 +33,11 @@
     "static/media/arrow-right.svg": "/tcc-express-supermarket-fe/static/media/arrow-right.0ecf93e9260aaaa7f602de76d0636a49.svg",
     "static/media/mini-arrow.svg": "/tcc-express-supermarket-fe/static/media/mini-arrow.2659d0378bf48569030949aa98b9b787.svg",
     "main.48638d48.css.map": "/tcc-express-supermarket-fe/static/css/main.48638d48.css.map",
-    "main.e5b0a093.js.map": "/tcc-express-supermarket-fe/static/js/main.e5b0a093.js.map",
+    "main.a3918f28.js.map": "/tcc-express-supermarket-fe/static/js/main.a3918f28.js.map",
     "787.9c42c293.chunk.js.map": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.48638d48.css",
-    "static/js/main.e5b0a093.js"
+    "static/js/main.a3918f28.js"
   ]
 }
