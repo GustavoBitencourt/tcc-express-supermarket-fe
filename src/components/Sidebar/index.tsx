@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { Container } from './styles'
 
 import { ReactComponent as HomeIcon } from '../../assets/home-page.svg'
@@ -53,10 +52,10 @@ export function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to='#' onClick={() => handleIconClick('account')}>
+            <Link to='/login'>
               <AccountIcon className={activeIcon === 'account' ? 'active' : ''} />
               <span>Minha Conta</span>
-            </NavLink>
+            </Link>
           </li>
         </ul>
       </nav>

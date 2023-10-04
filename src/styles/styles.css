@@ -33,3 +33,17 @@
 .textyellow {
   color: #f2b600;
 }
+
+.close-button {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button svg {
+  width: 32px;
+  height: 32px;
+}
