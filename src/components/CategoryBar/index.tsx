@@ -6,7 +6,7 @@ import {
   SmallArrowIcon,
   MagnifyGlassIcon,
 } from './styles'
-import arrowLeftIcon from '../../assets/arror-left-category.svg'
+import arrowLeftIcon from '../../assets/arrow-left-category.svg'
 import magnifyGlassIcon from '../../assets/magnifying-glass.svg'
 import { Link } from 'react-router-dom'
 

@@ -82,7 +82,7 @@ function Login() {
         </Form>
       </FormWrapper>
       <NotAccountText>
-        Não possui conta? <RegisterText to='/signup'>Cadastre-se</RegisterText>
+        Não possui conta? <RegisterText to='/register'>Cadastre-se</RegisterText>
       </NotAccountText>
     </LoginContainer>
   )

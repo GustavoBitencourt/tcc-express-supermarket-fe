@@ -11,6 +11,7 @@ import MyCartPage from './pages/MyCart'
 import OrderSuccessPage from './pages/Orders/Success'
 import PaymentPage from './pages/Payment'
 import Login from './pages/Login'
+import Register from './pages/Register'
 
 export function AppRoutes() {
   return (
@@ -28,6 +29,7 @@ export function AppRoutes() {
         <Route path='success/:orderId' element={<OrderSuccessPage />} />
       </Route>
       <Route path='login' element={<Login />} />
+      <Route path='register' element={<Register />} />
     </Routes>
   )
 }
