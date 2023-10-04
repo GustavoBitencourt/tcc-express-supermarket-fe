@@ -16,6 +16,10 @@ export const GreenBackground = styled.div`
   position: absolute;
   top: 0;
   z-index: -1;
+
+  @media screen and (max-height: 660px) {
+    height: 8rem;
+  }
 `
 
 export const LogoSvgLogin = styled.div`
@@ -29,6 +33,12 @@ export const LogoSvgLogin = styled.div`
     border-radius: 8px;
     box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
   }
+
+  @media screen and (max-height: 660px) {
+    svg {
+      margin-top: 2rem;
+    }
+  }
 `
 
 export const FormWrapper = styled.div`
@@ -39,6 +49,10 @@ export const FormWrapper = styled.div`
   position: relative;
   z-index: 0;
   margin-top: 10rem;
+
+  @media screen and (max-height: 660px) {
+    margin-top: 5rem;
+  }
 
   &::before {
     content: '';
