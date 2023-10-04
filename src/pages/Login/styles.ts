@@ -20,7 +20,7 @@ export const GreenBackground = styled.div`
 
 export const LogoSvgLogin = styled.div`
   display: flex;
-  justify-content: flex-end; /* Alinhe o ícone à direita */
+  justify-content: flex-end;
   svg {
     width: 272px;
     height: 152px;
@@ -51,6 +51,10 @@ export const FormWrapper = styled.div`
     filter: blur(50px);
     z-index: -1;
     border-radius: 8px;
+  }
+
+  @media screen and (min-width: 720px) {
+    width: 50%;
   }
 `
 
@@ -86,13 +90,13 @@ export const Input = styled.input`
   box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
   margin-bottom: 8px;
   margin-top: 0.5rem;
+  text-align: center;
 
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.green}; /* Cor da borda quando selecionado */
+    border-color: ${({ theme }) => theme.colors.green};
   }
 `
-
 export const SubmitButton = styled.button`
   width: 100%;
   padding: 12px;
