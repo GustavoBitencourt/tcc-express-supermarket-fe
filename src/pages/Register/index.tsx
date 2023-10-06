@@ -14,7 +14,7 @@ function Register() {
     handleSubmit,
     control,
     setError,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FieldValues>({
     resolver: yupResolver(schema),
   })
@@ -59,8 +59,6 @@ function Register() {
         console.log('Cadastro realizado com sucesso')
         navigate('/')
       } else {
-        console.log('deu errado')
-        // O backend retornou um erro, você pode lidar com isso aqui
         console.log(
           'Ocorreu um erro ao criar a conta. Por favor, revise os dados e tente novamente.',
         )
@@ -175,7 +173,15 @@ function Register() {
           />
           {errors.confirmPassword && <p className='error'>{errors.confirmPassword.message}</p>}
         </FormGroup>
-        <Button type='submit'>Confirmar</Button>
+        <Button
+          type='submit'
+          style={{
+            backgroundColor: isValid ? '#56ba50' : 'gray',
+            color: 'white',
+          }}
+        >
+          Confirmar
+        </Button>
       </Form>
     </RegisterContainer>
   )
