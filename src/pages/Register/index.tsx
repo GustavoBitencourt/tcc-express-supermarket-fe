@@ -1,69 +1,73 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { RegisterContainer, Form, FormGroup, Label, Input, Button, TopBar, Title } from './styles'
-
 import arrowLeftCategory from '../../assets/arrow-left-category.svg'
 import closeIcon from '../../assets/close.svg'
+import { registerUser } from '../../services/api'
+import { useForm, Controller } from 'react-hook-form'
+import { FieldValues, schema } from './validationSchema'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { IMaskInput } from 'react-imask'
 
 function Register() {
-  const [fullName, setFullName] = useState<string>('')
-  const [cpf, setCpf] = useState<string>('')
-  const [number, setNumber] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [currentStep, setCurrentStep] = useState<string>('dataEntry') // Etapa inicial é a de entrada de dados pessoais
-  const [buttonStyle, setButtonStyle] = useState<{
-    backgroundColor: string
-    color: string
-  }>({
-    backgroundColor: '#ABABAB',
-    color: '#CBCBCB',
+  const {
+    handleSubmit,
+    control,
+    setError,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    resolver: yupResolver(schema),
   })
-  const [isPasswordConfirmed, setIsPasswordConfirmed] = useState<string>('') // Alterado para string
-  const [fieldsFilled, setFieldsFilled] = useState<boolean>(false)
-
   const navigate = useNavigate()
 
-  const fieldStateMap: { [key: string]: React.Dispatch<React.SetStateAction<string>> } = {
-    fullName: setFullName,
-    cpf: setCpf,
-    number: setNumber,
-    email: setEmail,
-    password: setPassword,
-    isPasswordConfirmed: setIsPasswordConfirmed,
-  }
-
-  const handleFieldChange = (fieldName: string, value: string) => {
-    if (fieldStateMap[fieldName]) {
-      fieldStateMap[fieldName](value)
-    }
-
-    // Verifique se todos os campos obrigatórios estão preenchidos
-    if (
-      fullName &&
-      cpf &&
-      number &&
-      email &&
-      (currentStep !== 'passwordEntry' || (password && isPasswordConfirmed))
-    ) {
-      setButtonStyle({ backgroundColor: '#56BA50', color: 'white' }) // Botão verde se todos os campos estiverem preenchidos
-      setFieldsFilled(true)
-    } else {
-      setButtonStyle({ backgroundColor: '#ABABAB', color: '#CBCBCB' }) // Cinza se algum campo obrigatório estiver vazio
-      setFieldsFilled(false)
-    }
-  }
-
-  const handleContinueClick = () => {
-    if (currentStep === 'dataEntry') {
-      if (fieldsFilled) {
-        setCurrentStep('passwordEntry') // Mudar para a etapa de entrada de senha
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      // Verificar se a senha e a confirmação da senha coincidem
+      if (data.password !== data.confirmPassword) {
+        setError('confirmPassword', {
+          type: 'manual',
+          message: 'As senhas não coincidem. Por favor, verifique.',
+        })
+        console.log('As senhas não coincidem. Por favor, verifique.')
+        return
       }
-    } else if (currentStep === 'passwordEntry' && password && isPasswordConfirmed) {
-      // Pode exibir uma mensagem de sucesso ou fazer algo adequado aqui
-      // Por exemplo, enviar os dados para o backend para registrar o usuário
-    } else {
-      // Pode exibir uma mensagem de erro ou fazer algo adequado aqui
+
+      // Cria um objeto contendo apenas os campos necessários para o registro
+      const registrationData = {
+        fullName: data.fullName,
+        email: data.email,
+        mobile: data.mobile,
+        document: data.document,
+        password: data.password,
+        zipCode: '',
+        street: '',
+        number: '',
+        complement: '',
+        neighborhood: '',
+        city: '',
+        state: '',
+        creditCardNumber: '',
+        creditCardHolder: '',
+        creditCardExpiration: '',
+        creditCardSecurityCode: '',
+      }
+
+      // Enviar os dados para o backend usando a função registerUser da API
+      const response = await registerUser(registrationData)
+
+      if (response.status === 200) {
+        console.log('Cadastro realizado com sucesso')
+        navigate('/')
+      } else {
+        console.log('deu errado')
+        // O backend retornou um erro, você pode lidar com isso aqui
+        console.log(
+          'Ocorreu um erro ao criar a conta. Por favor, revise os dados e tente novamente.',
+        )
+      }
+    } catch (error) {
+      console.log('Erro de rede ou outros')
+      console.log('Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.')
     }
   }
 
@@ -88,73 +92,91 @@ function Register() {
           <img src={closeIcon} alt='Fechar' onClick={goToHome} />
         </div>
       </TopBar>
-      <Title>{currentStep === 'dataEntry' ? 'Insira seus dados:' : 'Crie sua senha:'}</Title>
-      <Form>
-        {currentStep === 'dataEntry' && (
-          <>
-            <FormGroup>
-              <Label>Nome:</Label>
-              <Input
+      <Title>Insira seus dados:</Title>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <FormGroup>
+          <Label>Nome:</Label>
+          <Controller
+            name='fullName'
+            control={control}
+            defaultValue=''
+            render={({ field }) => <Input type='text' {...field} />}
+          />
+          {errors.fullName && <p className='error'>{errors.fullName.message}</p>}
+        </FormGroup>
+        <FormGroup>
+          <Label>CPF:</Label>
+          <Controller
+            name='document'
+            control={control}
+            defaultValue=''
+            render={({ field: { onChange, onBlur, value } }) => (
+              <IMaskInput
                 type='text'
-                value={fullName}
-                onChange={(e) => handleFieldChange('fullName', e.target.value)}
+                id='document'
+                mask={[{ mask: '000.000.000-00', maxLength: 11 }]}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+                className='valid-button'
               />
-            </FormGroup>
-            <FormGroup>
-              <Label>CPF:</Label>
-              <Input
-                type='text'
-                value={cpf}
-                onChange={(e) => handleFieldChange('cpf', e.target.value)}
+            )}
+          />
+          {errors.document && <p className='error'>{errors.document.message}</p>}
+        </FormGroup>
+        <FormGroup>
+          <Label>Número do seu Whatsapp:</Label>
+          <Controller
+            name='mobile'
+            control={control}
+            defaultValue=''
+            render={({ field: { onChange, onBlur, value } }) => (
+              <IMaskInput
+                type='tel'
+                id='mobile'
+                autoComplete='phone'
+                mask={'(00) 90000-0000'}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+                className='valid-button'
               />
-            </FormGroup>
-            <FormGroup>
-              <Label>Número do seu Whatsapp:</Label>
-              <Input
-                type='text'
-                value={number}
-                onChange={(e) => handleFieldChange('number', e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>E-mail:</Label>
-              <Input
-                type='email'
-                value={email}
-                onChange={(e) => handleFieldChange('email', e.target.value)}
-              />
-            </FormGroup>
-          </>
-        )}
-        {currentStep === 'passwordEntry' && (
-          <>
-            <FormGroup>
-              <Label>Senha:</Label>
-              <Input
-                type='password'
-                value={password}
-                onChange={(e) => handleFieldChange('password', e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Confirme sua senha:</Label>
-              <Input
-                type='password'
-                value={isPasswordConfirmed}
-                onChange={(e) => handleFieldChange('isPasswordConfirmed', e.target.value)}
-              />
-            </FormGroup>
-          </>
-        )}
+            )}
+          />
+          {errors.mobile && <p className='error'>{errors.mobile.message}</p>}
+        </FormGroup>
+        <FormGroup>
+          <Label>E-mail:</Label>
+          <Controller
+            name='email'
+            control={control}
+            defaultValue=''
+            render={({ field }) => <Input type='email' {...field} />}
+          />
+          {errors.email && <p className='error'>{errors.email.message}</p>}
+        </FormGroup>
+        <FormGroup>
+          <Label>Senha:</Label>
+          <Controller
+            name='password'
+            control={control}
+            defaultValue=''
+            render={({ field }) => <Input type='password' {...field} />}
+          />
+          {errors.password && <p className='error'>{errors.password.message}</p>}
+        </FormGroup>
+        <FormGroup>
+          <Label>Confirme sua senha:</Label>
+          <Controller
+            name='confirmPassword'
+            control={control}
+            defaultValue=''
+            render={({ field }) => <Input type='password' {...field} />}
+          />
+          {errors.confirmPassword && <p className='error'>{errors.confirmPassword.message}</p>}
+        </FormGroup>
+        <Button type='submit'>Confirmar</Button>
       </Form>
-      <Button
-        type='button'
-        onClick={handleContinueClick}
-        style={fieldsFilled ? { backgroundColor: '#56BA50', color: 'white' } : buttonStyle}
-        disabled={!fieldsFilled}
-      >
-        {currentStep === 'dataEntry' ? 'Continuar' : 'Confirmar'}
-      </Button>
     </RegisterContainer>
   )
 }

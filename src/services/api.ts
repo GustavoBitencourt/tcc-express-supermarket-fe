@@ -43,4 +43,5 @@ export const processCheckout = (cart: Product[], customer: CustomerData) =>
     },
   })
 
+export const registerUser = (userData: CustomerData) => api.post('/auth/register', userData)
 export default api

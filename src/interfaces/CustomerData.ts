@@ -3,6 +3,7 @@ export interface CustomerData {
   email: string
   mobile: string
   document: string
+  password: string
   zipCode: string
   street: string
   number: string
