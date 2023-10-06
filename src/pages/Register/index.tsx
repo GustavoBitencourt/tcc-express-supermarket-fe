@@ -118,7 +118,7 @@ function Register() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                className='valid-button'
+                className='custom-input'
               />
             )}
           />
@@ -139,7 +139,7 @@ function Register() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                className='valid-button'
+                className='custom-input'
               />
             )}
           />
