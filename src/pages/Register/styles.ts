@@ -21,6 +21,11 @@ export const TopBar = styled.div`
   color: white;
   font-size: 18px;
   font-weight: bold;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  transition: background-color 0.3s;
 
   img {
     width: 4rem;
@@ -39,7 +44,7 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.blackgray};
   font-size: 14px;
   font-weight: 700;
-  margin-top: 8%;
+  margin-top: 9rem;
 `
 
 export const Form = styled.form`
@@ -47,7 +52,7 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   width: 90vw;
-  margin-top: 20px;
+  padding-top: 40px;
 `
 
 export const FormGroup = styled.div`
@@ -69,7 +74,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   width: 90vw;
-  height: 48px;
+  height: 7vh;
   padding: 10px;
   color: ${({ theme }) => theme.colors.blackgray};
   font-weight: 400;
@@ -96,7 +101,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 90vw;
-  height: 12vw;
+  height: 7vh;
   padding: 10px;
   font-size: 16px;
   background-color: ${({ theme }) => theme.colors.gray450};
