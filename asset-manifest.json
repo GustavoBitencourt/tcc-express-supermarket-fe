@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tcc-express-supermarket-fe/static/css/main.11cdc7bc.css",
-    "main.js": "/tcc-express-supermarket-fe/static/js/main.6a278b4c.js",
+    "main.js": "/tcc-express-supermarket-fe/static/js/main.a24d3f24.js",
     "static/js/787.9c42c293.chunk.js": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js",
     "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.52c5e3e809faae0edf4eff181c754c68.svg",
     "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.52c5e3e809faae0edf4eff181c754c68.svg",
@@ -34,11 +34,11 @@
     "static/media/arrow-right.svg": "/tcc-express-supermarket-fe/static/media/arrow-right.0ecf93e9260aaaa7f602de76d0636a49.svg",
     "static/media/mini-arrow.svg": "/tcc-express-supermarket-fe/static/media/mini-arrow.2659d0378bf48569030949aa98b9b787.svg",
     "main.11cdc7bc.css.map": "/tcc-express-supermarket-fe/static/css/main.11cdc7bc.css.map",
-    "main.6a278b4c.js.map": "/tcc-express-supermarket-fe/static/js/main.6a278b4c.js.map",
+    "main.a24d3f24.js.map": "/tcc-express-supermarket-fe/static/js/main.a24d3f24.js.map",
     "787.9c42c293.chunk.js.map": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.11cdc7bc.css",
-    "static/js/main.6a278b4c.js"
+    "static/js/main.a24d3f24.js"
   ]
 }
