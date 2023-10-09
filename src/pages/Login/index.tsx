@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import axios from 'axios'
+import { toast } from 'react-toastify'
 import {
   LoginContainer,
   Form,
@@ -22,6 +25,8 @@ function Login() {
   const [password, setPassword] = useState<string>('')
   const [isFormValid, setIsFormValid] = useState<boolean>(false)
 
+  const navigate = useNavigate()
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
     checkFormValidity(e.target.value, password)
@@ -40,6 +45,30 @@ function Login() {
     }
   }
 
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      const response = await axios.post('/auth/login', {
+        email,
+        password,
+      })
+
+      // Se o login for bem-sucedido, armazena o token, id e name no localStorage
+      const { token, id, name } = response.data
+      localStorage.setItem('token', token)
+      localStorage.setItem('id', id)
+      localStorage.setItem('name', name)
+
+      navigate('/')
+    } catch (error) {
+      console.error('Erro ao fazer login:', error)
+      const errorMessage = 'Credenciais inválidas. Por favor, tente novamente.'
+
+      toast.error(errorMessage)
+    }
+  }
+
   return (
     <LoginContainer>
       <GreenBackground />
@@ -50,7 +79,7 @@ function Login() {
         <LogoSvg />
       </LogoSvgLogin>
       <FormWrapper>
-        <Form>
+        <Form onSubmit={handleFormSubmit}>
           <FormGroup>
             <Label htmlFor='email'>E-mail</Label>
             <Input

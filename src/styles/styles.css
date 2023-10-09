@@ -78,9 +78,5 @@
 .error {
   color: red;
   font-family: 'Manrope', sans-serif;
-}
-
-.valid-button {
-  background-color: #56ba50;
-  color: white;
+  margin-left: 5px;
 }

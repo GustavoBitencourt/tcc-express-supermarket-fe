@@ -14,6 +14,8 @@ export function Sidebar() {
   const [activeIcon, setActiveIcon] = useState<string | null>(null)
   const location = useLocation()
 
+  const isLoggedIn = !!localStorage.getItem('token') // Verifica se o usuário está logado
+
   const handleToggleMenu = () => {
     setMenuOpen(!menuOpen)
   }
@@ -52,10 +54,17 @@ export function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <Link to='/login'>
-              <AccountIcon className={activeIcon === 'account' ? 'active' : ''} />
-              <span>Minha Conta</span>
-            </Link>
+            {isLoggedIn ? ( // Verifica se o usuário está logado
+              <Link to='/account'>
+                <AccountIcon className={activeIcon === 'account' ? 'active' : ''} />
+                <span>Minha Conta</span>
+              </Link>
+            ) : (
+              <Link to='/login'>
+                <AccountIcon className={activeIcon === 'account' ? 'active' : ''} />
+                <span>Fazer Login</span>
+              </Link>
+            )}
           </li>
         </ul>
       </nav>

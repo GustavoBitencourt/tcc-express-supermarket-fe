@@ -10,6 +10,9 @@ import './styles/styles.css'
 import { Normalize } from 'styled-normalize'
 import { GlobalStyle } from './styles/global'
 import { Theme } from './styles/Theme'
+import axios from 'axios'
+
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL
 
 export default function App() {
   return (

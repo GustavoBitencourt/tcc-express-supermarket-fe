@@ -12,6 +12,8 @@ import OrderSuccessPage from './pages/Orders/Success'
 import PaymentPage from './pages/Payment'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Account from './pages/Account'
+import PrivateRoute from './components/PrivateRoute'
 
 export function AppRoutes() {
   return (
@@ -30,6 +32,14 @@ export function AppRoutes() {
       </Route>
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
+      <Route
+        path='account'
+        element={
+          <PrivateRoute>
+            <Account />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   )
 }
