@@ -12,6 +12,7 @@ import {
   ProfileIcon,
   NotificationIcon,
 } from './styles'
+import AccountMenu from '../../components/AccountMenu'
 
 import { Sidebar } from '../../components/Sidebar'
 import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
@@ -21,11 +22,10 @@ import notificationIcon from '../../assets/notification.svg'
 
 function Account() {
   const fullName = localStorage.getItem('name') || 'Usuário'
-  const firstName = fullName.split(' ')[0] // Divide o nome completo em palavras e pega a primeira
+  const firstName = fullName.split(' ')[0]
 
   return (
     <AccountContainer>
-      <Sidebar />
       <TopBar>
         <Link to='/' className='arrow-left'>
           <LeftArrowIcon />
@@ -41,10 +41,9 @@ function Account() {
           </ProfileText>
           <NotificationIcon src={notificationIcon} alt='Notification' />
         </UserInfo>
-        {/* Conteúdo da página de conta */}
-        <h1>Minha Conta</h1>
-        {/* Adicione aqui as informações da conta */}
+        <AccountMenu />
       </Content>
+      <Sidebar />
     </AccountContainer>
   )
 }

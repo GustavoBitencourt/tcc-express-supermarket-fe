@@ -26,7 +26,7 @@ export const TopBarText = styled.div`
   font-style: normal;
   font-weight: 700;
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 `
 export const ProfileText = styled.div`
   color: ${({ theme }) => theme.colors.blackgray};
