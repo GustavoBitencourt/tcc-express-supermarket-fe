@@ -16,7 +16,7 @@ function AccountMenu() {
   }
   return (
     <AccountMenuContainer>
-      <MenuItem to='#'>
+      <MenuItem to='/editAccount'>
         <MenuIcon src={datasIcon} alt='Meus Dados' />
         <MenuText>Meus Dados</MenuText>
       </MenuItem>

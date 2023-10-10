@@ -13,6 +13,7 @@ import PaymentPage from './pages/Payment'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
+import EditAccount from './pages/Account/EditAccount'
 import PrivateRoute from './components/PrivateRoute'
 
 export function AppRoutes() {
@@ -37,6 +38,14 @@ export function AppRoutes() {
         element={
           <PrivateRoute>
             <Account />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='editAccount'
+        element={
+          <PrivateRoute>
+            <EditAccount />
           </PrivateRoute>
         }
       />

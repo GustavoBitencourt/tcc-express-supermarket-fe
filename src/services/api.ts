@@ -12,6 +12,13 @@ export const getProducts = (category?: string) => {
   const endpoint = category ? `/products?product=${category}` : '/products'
   return api.get<ProductData[]>(endpoint)
 }
+// Função para buscar os dados de um cliente pelo ID
+export const getCustomer = (customerId: number) => api.get<CustomerData>(`/customers/${customerId}`)
+
+// Função para atualizar os dados de um cliente pelo ID
+export const updateCustomer = (customerId: number, userData: any) =>
+  api.put<CustomerData>(`/customer/${customerId}`, userData)
+
 export const getLimpezas = () => api.get<ProductData[]>('/products?product=limpeza')
 export const getCarnes = () => api.get<ProductData[]>('/products?product=carne')
 export const getHortifrutis = () => api.get<ProductData[]>('/products?product=hortifruti')
