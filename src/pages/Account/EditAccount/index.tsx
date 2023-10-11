@@ -17,6 +17,7 @@ import {
 } from './styles'
 import { getCustomer, updateCustomer } from '../../../services/api'
 import arrowLeftCategory from '../../../assets/arrow-left-category.svg'
+import closeIcon from '../../../assets/close.svg'
 
 import { CustomerData } from '../../../interfaces/CustomerData'
 
@@ -109,7 +110,7 @@ function EditAccount() {
   const goBack = () => {
     navigate(-1)
   }
-  //coment
+
   return (
     <EditAccountContainer>
       <TopBar>
@@ -119,12 +120,15 @@ function EditAccount() {
         <div>
           <span>Meus Dados</span>
         </div>
+        <div>
+          <img src={closeIcon} alt='Voltar' onClick={goBack} />
+        </div>
       </TopBar>
-      <Title>Altere seus dados:</Title>
       {isLoading ? (
         <div>Carregando...</div>
       ) : (
         <Form onSubmit={handleSubmit}>
+          <Title>Altere seus dados:</Title>
           {userData && (
             <FormGroup>
               <Label>Nome:</Label>

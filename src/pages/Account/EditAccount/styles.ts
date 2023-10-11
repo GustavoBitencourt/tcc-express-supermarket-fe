@@ -2,23 +2,25 @@ import styled from 'styled-components'
 
 export const EditAccountContainer = styled.div`
   text-align: center;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
   padding-bottom: 20px;
+  position: relative;
 `
 
 export const TopBar = styled.div`
   background-color: ${({ theme }) => theme.colors.green};
   width: 100%;
-  height: 80px;
+  height: 8.5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
   font-weight: bold;
   position: fixed;
@@ -27,16 +29,23 @@ export const TopBar = styled.div`
   width: 100%;
   transition: background-color 0.3s;
 
-  img {
+  svg {
     width: 4rem;
     height: 1.5rem;
     cursor: pointer;
+    fill: ${({ theme }) => theme.colors.green};
+  }
+
+  div {
+    display: flex;
+    align-items: center;
   }
 
   span {
     margin: 0;
     font-size: 16px;
     font-weight: 700;
+    margin-left: auto;
   }
 `
 
@@ -44,7 +53,8 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.blackgray};
   font-size: 14px;
   font-weight: 700;
-  margin-top: 9rem;
+  margin-top: 13vh;
+  padding-bottom: 2vh;
 `
 
 export const Form = styled.form`
@@ -52,7 +62,6 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   width: 90vw;
-  padding-top: 40px;
 `
 
 export const FormGroup = styled.div`
@@ -109,7 +118,8 @@ export const Button = styled.button`
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  margin-top: auto;
+  position: fixed;
+  bottom: 20px;
 
   @media screen and (min-width: 720px) {
     width: 500px;
