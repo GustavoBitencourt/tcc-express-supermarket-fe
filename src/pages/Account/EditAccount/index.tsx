@@ -152,40 +152,49 @@ function EditAccount() {
             <Controller
               name='document'
               control={control}
-              render={({ field: { onChange, onBlur } }) => (
+              defaultValue={userData.document || ''}
+              render={({ field: { onChange, onBlur, value } }) => (
                 <IMaskInput
                   type='text'
                   id='document'
                   mask={[{ mask: '000.000.000-00', maxLength: 11 }]}
-                  onChange={onChange}
+                  onChange={(e) => {
+                    onChange(e)
+                    setUserData({ ...userData, document: e.currentTarget.value })
+                  }}
                   onBlur={onBlur}
-                  value={userData.document}
+                  value={value}
                   className='custom-input'
                 />
               )}
             />
             {errors.document && <p className='error'>{errors.document.message}</p>}
           </FormGroup>
+
           <FormGroup>
             <Label>Número do seu Whatsapp:</Label>
             <Controller
               name='mobile'
               control={control}
-              render={({ field: { onChange, onBlur } }) => (
+              defaultValue={userData.mobile || ''}
+              render={({ field: { onChange, onBlur, value } }) => (
                 <IMaskInput
                   type='tel'
                   id='mobile'
-                  autoComplete='phone'
                   mask={'(00) 90000-0000'}
-                  onChange={onChange}
+                  onChange={(e) => {
+                    onChange(e)
+                    setUserData({ ...userData, mobile: e.currentTarget.value })
+                  }}
                   onBlur={onBlur}
-                  value={userData.mobile}
+                  value={value}
                   className='custom-input'
                 />
               )}
             />
             {errors.mobile && <p className='error'>{errors.mobile.message}</p>}
           </FormGroup>
+
           {userData && (
             <FormGroup>
               <Label>E-mail:</Label>
@@ -193,7 +202,16 @@ function EditAccount() {
                 name='email'
                 control={control}
                 defaultValue={userData.email || ''}
-                render={({ field }) => <Input type='email' {...field} />}
+                render={({ field }) => (
+                  <Input
+                    type='email'
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      setUserData({ ...userData, email: e.target.value })
+                    }}
+                  />
+                )}
               />
               {errors.email && <p className='error'>{errors.email.message}</p>}
             </FormGroup>
