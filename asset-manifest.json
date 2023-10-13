@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/tcc-express-supermarket-fe/static/css/main.ecfd3d6f.css",
-    "main.js": "/tcc-express-supermarket-fe/static/js/main.22a2d02c.js",
+    "main.js": "/tcc-express-supermarket-fe/static/js/main.51c15739.js",
     "static/js/787.9c42c293.chunk.js": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js",
-    "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.52c5e3e809faae0edf4eff181c754c68.svg",
-    "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.52c5e3e809faae0edf4eff181c754c68.svg",
-    "static/media/banner-image3.svg": "/tcc-express-supermarket-fe/static/media/banner-image3.52c5e3e809faae0edf4eff181c754c68.svg",
+    "static/media/banner-image3.svg": "/tcc-express-supermarket-fe/static/media/banner-image3.ff1fa150835d1f4d9884eb72c7c45bdd.svg",
+    "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.bb0b6922d3e37122e05476f61c2524c7.svg",
+    "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.2382804e7bb18960d970b790d8a7949e.svg",
     "static/media/logo.svg": "/tcc-express-supermarket-fe/static/media/logo.33a3eb88d851fb47f2968d73f7b7457c.svg",
     "static/media/man-and-limpeza.svg": "/tcc-express-supermarket-fe/static/media/man-and-limpeza.4b5c70211cf2dc3b74cd623bf08ed58c.svg",
     "static/media/padaria.svg": "/tcc-express-supermarket-fe/static/media/padaria.714f9b20a73efce1a3e55f5ed516d676.svg",
@@ -42,11 +42,11 @@
     "static/media/arrow-right.svg": "/tcc-express-supermarket-fe/static/media/arrow-right.0ecf93e9260aaaa7f602de76d0636a49.svg",
     "static/media/mini-arrow.svg": "/tcc-express-supermarket-fe/static/media/mini-arrow.2659d0378bf48569030949aa98b9b787.svg",
     "main.ecfd3d6f.css.map": "/tcc-express-supermarket-fe/static/css/main.ecfd3d6f.css.map",
-    "main.22a2d02c.js.map": "/tcc-express-supermarket-fe/static/js/main.22a2d02c.js.map",
+    "main.51c15739.js.map": "/tcc-express-supermarket-fe/static/js/main.51c15739.js.map",
     "787.9c42c293.chunk.js.map": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ecfd3d6f.css",
-    "static/js/main.22a2d02c.js"
+    "static/js/main.51c15739.js"
   ]
 }
