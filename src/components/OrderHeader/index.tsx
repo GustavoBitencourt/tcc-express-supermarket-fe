@@ -7,8 +7,16 @@ import { Container } from './styles'
 import logoImg from '../../assets/logo.svg'
 import { ReactComponent as CartIcon } from '../../assets/shopping-cart.svg'
 
-export function OrderHeader() {
+interface OrderHeaderProps {
+  showHeader: boolean
+}
+
+export function OrderHeader({ showHeader }: OrderHeaderProps) {
   const { cart } = useCart()
+
+  if (!showHeader) {
+    return null
+  }
 
   return (
     <Container>

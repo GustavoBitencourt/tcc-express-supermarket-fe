@@ -9,7 +9,7 @@ export default function Main() {
   return (
     <Container>
       <Head title='Carrinho' />
-      <OrderHeader />
+      <OrderHeader showHeader={false} />
       <Table />
     </Container>
   )

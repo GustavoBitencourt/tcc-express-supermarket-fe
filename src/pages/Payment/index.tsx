@@ -29,7 +29,7 @@ export default function Payment() {
   return (
     <Container>
       <Head title='Pagamento' />
-      <OrderHeader />
+      <OrderHeader showHeader={true} />
       <Inner>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <h4>Informações pessoais</h4>

@@ -84,3 +84,14 @@
 .arrow-left {
   margin-top: 1rem;
 }
+
+.textEmpty {
+  color: #ababab;
+  margin-top: 1rem;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 124.6%;
+}

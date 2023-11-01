@@ -21,7 +21,7 @@ export function Table() {
     }
   }, [])
 
-  if (cart.length === 0) return <EmptyCart title='Ops! Parece que você não tem pedidos, peça já!' />
+  if (cart.length === 0) return <EmptyCart title='Sua lista está vazia,' />
 
   return windowWidth > 768 ? <TableDesktop /> : <TableMobile />
 }
