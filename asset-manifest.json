@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/tcc-express-supermarket-fe/static/css/main.ecfd3d6f.css",
-    "main.js": "/tcc-express-supermarket-fe/static/js/main.51c15739.js",
+    "main.css": "/tcc-express-supermarket-fe/static/css/main.fc470088.css",
+    "main.js": "/tcc-express-supermarket-fe/static/js/main.20eb3443.js",
     "static/js/787.9c42c293.chunk.js": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js",
     "static/media/banner-image3.svg": "/tcc-express-supermarket-fe/static/media/banner-image3.ff1fa150835d1f4d9884eb72c7c45bdd.svg",
     "static/media/banner-image2.svg": "/tcc-express-supermarket-fe/static/media/banner-image2.bb0b6922d3e37122e05476f61c2524c7.svg",
     "static/media/banner-image1.svg": "/tcc-express-supermarket-fe/static/media/banner-image1.2382804e7bb18960d970b790d8a7949e.svg",
     "static/media/logo.svg": "/tcc-express-supermarket-fe/static/media/logo.33a3eb88d851fb47f2968d73f7b7457c.svg",
-    "static/media/man-and-limpeza.svg": "/tcc-express-supermarket-fe/static/media/man-and-limpeza.4b5c70211cf2dc3b74cd623bf08ed58c.svg",
+    "static/media/empty-cart.svg": "/tcc-express-supermarket-fe/static/media/empty-cart.ec114d6a4432748fcde5e4d2503ec670.svg",
+    "static/media/ruler-1.svg": "/tcc-express-supermarket-fe/static/media/ruler-1.5930a09b2a8f3bba145a43d3e6dcc520.svg",
     "static/media/padaria.svg": "/tcc-express-supermarket-fe/static/media/padaria.714f9b20a73efce1a3e55f5ed516d676.svg",
     "static/media/padaria-logo.svg": "/tcc-express-supermarket-fe/static/media/padaria-logo.3d734e211b04b0c32b52345ade8fe706.svg",
     "static/media/limpeza.svg": "/tcc-express-supermarket-fe/static/media/limpeza.ec193fd61c50d890af37cb293d958de7.svg",
@@ -19,8 +20,10 @@
     "static/media/horti-logo.svg": "/tcc-express-supermarket-fe/static/media/horti-logo.881c420be42459b9075d4d3ee04d0d50.svg",
     "static/media/historic-icon.svg": "/tcc-express-supermarket-fe/static/media/historic-icon.139bad8d2ebfc6f643baae8141176f68.svg",
     "index.html": "/tcc-express-supermarket-fe/index.html",
+    "static/media/empty-cart-icon.svg": "/tcc-express-supermarket-fe/static/media/empty-cart-icon.7b60ce5d44fbd6689462c5fbb5ab3d5f.svg",
     "static/media/address-icon.svg": "/tcc-express-supermarket-fe/static/media/address-icon.ae4b9e75dd278c72aee4a4be57cd6f2e.svg",
     "static/media/shopping-cart.svg": "/tcc-express-supermarket-fe/static/media/shopping-cart.2ae1e32a27047d499953efbb4eb04564.svg",
+    "static/media/share-icon.svg": "/tcc-express-supermarket-fe/static/media/share-icon.6eb28634283f1b953ac69c96adf195a3.svg",
     "static/media/datas-icon.svg": "/tcc-express-supermarket-fe/static/media/datas-icon.26d9e4f35eeb24ae8a5329cde273bba8.svg",
     "static/media/contact-icon.svg": "/tcc-express-supermarket-fe/static/media/contact-icon.022e8a0d49520b21b35ca0774ec8b85d.svg",
     "static/media/profile-icon.svg": "/tcc-express-supermarket-fe/static/media/profile-icon.69943a3f35dbadbff2bc259300cc5492.svg",
@@ -41,12 +44,12 @@
     "static/media/map-product.svg": "/tcc-express-supermarket-fe/static/media/map-product.cfc6847b24534826b4654192b8b3b718.svg",
     "static/media/arrow-right.svg": "/tcc-express-supermarket-fe/static/media/arrow-right.0ecf93e9260aaaa7f602de76d0636a49.svg",
     "static/media/mini-arrow.svg": "/tcc-express-supermarket-fe/static/media/mini-arrow.2659d0378bf48569030949aa98b9b787.svg",
-    "main.ecfd3d6f.css.map": "/tcc-express-supermarket-fe/static/css/main.ecfd3d6f.css.map",
-    "main.51c15739.js.map": "/tcc-express-supermarket-fe/static/js/main.51c15739.js.map",
+    "main.fc470088.css.map": "/tcc-express-supermarket-fe/static/css/main.fc470088.css.map",
+    "main.20eb3443.js.map": "/tcc-express-supermarket-fe/static/js/main.20eb3443.js.map",
     "787.9c42c293.chunk.js.map": "/tcc-express-supermarket-fe/static/js/787.9c42c293.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ecfd3d6f.css",
-    "static/js/main.51c15739.js"
+    "static/css/main.fc470088.css",
+    "static/js/main.20eb3443.js"
   ]
 }
