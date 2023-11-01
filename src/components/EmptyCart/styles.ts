@@ -24,6 +24,9 @@ export const Button = styled(Link)`
   justify-content: center;
   align-items: center;
   margin: 0 5%;
+  @media (min-width: 475px) {
+    max-width: 35%;
+  }
 `
 
 export const TopBar = styled.div`
@@ -41,12 +44,19 @@ export const TopBar = styled.div`
   font-size: 0.8rem;
   height: 5.5rem;
   text-transform: uppercase;
+  @media (min-width: 475px) {
+    max-width: 35%;
+  }
 `
 
 export const Ruler = styled.img`
   width: 100%;
   position: fixed;
   margin-top: 1.7rem;
+
+  @media (min-width: 475px) {
+    max-width: 35%;
+  }
 `
 
 export const BackIcon = styled.img`
@@ -90,6 +100,11 @@ export const SecondText = styled.div`
 
 export const NoItems = styled.img`
   width: 100%;
+
+  @media (min-width: 475px) {
+    max-width: 35%;
+    margin-top: 3rem;
+  }
 `
 
 export const EmptyCartIcon = styled.img`
