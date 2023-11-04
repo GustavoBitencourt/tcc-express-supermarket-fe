@@ -26,7 +26,7 @@ function AccountMenu() {
         <MenuText>Histórico</MenuText>
       </MenuItem>
       <MenuDivider />
-      <MenuItem to='#'>
+      <MenuItem to='/address'>
         <MenuIcon src={addressIcon} alt='Meus Endereços' />
         <MenuText>Meus Endereços</MenuText>
       </MenuItem>

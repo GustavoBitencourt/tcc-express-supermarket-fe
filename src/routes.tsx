@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
 import EditAccount from './pages/Account/EditAccount'
+import Address from './pages/Account/Address'
 import PrivateRoute from './components/PrivateRoute'
 
 export function AppRoutes() {
@@ -46,6 +47,14 @@ export function AppRoutes() {
         element={
           <PrivateRoute>
             <EditAccount />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='address'
+        element={
+          <PrivateRoute>
+            <Address />
           </PrivateRoute>
         }
       />
