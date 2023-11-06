@@ -57,12 +57,51 @@ function Address() {
     control,
     name: 'zipCode',
   })
+  const watchStreet = useWatch({
+    control,
+    name: 'street',
+  })
+  const watchNumber = useWatch({
+    control,
+    name: 'number',
+  })
+  const watchComplement = useWatch({
+    control,
+    name: 'complement',
+  })
+  const watchNeighborhood = useWatch({
+    control,
+    name: 'neighborhood',
+  })
+  const watchCity = useWatch({
+    control,
+    name: 'city',
+  })
+  const watchState = useWatch({
+    control,
+    name: 'state',
+  })
+
   useEffect(() => {
     setAddressData((data) => ({
       ...data,
-      zipCode: watchZipCode,
+      zipCode: watchZipCode || addressData.zipCode,
+      street: watchStreet || addressData.street,
+      number: watchNumber || addressData.number,
+      complement: watchComplement || addressData.complement,
+      neighborhood: watchNeighborhood || addressData.neighborhood,
+      city: watchCity || addressData.city,
+      state: watchState || addressData.state,
     }))
-  }, [watchZipCode])
+  }, [
+    watchZipCode,
+    watchStreet,
+    watchNumber,
+    watchComplement,
+    watchNeighborhood,
+    watchCity,
+    watchState,
+  ])
 
   useEffect(() => {
     const userId = localStorage.getItem('id')
