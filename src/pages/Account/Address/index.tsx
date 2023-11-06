@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IMaskInput } from 'react-imask'
 import { FieldValues, schema } from './validationSchema'
@@ -15,6 +15,7 @@ import {
   Input,
   AddressButton,
   AddressTopBar,
+  AddressSelect,
 } from './styles'
 
 import arrowLeftCategory from '../../../assets/arrow-left-category.svg'
@@ -52,6 +53,17 @@ function Address() {
 
   const navigate = useNavigate()
 
+  const watchZipCode = useWatch({
+    control,
+    name: 'zipCode',
+  })
+  useEffect(() => {
+    setAddressData((data) => ({
+      ...data,
+      zipCode: watchZipCode,
+    }))
+  }, [watchZipCode])
+
   useEffect(() => {
     const userId = localStorage.getItem('id')
     if (userId) {
@@ -82,11 +94,13 @@ function Address() {
     const userId = localStorage.getItem('id')
     if (userId) {
       const userIdAsNumber = parseInt(userId, 10)
-      updateCustomer(userIdAsNumber, addressData)
+      const userData = { ...addressData }
+      updateCustomer(userIdAsNumber, userData)
         .then((response) => {
           if (response.status === 200) {
             const updatedAddressData = response.data
             setAddressData(updatedAddressData)
+            console.log('Resposta da atualização:', updatedAddressData)
             console.log('Endereço atualizado com sucesso')
             navigate('/account')
           } else {
@@ -144,24 +158,6 @@ function Address() {
             />
             {errors.zipCode && <p className='error'>{errors.zipCode.message}</p>}
           </AddressFormGroup>
-          <AddressFormGroup>
-            <AddressLabel htmlFor='neighborhood'>Bairro</AddressLabel>
-            <Controller
-              name='neighborhood'
-              control={control}
-              defaultValue={addressData.neighborhood}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  type='text'
-                  id='neighborhood'
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                />
-              )}
-            />
-            {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
-          </AddressFormGroup>
 
           <AddressFormGroup>
             <AddressLabel htmlFor='street'>Nome da Rua</AddressLabel>
@@ -214,22 +210,28 @@ function Address() {
               />
               {errors.complement && <p className='error'>{errors.complement.message}</p>}
             </AddressFormGroup>
+
+            <AddressFormGroup>
+              <AddressLabel htmlFor='neighborhood'>Bairro</AddressLabel>
+              <Controller
+                name='neighborhood'
+                control={control}
+                defaultValue={addressData.neighborhood}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    type='text'
+                    id='neighborhood'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
+                )}
+              />
+              {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
+            </AddressFormGroup>
           </div>
 
           <div className='grouped'>
-            <AddressFormGroup>
-              <AddressLabel htmlFor='city'>Cidade</AddressLabel>
-              <Controller
-                name='city'
-                control={control}
-                defaultValue={addressData.city}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <Input type='text' id='city' onChange={onChange} onBlur={onBlur} value={value} />
-                )}
-              />
-              {errors.city && <p className='error'>{errors.city.message}</p>}
-            </AddressFormGroup>
-
             <AddressFormGroup>
               <AddressLabel htmlFor='state'>Estado</AddressLabel>
               <Controller
@@ -237,7 +239,7 @@ function Address() {
                 control={control}
                 defaultValue={addressData.state}
                 render={({ field: { onChange, onBlur, value } }) => (
-                  <select id='state' onChange={onChange} onBlur={onBlur} value={value}>
+                  <AddressSelect id='state' onChange={onChange} onBlur={onBlur} value={value}>
                     <option value=''>Selecione</option>
                     <option value='AC'>Acre</option>
                     <option value='AL'>Alagoas</option>
@@ -266,10 +268,23 @@ function Address() {
                     <option value='SE'>Sergipe</option>
                     <option value='TO'>Tocantins</option>
                     <option value='DF'>Distrito Federal</option>
-                  </select>
+                  </AddressSelect>
                 )}
               />
               {errors.state && <p className='error'>{errors.state.message}</p>}
+            </AddressFormGroup>
+
+            <AddressFormGroup>
+              <AddressLabel htmlFor='city'>Cidade</AddressLabel>
+              <Controller
+                name='city'
+                control={control}
+                defaultValue={addressData.city}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input type='text' id='city' onChange={onChange} onBlur={onBlur} value={value} />
+                )}
+              />
+              {errors.city && <p className='error'>{errors.city.message}</p>}
             </AddressFormGroup>
           </div>
           <AddressButton type='submit'>Confirmar</AddressButton>

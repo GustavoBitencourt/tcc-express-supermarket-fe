@@ -62,18 +62,13 @@ export const AddressForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 90vw;
-  margin-top: 8rem;
+  margin-top: 6rem;
 `
 
 export const AddressFormGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  width: 100%;
-
-  label {
-    text-align: left; // Adicione esta linha para alinhar o texto à esquerda
-  }
 `
 
 export const AddressLabel = styled.label`
@@ -89,12 +84,12 @@ export const AddressLabel = styled.label`
 
 export const Input = styled.input`
   width: 90vw;
-  height: 7vh;
+  height: 5vh;
   padding: 10px;
   color: ${({ theme }) => theme.colors.blackgray};
   font-weight: 400;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   border-radius: 8px;
   border: 2px solid ${({ theme }) => theme.colors.gray400};
   box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
@@ -131,5 +126,32 @@ export const AddressButton = styled.button`
     width: 500px;
     height: 50px;
     font-size: 24px;
+  }
+`
+
+export const AddressSelect = styled.select`
+  width: 90vw;
+  height: 5vh;
+  padding: 10px;
+  color: ${({ theme }) => theme.colors.blackgray};
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  border: 2px solid ${({ theme }) => theme.colors.gray400};
+  box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.green};
+  }
+
+  @media screen and (min-width: 720px) {
+    width: 500px;
+    height: 50px;
+    font-size: 24px;
+    color: ${({ theme }) => theme.colors.blackgray};
+    font-weight: 400;
+    font-size: 16px;
   }
 `
