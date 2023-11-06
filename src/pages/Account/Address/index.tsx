@@ -127,8 +127,6 @@ function Address() {
   }, [])
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Submit button clicked')
-    console.log('addressData:', addressData)
 
     const userId = localStorage.getItem('id')
     if (userId) {
@@ -139,8 +137,6 @@ function Address() {
           if (response.status === 200) {
             const updatedAddressData = response.data
             setAddressData(updatedAddressData)
-            console.log('Resposta da atualização:', updatedAddressData)
-            console.log('Endereço atualizado com sucesso')
             navigate('/account')
           } else {
             console.error('Falha ao atualizar o endereço')
@@ -191,7 +187,7 @@ function Address() {
                   onChange={onChange}
                   onBlur={onBlur}
                   value={value}
-                  className='custom-input'
+                  className='custom-input-address'
                 />
               )}
             />
