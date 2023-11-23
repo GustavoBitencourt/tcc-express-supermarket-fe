@@ -78,7 +78,7 @@ export function TableMobile() {
           </div>
         ))}
         <div className='subtotal'>
-          <span style={{ color: 'black' }}>Subtotal:</span> {currencyFormat(totalAmount)}
+          <span>Subtotal:</span> {currencyFormat(totalAmount)}
           <div className='confirm-button'>
             <button>Confirmar itens</button>
           </div>
