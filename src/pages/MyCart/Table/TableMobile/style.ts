@@ -125,20 +125,48 @@ export const Container = styled.div`
     border-radius: 8px;
     box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
     padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
     margin: 0 auto;
     font-family: 'Baloo Bhai 2', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     font-style: normal;
     color: ${({ theme }) => theme.colors.blackgray};
+    text-align: center;
 
     span {
       font-family: 'Manrope', sans-serif;
       font-weight: 500;
+      font-size: 18px;
+    }
+
+    .subtotal span {
+      text-align: center;
+    }
+  }
+
+  .confirm-button {
+    margin-top: 10px;
+    text-align: center;
+
+    button {
+      background-color: ${({ theme }) => theme.colors.green};
+      color: ${({ theme }) => theme.colors.white};
+      padding: 10px;
+      border: none;
+      height: 3.5rem;
+      border-radius: 8px;
+      width: 90%;
+      cursor: pointer;
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      font-style: normal;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: ${({ theme }) => theme.colors.green};
     }
   }
 `
