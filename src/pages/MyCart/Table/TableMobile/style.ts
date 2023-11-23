@@ -118,6 +118,29 @@ export const Container = styled.div`
       }
     }
   }
+  .subtotal {
+    position: sticky;
+    bottom: 0;
+    background: #fffbd3;
+    border-radius: 8px;
+    box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    font-family: 'Baloo Bhai 2', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    color: ${({ theme }) => theme.colors.blackgray};
+
+    span {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+    }
+  }
 `
 
 export const StatusTexts = styled.div`

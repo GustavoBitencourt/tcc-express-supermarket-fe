@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useCart } from '../../../../hooks/useCart'
 
-import { ConfirmOrder } from '../../../../components/OrderCloseAction/ConfirmOrder'
+// import { ConfirmOrder } from '../../../../components/OrderCloseAction/ConfirmOrder'
 import StatusIndicator from '../../../../components/StatusIndicator'
 import { currencyFormat } from '../../../../helpers/currencyFormat'
 
@@ -23,12 +23,13 @@ import TopBar from '../../TopBar'
 
 export function TableMobile() {
   const { cart, removeProductFromCart, productCartIncrement, productCartDecrement } = useCart()
-  const [activeStep, setActiveStep] = useState(1)
+  const [activeStep] = useState(1)
   const [selectedOption, setSelectedOption] = useState('option1')
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option)
   }
+  const totalAmount = cart.reduce((acc, item) => (acc += Number(item.subtotal)), 0)
 
   return (
     <>
@@ -76,15 +77,11 @@ export function TableMobile() {
             </div>
           </div>
         ))}
-
-        <ConfirmOrder />
+        <div className='subtotal'>
+          <span style={{ color: 'black' }}>Subtotal</span> {currencyFormat(totalAmount)}
+        </div>
+        {/* <ConfirmOrder /> */}
       </Container>
     </>
   )
-}
-
-{
-  /* <h5 style={{ color: 'black' }}>
-          <span style={{ color: 'black' }}>Subtotal</span> {currencyFormat(item.subtotal)}
-        </h5> */
 }
