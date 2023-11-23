@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { FaTrashAlt } from 'react-icons/fa'
 import { useCart } from '../../../../hooks/useCart'
 
 import { ConfirmOrder } from '../../../../components/OrderCloseAction/ConfirmOrder'
@@ -8,45 +7,72 @@ import { currencyFormat } from '../../../../helpers/currencyFormat'
 
 import minusImg from '../../../../assets/circle-minus.svg'
 import plusImg from '../../../../assets/circle-plus.svg'
+import closeIcon from '../../../../assets/close-icon.svg'
 
-import { Container } from './style'
+import FormComponent from './formComponent'
+import {
+  Container,
+  StatusTexts,
+  AdditionalText,
+  SubstituicaoText,
+  LimparListaText,
+  CartListText,
+} from './style'
 
 import TopBar from '../../TopBar'
 
 export function TableMobile() {
   const { cart, removeProductFromCart, productCartIncrement, productCartDecrement } = useCart()
   const [activeStep, setActiveStep] = useState(1)
+  const [selectedOption, setSelectedOption] = useState('option1')
+
+  const handleOptionSelect = (option: string) => {
+    setSelectedOption(option)
+  }
 
   return (
     <>
       <TopBar />
       <Container>
         <StatusIndicator activeStep={activeStep} />
+        <StatusTexts>
+          <SubstituicaoText>Substituição</SubstituicaoText>
+          <LimparListaText>Limpar lista</LimparListaText>
+        </StatusTexts>
+        <AdditionalText>Caso algum produto de sua compra esteja indisponível</AdditionalText>
+        <p>Caso algum produto de sua compra esteja indisponível</p>
+        <FormComponent onSelectOption={handleOptionSelect} selectedOption={selectedOption} />
+        <CartListText>Lista do carrinho</CartListText>
         {cart.map((item) => (
           <div key={`${item.product}-${item.id}`} className='order-item'>
-            <div>
-              <img src={item.image} alt={item.name} />
-            </div>
-            <div>
+            <img className='imgProduct' src={item.image} alt={item.name} />
+            <button className='closeIcon' type='button' onClick={() => removeProductFromCart(item)}>
+              <img src={closeIcon} alt='Remover produto' />
+            </button>
+            <div className='divWidth'>
               <h4>{item.name}</h4>
-              <span>{currencyFormat(item.price)}</span>
-              <div>
+              <div className='divWidth2'>
+                <span className='price'>{currencyFormat(item.price)}</span>
                 <div>
-                  <button type='button' onClick={() => productCartDecrement(item)}>
-                    <img src={minusImg} alt='Remover quantidade' />
-                  </button>
-                  <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                  <button type='button' onClick={() => productCartIncrement(item)}>
-                    <img src={plusImg} alt='Adicionar quantidade' />
-                  </button>
+                  <div>
+                    <button
+                      className='buttonRemove'
+                      type='button'
+                      onClick={() => productCartDecrement(item)}
+                    >
+                      <img src={minusImg} alt='Remover quantidade' />
+                    </button>
+                    <span className='quantityBox'>{`${item.quantity}`.padStart(2)}</span>
+                    <button
+                      className='buttonAdd'
+                      type='button'
+                      onClick={() => productCartIncrement(item)}
+                    >
+                      <img src={plusImg} alt='Adicionar quantidade' />
+                    </button>
+                  </div>
                 </div>
-                <button type='button' onClick={() => removeProductFromCart(item)}>
-                  <FaTrashAlt />
-                </button>
               </div>
-              <h5>
-                <span>Subtotal</span> {currencyFormat(item.subtotal)}
-              </h5>
             </div>
           </div>
         ))}
@@ -55,4 +81,10 @@ export function TableMobile() {
       </Container>
     </>
   )
+}
+
+{
+  /* <h5 style={{ color: 'black' }}>
+          <span style={{ color: 'black' }}>Subtotal</span> {currencyFormat(item.subtotal)}
+        </h5> */
 }

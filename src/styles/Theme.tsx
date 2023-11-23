@@ -14,6 +14,7 @@ export const theme: DefaultTheme = {
     black: '#0C0D0F',
     blackgray: '#393939',
     red: '#E03131',
+    redCart: '#d93333',
     orange: '#E8590C',
     yellow: '#F2B600',
     green: '#56BA50',

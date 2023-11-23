@@ -1,3 +1,4 @@
+// style.ts
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -6,127 +7,155 @@ export const Container = styled.div`
   gap: 1.5rem;
 
   .order-item {
-    background: ${({ theme }) => theme.colors.black};
-    padding: 1.75rem 1.5rem;
-    border-radius: 4px;
+    background: ${({ theme }) => theme.colors.white};
+    padding: 0.5rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+    margin: 1rem 1rem;
+    margin: 0rem 1rem;
 
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 1.5rem;
+    .imgProduct {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    .divWidth {
+      width: 100%;
+    }
+
+    .divWidth2 {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .price {
+      color: ${({ theme }) => theme.colors.blackgray};
+      font-family: 'Baloo Bhai 2', sans-serif;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
+    }
 
     > div:first-child {
       img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 4px;
+        width: 60px;
+        height: auto;
+        max-width: 100%;
+        border-radius: 8px;
+        margin-bottom: 0;
+        margin-right: 1rem;
       }
+    }
+    .closeIcon {
+      position: absolute;
+      top: -1rem;
+      right: 0;
+      border: none;
+      background: transparent;
     }
 
     > div:last-child {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
       h4 {
         margin-bottom: 0.5rem;
-        font-weight: 400;
-        font-size: 1.75rem;
-      }
-
-      > span {
         font-weight: 700;
-        font-size: 2rem;
+        font-size: 14px;
+        color: ${({ theme }) => theme.colors.blackgray};
+        text-transform: uppercase;
+        font-family: 'Manrope' sans-serif;
       }
 
       div {
         display: flex;
         align-items: center;
-        gap: 2rem;
-        margin: 0.875rem 0;
-
-        div {
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-
-          button {
-            background: none;
-            flex: 0;
-            border: none;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            img {
-              width: 2rem;
-            }
-          }
-
-          span {
-            display: block;
-            background: ${({ theme }) => theme.colors.white};
-            padding: 0.125rem 0.75rem;
-            border-radius: 4px;
-
-            font-weight: 500;
-            font-size: 1.75rem;
-            color: ${({ theme }) => theme.colors.black};
-          }
-        }
+        gap: 0.5rem;
 
         button {
-          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
           background: none;
           border: none;
-
           display: flex;
           align-items: center;
           justify-content: center;
-
-          svg {
-            fill: ${({ theme }) => theme.colors.yellow};
-            width: 2rem;
-            height: 2rem;
-          }
         }
       }
-
-      h5 {
-        span {
-          display: block;
-          font-size: 1.75rem;
-          font-weight: 400;
-        }
-
+      .quantityBox {
+        width: 40px;
+        height: 34px;
+        border: 1px solid ${({ theme }) => theme.colors.gray400};
+        border-radius: 6px;
+        color: ${({ theme }) => theme.colors.blackgray};
+        text-align: center;
+        font-family: Manrope;
+        font-size: 20px;
+        font-style: normal;
         font-weight: 700;
-        font-size: 2.5rem;
-      }
-    }
-
-    @media (max-width: 540px) {
-      grid-template-columns: 1fr;
-      padding: 1rem;
-
-      > div:first-child {
-        height: 10rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      > div:last-child {
-        div {
-          gap: 2rem;
-        }
+      .buttonRemove {
+        background-color: ${({ theme }) => theme.colors.red};
+        width: 40px;
+        height: 36px;
+        border-radius: 6px;
+      }
 
-        h5 {
-          span {
-            font-size: 1.5rem;
-          }
-
-          font-size: 2.25rem;
-        }
+      .buttonAdd {
+        background-color: ${({ theme }) => theme.colors.green};
+        width: 40px;
+        height: 36px;
+        border-radius: 6px;
       }
     }
   }
+`
+
+export const StatusTexts = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+`
+
+export const SubstituicaoText = styled.div`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: 1rem;
+  color: ${({ theme }) => theme.colors.blackgray};
+`
+
+export const LimparListaText = styled.div`
+  color: ${({ theme }) => theme.colors.redCart};
+  font-size: 16px;
+  font-style: normal;
+  margin-right: 1rem;
+  font-weight: 700;
+`
+
+export const AdditionalText = styled.p`
+  font-size: 15px;
+  color: ${({ theme }) => theme.colors.blackgray};
+  font-weight: 400;
+  text-align: center;
+  margin-top: -10px;
+`
+
+export const CartListText = styled.h3`
+  font-size: 16px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.blackgray};
+  text-align: center;
+  margin-bottom: 1rem;
+  text-align: left;
+  margin-left: 1rem;
 `
