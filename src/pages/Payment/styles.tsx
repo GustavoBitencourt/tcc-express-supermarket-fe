@@ -1,65 +1,46 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
-  max-width: 58.75rem;
-  padding: 2rem;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `
 
 export const Inner = styled.main`
-  background: ${({ theme }) => theme.colors.black};
   padding: 2rem 2.5rem;
   border-radius: 8px;
+`
+export const AddressLabel = styled.label`
+  align-self: flex-start;
+  margin-left: 0.4rem;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.blackgray};
+  text-align: left;
+`
+export const AddressFormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`
+
+export const TitleText = styled.div`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.blackgray};
 `
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-
-  h4 {
-    margin: 2.5rem 0 2rem;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  .grouped {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .field {
-    flex-grow: 1;
-    margin-bottom: 1rem;
-  }
-
-  label {
-    display: block;
-    color: ${({ theme }) => theme.colors.white};
-    margin-bottom: 0.5rem;
-  }
-
-  input[type='email'],
-  input[type='number'],
-  input[type='tel'],
-  input[type='text'],
-  select {
-    flex-grow: 1;
-    background-color: ${({ theme }) => theme.colors.gray800};
-    color: ${({ theme }) => theme.colors.white};
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: all 0.2s;
-    height: 42px;
-    width: 100%;
-    margin: 0 0 1rem;
-    padding: 0.7rem;
-  }
+  align-items: center;
+  margin-top: -1rem;
 
   @media (max-width: 540px) {
     .grouped {

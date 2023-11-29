@@ -22,7 +22,8 @@ import {
 import TopBar from '../../TopBar'
 
 export function TableMobile() {
-  const { cart, removeProductFromCart, productCartIncrement, productCartDecrement } = useCart()
+  const { cart, confirmOrder, removeProductFromCart, productCartIncrement, productCartDecrement } =
+    useCart()
   const [activeStep] = useState(1)
   const [selectedOption, setSelectedOption] = useState('option1')
 
@@ -80,7 +81,7 @@ export function TableMobile() {
         <div className='subtotal'>
           <span>Subtotal:</span> {currencyFormat(totalAmount)}
           <div className='confirm-button'>
-            <button>Confirmar itens</button>
+            <button onClick={confirmOrder}>Confirmar itens</button>
           </div>
         </div>
 
