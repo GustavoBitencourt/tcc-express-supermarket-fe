@@ -7,7 +7,7 @@ export const Container = styled.div`
 `
 
 export const Inner = styled.main`
-  padding: 2rem 2.5rem;
+  padding: 2rem 2.5rem 0;
   border-radius: 8px;
 `
 export const AddressLabel = styled.label`
