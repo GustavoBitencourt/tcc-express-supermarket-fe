@@ -28,7 +28,14 @@ export function AppRoutes() {
         <Route path='padarias' element={<PadariasPage />} />
       </Route>
       <Route path='cart' element={<MyCartPage />} />
-      <Route path='payment' element={<PaymentPage />} />
+      <Route
+        path='payment'
+        element={
+          <PrivateRoute>
+            <PaymentPage />
+          </PrivateRoute>
+        }
+      />
       <Route path='order'>
         <Route path='success/:orderId' element={<OrderSuccessPage />} />
       </Route>
