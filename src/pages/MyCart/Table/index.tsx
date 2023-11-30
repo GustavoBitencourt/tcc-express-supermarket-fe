@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { EmptyCart } from '../../../components/EmptyCart'
 import { useCart } from '../../../hooks/useCart'
 
-import { TableDesktop } from './TableDesktop'
+//import { TableDesktop } from './TableDesktop'
 import { TableMobile } from './TableMobile'
 
 export function Table() {
@@ -23,5 +23,5 @@ export function Table() {
 
   if (cart.length === 0) return <EmptyCart title='Sua lista está vazia,' />
 
-  return windowWidth > 768 ? <TableDesktop /> : <TableMobile />
+  return windowWidth > 768 ? <TableMobile /> : <TableMobile />
 }
