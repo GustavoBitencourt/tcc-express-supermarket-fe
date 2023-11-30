@@ -25,7 +25,7 @@ interface CartProviderProps {
 
 export const CartContext = createContext({} as CartContextProps)
 
-const localStorageKey = '@FoodCommerce:cart'
+const localStorageKey = '@SupermarketExpress:cart'
 
 export function CartProvider({ children }: CartProviderProps) {
   const navigate = useNavigate()
@@ -62,7 +62,9 @@ export function CartProvider({ children }: CartProviderProps) {
         return item
       })
 
-      toast.success(`Outro(a) ${productEmoji(product.product)} ${product.name} adicionado nos pedidos!`)
+      toast.success(
+        `Outro(a) ${productEmoji(product.product)} ${product.name} adicionado nos pedidos!`,
+      )
       saveCart(newCart)
 
       return
@@ -76,7 +78,9 @@ export function CartProvider({ children }: CartProviderProps) {
   }
 
   function removeProductFromCart(product: Product) {
-    const newCart = cart.filter((item) => !(item.id === product.id && item.product === product.product))
+    const newCart = cart.filter(
+      (item) => !(item.id === product.id && item.product === product.product),
+    )
 
     saveCart(newCart)
   }

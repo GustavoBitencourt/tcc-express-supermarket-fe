@@ -37,7 +37,14 @@ export function AppRoutes() {
         }
       />
       <Route path='order'>
-        <Route path='success/:orderId' element={<OrderSuccessPage />} />
+        <Route
+          path='success/:orderId'
+          element={
+            <PrivateRoute>
+              <OrderSuccessPage />{' '}
+            </PrivateRoute>
+          }
+        />
       </Route>
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />

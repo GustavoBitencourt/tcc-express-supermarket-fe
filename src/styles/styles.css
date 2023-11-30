@@ -122,3 +122,11 @@
   font-weight: 400;
   line-height: 124.6%;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.numberOrder {
+  font-family: 'Manrope';
+}
