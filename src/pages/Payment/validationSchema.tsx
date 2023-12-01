@@ -1,5 +1,4 @@
 import { isValidCNPJ, isValidCPF, isValidPhone } from '@brazilian-utils/brazilian-utils'
-import isValidCreditCard from 'card-validator'
 import * as yup from 'yup'
 
 export const schema = yup
@@ -36,20 +35,8 @@ export const schema = yup
     state: yup.string().required('O estado é obrigatório.'),
     creditCardNumber: yup
       .string()
-      .transform((val) => val.replace(/[^\d]+/g, ''))
-      .test('validateCreditCardNumber', 'O número do cartão é inválido.', (value, { parent }) => {
-        const isCreditCardFieldFilled =
-          parent.creditCardNumber ||
-          parent.creditCardHolder ||
-          parent.creditCardExpiration ||
-          parent.creditCardSecurityCode
-
-        if (isCreditCardFieldFilled) {
-          return isValidCreditCard.number(value).isValid
-        }
-
-        return true
-      }),
+      .required('O número do cartão é obrigatório')
+      .transform((val) => val.replace(/[^\d]+/g, '')),
     creditCardHolder: yup
       .string()
       .required('O nome do titular é obrigatório.')

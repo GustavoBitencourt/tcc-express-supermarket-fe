@@ -136,8 +136,6 @@ export default function Payment() {
     }))
   }
 
-  console.log('Aqui')
-  console.log(addressData)
   return (
     <>
       <TopBar />
@@ -426,22 +424,9 @@ export default function Payment() {
                   control={control}
                   defaultValue=''
                   render={({ field: { onChange, onBlur, value } }) => (
-                    <IMaskInput
+                    <input
                       type='text'
                       id='creditCardNumber'
-                      mask={[
-                        {
-                          mask: '0000 000000 0000',
-                          maxLength: 14,
-                        },
-                        {
-                          mask: '0000 000000 00000',
-                          maxLength: 15,
-                        },
-                        {
-                          mask: '0000 0000 0000 0000',
-                        },
-                      ]}
                       onChange={onChange}
                       onBlur={onBlur}
                       value={value}
