@@ -1,46 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import { EditFormContainer, CloseIcon } from './styles'
+// AddProductForm.tsx
+import React, { useState } from 'react'
+import axios from 'axios'
+import Modal from 'react-modal'
+import { useQueryClient } from 'react-query'
 import { FaTimes } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { EditFormContainer, CloseIcon } from './styles'
 
-interface EditProductFormProps {
-  onSubmit: (updatedProductData: any) => void
-  initialData: any
+interface AddProductFormProps {
   onClose: () => void
-  onUpdate: (updatedData: any) => void
 }
 
-const EditProductForm: React.FC<EditProductFormProps> = ({ initialData, onClose, onUpdate }) => {
-  const [formData, setFormData] = useState(initialData)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    setFormData(initialData)
-  }, [initialData])
+const AddProductForm: React.FC<AddProductFormProps> = ({ onClose }) => {
+  const queryClient = useQueryClient()
+  const [formData, setFormData] = useState({
+    name: '',
+    product: '',
+    price: 0,
+    stockLevel: 0,
+    image: '',
+    description: '',
+    imageMap: '#',
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prevData: any) => ({ ...prevData, [name]: value }))
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: name === 'price' || name === 'stockLevel' ? Number(value) : value,
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await onUpdate(formData)
-    navigate('/admin/products') // Redireciona para a lista de produtos
+
+    try {
+      const response = await axios.post('/products', formData)
+
+      console.log('Product created:', response.data)
+
+      queryClient.invalidateQueries('products')
+      onClose()
+    } catch (error) {
+      console.error('Error creating product:', error)
+    }
   }
 
   const handleCancel = () => {
     onClose()
-    navigate('/admin/products') // Redireciona para a lista de produtos
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Modal isOpen={true} onRequestClose={handleCancel} contentLabel='Adicionar Produto'>
       <EditFormContainer>
         <CloseIcon onClick={handleCancel}>
           <FaTimes />
         </CloseIcon>
-
         <div className='input-row'>
           <label style={{ marginLeft: '2.3rem' }}>
             Nome:
@@ -53,26 +67,24 @@ const EditProductForm: React.FC<EditProductFormProps> = ({ initialData, onClose,
             <input type='text' name='product' value={formData.product} onChange={handleChange} />
           </label>
         </div>
-
         <div className='input-row'>
           <label style={{ marginLeft: '2.3rem' }}>
-            Preço:
-            <br />
-            <input type='number' name='price' value={formData.price} onChange={handleChange} />
-          </label>
-          <label style={{ marginRight: '2.3rem' }}>
             Imagem:
             <br />
             <input type='text' name='image' value={formData.image} onChange={handleChange} />
           </label>
+          <label style={{ marginRight: '2.3rem' }}>
+            Preço:
+            <br />
+            <input type='text' name='price' value={formData.price} onChange={handleChange} />
+          </label>
         </div>
-
         <div className='input-row'>
           <label style={{ marginLeft: '2.3rem' }}>
             Estoque:
             <br />
             <input
-              type='number'
+              type='text'
               name='stockLevel'
               value={formData.stockLevel}
               onChange={handleChange}
@@ -89,16 +101,17 @@ const EditProductForm: React.FC<EditProductFormProps> = ({ initialData, onClose,
             />
           </label>
         </div>
-
         <div>
-          <button type='submit'>Salvar</button>
+          <button type='submit' onClick={handleSubmit}>
+            Salvar
+          </button>
           <button type='button' onClick={handleCancel} style={{ marginLeft: '10px' }}>
             Cancelar
           </button>
         </div>
       </EditFormContainer>
-    </form>
+    </Modal>
   )
 }
 
-export default EditProductForm
+export default AddProductForm

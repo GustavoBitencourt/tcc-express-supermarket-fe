@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import Modal from 'react-modal'
 import EditProductForm from './editProductForm'
-import { ProductListContainer } from './styles'
+import AddProductForm from './addProductForm'
+import { ProductListContainer, StyledTable, AddProductButton } from './styles'
 
 interface Product {
   id: number
@@ -51,11 +52,16 @@ const formatCurrency = (value: number): string => {
 const ProductList: React.FC = () => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null)
 
   const { data: fetchedProducts, isLoading, isError } = useQuery('products', fetchProducts)
   const [editFormData, setEditFormData] = useState<any | null>(null)
+
+  const handleAddProduct = () => {
+    setIsAddModalOpen(true)
+  }
 
   const handleEditProduct = (productId: number) => {
     const selectedProduct = fetchedProducts.find((product: Product) => product.id === productId)
@@ -84,6 +90,7 @@ const ProductList: React.FC = () => {
   }
 
   const handleModalClose = () => {
+    setIsAddModalOpen(false)
     setIsEditModalOpen(false)
     setSelectedProductId(null)
     queryClient.invalidateQueries('products')
@@ -110,15 +117,24 @@ const ProductList: React.FC = () => {
   return (
     <ProductListContainer>
       <div>
-        <h2>Lista de Produtos</h2>
-        <table>
+        <AddProductButton onClick={handleAddProduct}>Adicionar Novo Produto</AddProductButton>
+        {isAddModalOpen && (
+          <Modal
+            isOpen={isAddModalOpen}
+            onRequestClose={handleModalClose}
+            contentLabel='Adicionar Produto'
+          >
+            <AddProductForm onClose={handleModalClose} />
+          </Modal>
+        )}
+        <StyledTable>
           <thead>
             <tr>
               <th>Nome</th>
-              <th>Preço</th>
               <th>Categoria</th>
               <th>Estoque</th>
               <th>Imagem</th>
+              <th>Preço</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -126,19 +142,21 @@ const ProductList: React.FC = () => {
             {fetchedProducts.map((product: Product) => (
               <tr key={product.id}>
                 <td>{product.name}</td>
-                <td>{formatCurrency(product.price)}</td>
                 <td>{product.product}</td>
                 <td>{product.stockLevel}</td>
                 <td>
                   <img
                     src={product.image}
                     alt={product.name}
-                    style={{ width: '45px', height: '35px' }}
+                    style={{ width: '45px', height: '36px' }}
                   />
+                </td>
+                <td style={{ color: 'green', fontFamily: 'Manrope', fontWeight: 'bold' }}>
+                  {formatCurrency(product.price)}
                 </td>
                 <td>
                   <span
-                    style={{ cursor: 'pointer', marginLeft: '10px' }}
+                    style={{ cursor: 'pointer', marginLeft: '10px', color: '#4a88da' }}
                     title='Editar Produto'
                     onClick={() => handleEditProduct(product.id)}
                   >
@@ -146,18 +164,18 @@ const ProductList: React.FC = () => {
                     Editar
                   </span>
                   <span
-                    style={{ cursor: 'pointer', marginLeft: '10px' }}
+                    style={{ cursor: 'pointer', marginLeft: '10px', color: '#F34235' }}
                     title='Deletar Produto'
                     onClick={() => handleDeleteProduct(product.id)}
                   >
-                    <FaTrash />
+                    <FaTrash style={{ marginRight: '5px' }} />
+                    Excluir
                   </span>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
-        <Link to='/admin/products/new'>Adicionar Novo Produto</Link>
+        </StyledTable>
         {isEditModalOpen && (
           <Modal
             isOpen={isEditModalOpen}
