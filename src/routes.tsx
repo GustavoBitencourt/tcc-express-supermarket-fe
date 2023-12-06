@@ -16,6 +16,8 @@ import Account from './pages/Account'
 import EditAccount from './pages/Account/EditAccount'
 import Address from './pages/Account/Address'
 import PrivateRoute from './components/PrivateRoute'
+import AdminPanel from './pages/Admin'
+import Products from './pages/Admin/Products'
 
 export function AppRoutes() {
   return (
@@ -72,6 +74,8 @@ export function AppRoutes() {
           </PrivateRoute>
         }
       />
+      <Route path='admin' element={<AdminPanel />} />
+      <Route path='admin/products' element={<Products />} />
     </Routes>
   )
 }
