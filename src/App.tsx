@@ -20,7 +20,6 @@ const queryClient = new QueryClient()
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Use HashRouter em vez de BrowserRouter */}
       <HashRouter basename={process.env.REACT_APP_BASE_NAME}>
         <Theme>
           <ProductProvider>

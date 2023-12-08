@@ -2,12 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Page Not Found</title>
+    <title>Admin</title>
   </head>
   <body>
-    <p>If you are not redirected, <a href="/tcc-express-supermarket-fe/admin">click here</a>.</p>
+    <p>Você é um administrador?</p>
+    <button onclick="redirectToAdmin()">Yes</button>
+    <button onclick="redirectToHome()">No</button>
+
     <script>
-      window.location.replace('/tcc-express-supermarket-fe/admin')
+      function redirectToAdmin() {
+        window.location.replace('/tcc-express-supermarket-fe/admin')
+      }
+
+      function redirectToHome() {
+        window.location.replace('/tcc-express-supermarket-fe/')
+      }
     </script>
   </body>
 </html>
