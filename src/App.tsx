@@ -19,7 +19,7 @@ const queryClient = new QueryClient()
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename={process.env.REACT_APP_BASE_NAME}>
+      <BrowserRouter>
         <Theme>
           <ProductProvider>
             <CartProvider>
