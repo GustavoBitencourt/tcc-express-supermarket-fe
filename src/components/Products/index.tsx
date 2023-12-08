@@ -68,7 +68,7 @@ export function Products({ products }: ProductsProps) {
         onRequestClose={closeMapModal}
         contentLabel='Map Modal'
         style={{
-          overlay: { zIndex: 100 },
+          overlay: { zIndex: 1000 },
           content: {
             top: '0',
             left: '0',
