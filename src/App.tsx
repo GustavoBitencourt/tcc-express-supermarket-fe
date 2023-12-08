@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom' // Importe HashRouter em vez de BrowserRouter
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -16,10 +16,12 @@ import axios from 'axios'
 axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL
 
 const queryClient = new QueryClient()
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename={process.env.REACT_APP_BASE_NAME}>
+      {/* Use HashRouter em vez de BrowserRouter */}
+      <HashRouter basename={process.env.REACT_APP_BASE_NAME}>
         <Theme>
           <ProductProvider>
             <CartProvider>
@@ -30,7 +32,7 @@ export default function App() {
             </CartProvider>
           </ProductProvider>
         </Theme>
-      </BrowserRouter>
+      </HashRouter>
     </QueryClientProvider>
   )
 }
