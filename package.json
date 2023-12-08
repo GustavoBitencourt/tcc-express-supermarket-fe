@@ -1,7 +1,6 @@
 {
   "name": "supermarket-express-fe",
   "version": "0.1.0",
-  "homepage": "https://gustavobitencourt.github.io/tcc-express-supermarket-fe/",
   "private": true,
   "dependencies": {
     "@brazilian-utils/brazilian-utils": "^1.0.0-rc.12",
