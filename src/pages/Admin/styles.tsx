@@ -10,6 +10,13 @@ export const AdminContainer = styled.div`
   background-color: gray;
 `;
 
+export const AdminButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
+
 export const TopBar = styled.div`
   position: fixed;
   top: 0;
@@ -42,6 +49,21 @@ export const AdminButton = styled(Link)`
   margin: 10px;
   padding: 20px;
   width: 200px;
+  background-color: ${({ theme }) => theme.colors.green};
+  color: ${({ theme }) => theme.colors.white};
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  transition: background-color 0.3s;
+  text-align: center;
+`;
+
+export const AdminButtonAccess = styled.button`
+  margin: 10px;
+  padding: 20px;
+  width: 300px; /* Tamanho maior */
   background-color: ${({ theme }) => theme.colors.green};
   color: ${({ theme }) => theme.colors.white};
   text-decoration: none;
