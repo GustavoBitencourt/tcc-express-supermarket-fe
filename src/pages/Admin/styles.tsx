@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const AdminContainer = styled.div`
   display: flex;
@@ -8,14 +8,14 @@ export const AdminContainer = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: gray;
-`;
+`
 
 export const AdminButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-`;
+`
 
 export const TopBar = styled.div`
   position: fixed;
@@ -40,10 +40,10 @@ export const TopBar = styled.div`
   }
 
   img {
-    width:80px;
-    height:50px;
+    width: 80px;
+    height: 50px;
   }
-`;
+`
 
 export const AdminButton = styled(Link)`
   margin: 10px;
@@ -58,12 +58,12 @@ export const AdminButton = styled(Link)`
   font-size: 24px;
   transition: background-color 0.3s;
   text-align: center;
-`;
+`
 
 export const AdminButtonAccess = styled.button`
   margin: 10px;
   padding: 20px;
-  width: 300px; /* Tamanho maior */
+  width: 300px;
   background-color: ${({ theme }) => theme.colors.green};
   color: ${({ theme }) => theme.colors.white};
   text-decoration: none;
@@ -73,4 +73,52 @@ export const AdminButtonAccess = styled.button`
   font-size: 24px;
   transition: background-color 0.3s;
   text-align: center;
-`;
+`
+
+export const PasswordModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: ${({ theme }) => theme.colors.blackgray};
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid ${({ theme }) => theme.colors.green};
+
+    &:hover {
+      border: 1px solid ${({ theme }) => theme.colors.green};
+    }
+  }
+
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.green};
+    }
+  }
+
+  .cancelButton {
+    background-color: ${({ theme }) => theme.colors.redCart};
+    margin-left: 10px;
+    &:hover {
+      background-color: #ff0000;
+    }
+  }
+`

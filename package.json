@@ -15,6 +15,7 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "card-validator": "^8.1.1",
+    "date-fns": "^2.30.0",
     "input-mask-react": "^1.0.7",
     "polished": "^4.2.2",
     "react": "^18.2.0",

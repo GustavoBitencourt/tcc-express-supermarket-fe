@@ -5,28 +5,63 @@ import {
   TopBar,
   AdminButtonContainer,
   AdminButtonAccess,
+  PasswordModal,
 } from './styles'
 import Logo from '../../assets/logo-admin.svg'
 
 function AdminPanel() {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [passwordInput, setPasswordInput] = useState('')
 
   const checkPassword = () => {
-    const enteredPassword = prompt('Digite a senha:')
+    setIsModalOpen(true)
+  }
 
-    if (enteredPassword === 'adminexpress') {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordInput(e.target.value)
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+  }
+
+  const handlePasswordSubmit = () => {
+    if (passwordInput === 'adminexpress') {
       setIsPasswordCorrect(true)
+      setIsModalOpen(false)
     } else {
       alert('Senha incorreta. Acesso negado.')
+      setPasswordInput('')
     }
   }
 
   return (
     <>
       {!isPasswordCorrect && (
-        <AdminButtonContainer>
-          <AdminButtonAccess onClick={checkPassword}>Acesso Administrador</AdminButtonAccess>
-        </AdminButtonContainer>
+        <>
+          <AdminButtonContainer>
+            <AdminButtonAccess onClick={checkPassword}>Acesso Administrador</AdminButtonAccess>
+          </AdminButtonContainer>
+          {isModalOpen && (
+            <PasswordModal>
+              <label htmlFor='password'>Digite a senha:</label>
+              <input
+                type='password'
+                id='password'
+                value={passwordInput}
+                onChange={handlePasswordChange}
+                placeholder='Senha'
+              />
+              <button type='button' onClick={handlePasswordSubmit}>
+                Confirmar
+              </button>
+              <button type='button' onClick={handleModalClose} className='cancelButton'>
+                Cancelar
+              </button>
+            </PasswordModal>
+          )}
+        </>
       )}
       {isPasswordCorrect && (
         <AdminContainer>

@@ -6,7 +6,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa'
 import Modal from 'react-modal'
 import EditProductForm from './editProductForm'
 import AddProductForm from './addProductForm'
-import { ProductListContainer, StyledTable, AddProductButton } from './styles'
+import { ProductListContainer, StyledTable, AddProductButton, AccessOrdersButton } from './styles'
 
 interface Product {
   id: number
@@ -117,6 +117,9 @@ const ProductList: React.FC = () => {
   return (
     <ProductListContainer>
       <div>
+        <AccessOrdersButton onClick={() => navigate('/admin/orders')}>
+          Acessar Pedidos
+        </AccessOrdersButton>
         <AddProductButton onClick={handleAddProduct}>Adicionar Novo Produto</AddProductButton>
         {isAddModalOpen && (
           <Modal
