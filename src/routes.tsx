@@ -18,6 +18,7 @@ import Address from './pages/Account/Address'
 import PrivateRoute from './components/PrivateRoute'
 import AdminPanel from './pages/Admin'
 import Products from './pages/Admin/Products'
+import Orders from './pages/Admin/Orders'
 
 export function AppRoutes() {
   return (
@@ -76,6 +77,7 @@ export function AppRoutes() {
       />
       <Route path='admin' element={<AdminPanel />} />
       <Route path='admin/products' element={<Products />} />
+      <Route path='admin/orders' element={<Orders />} />
     </Routes>
   )
 }
