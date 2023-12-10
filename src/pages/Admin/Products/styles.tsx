@@ -173,7 +173,6 @@ export const AddProductButton = styled.div`
   right: 20rem;
   top: 4.7rem;
   cursor: pointer;
-  z-index: 100;
 `
 
 export const AccessOrdersButton = styled.div`
@@ -187,5 +186,4 @@ export const AccessOrdersButton = styled.div`
   left: 20rem;
   top: 4.7rem;
   cursor: pointer;
-  z-index: 100;
 `
