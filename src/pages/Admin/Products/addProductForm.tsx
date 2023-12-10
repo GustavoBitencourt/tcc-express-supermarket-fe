@@ -76,7 +76,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onClose }) => {
           <label style={{ marginRight: '2.3rem' }}>
             Preço:
             <br />
-            <input type='text' name='price' value={formData.price} onChange={handleChange} />
+            <input type='number' name='price' value={formData.price} onChange={handleChange} />
           </label>
         </div>
         <div className='input-row'>
