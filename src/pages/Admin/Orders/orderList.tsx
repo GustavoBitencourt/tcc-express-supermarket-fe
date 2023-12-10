@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import { format } from 'date-fns'
-import { StyledTable, StyledTableRow, ProductListContainer } from './styles'
+import { StyledTable, StyledTableRow, ProductListContainer, AccessProducts } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 interface Order {
   id: number
@@ -75,9 +76,14 @@ const fetchOrders = async (): Promise<Order[]> => {
 const ListOrders: React.FC = () => {
   const { data: orders, isLoading, isError } = useQuery('orders', fetchOrders)
   const [expandedOrderId, setExpandedOrderId] = useState<number | null>(null)
+  const navigate = useNavigate()
 
   const handleToggleExpansion = (orderId: number) => {
     setExpandedOrderId((prevId) => (prevId === orderId ? null : orderId))
+  }
+
+  const handleGoToProducts = () => {
+    navigate('/admin/products')
   }
 
   if (isLoading) {
@@ -167,6 +173,7 @@ const ListOrders: React.FC = () => {
             ))}
         </tbody>
       </StyledTable>
+      <AccessProducts onClick={handleGoToProducts}>Acessar Produtos</AccessProducts>
     </ProductListContainer>
   )
 }

@@ -90,3 +90,16 @@ export const TopBar = styled.div`
     height: 50px;
   }
 `
+
+export const AccessProducts = styled.div`
+  background-color: ${({ theme }) => theme.colors.green};
+  color: white;
+  font-size: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  position: fixed;
+  left: 20rem;
+  top: 4.7rem;
+  cursor: pointer;
+`
