@@ -37,7 +37,7 @@ const fetchProducts = async () => {
       stockLevel: product.stockLevel,
       image: product.image,
       description: product.description,
-      updatedAt: product.updatedAt, // Certifique-se de incluir a data updatedAt aqui
+      updatedAt: product.updatedAt,
     }),
   )
 }
