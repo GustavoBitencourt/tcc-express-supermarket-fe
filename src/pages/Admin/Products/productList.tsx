@@ -16,6 +16,7 @@ interface Product {
   stockLevel: number
   image: string
   description: string
+  updatedAt: string
 }
 
 const api = axios.create({
@@ -27,7 +28,18 @@ const fetchProducts = async () => {
   if (!response.data) {
     throw new Error('Failed to fetch products')
   }
-  return response.data
+  return response.data.map(
+    (product: any): Product => ({
+      id: product.id,
+      name: product.name,
+      product: product.product,
+      price: product.price,
+      stockLevel: product.stockLevel,
+      image: product.image,
+      description: product.description,
+      updatedAt: product.updatedAt, // Certifique-se de incluir a data updatedAt aqui
+    }),
+  )
 }
 
 const updateProduct = async (productId: number, updatedProductData: any) => {
@@ -113,6 +125,10 @@ const ProductList: React.FC = () => {
   if (isError) {
     return <div>Error loading products</div>
   }
+
+  fetchedProducts.sort(
+    (a: Product, b: Product) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+  )
 
   return (
     <ProductListContainer>
