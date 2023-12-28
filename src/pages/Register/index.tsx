@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { RegisterContainer, Form, FormGroup, Label, Input, Button, TopBar, Title } from './styles'
 import arrowLeftCategory from '../../assets/arrow-left-category.svg'
@@ -10,6 +10,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { IMaskInput } from 'react-imask'
 
 function Register() {
+  const [emailExistsError, setEmailExistsError] = useState<string | null>(null)
+
   const {
     handleSubmit,
     control,
@@ -59,13 +61,27 @@ function Register() {
         console.log('Cadastro realizado com sucesso')
         navigate('/')
       } else {
-        console.log(
-          'Ocorreu um erro ao criar a conta. Por favor, revise os dados e tente novamente.',
-        )
+        if (response.status === 400 && response.data.error === 'Email already exists') {
+          console.log('Email já cadastrado')
+          setEmailExistsError('Este e-mail já está cadastrado. Por favor, escolha outro.')
+        } else {
+          console.log(
+            'Ocorreu um erro ao criar a conta. Por favor, revise os dados e tente novamente.',
+          )
+        }
       }
     } catch (error) {
-      console.log('Erro de rede ou outros')
-      console.log('Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.')
+      if (
+        (error as any).response &&
+        (error as any).response.status === 400 &&
+        (error as any).response.data.error === 'Email already exists'
+      ) {
+        console.log('Email já cadastrado')
+        setEmailExistsError('Este e-mail já está cadastrado. Por favor, escolha outro.')
+      } else {
+        console.log('Erro de rede ou outros')
+        console.log('Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.')
+      }
     }
   }
 
@@ -152,6 +168,7 @@ function Register() {
             render={({ field }) => <Input type='email' {...field} />}
           />
           {errors.email && <p className='error'>{errors.email.message}</p>}
+          {emailExistsError && <p className='error'>{emailExistsError}</p>}
         </FormGroup>
         <FormGroup>
           <Label>Senha:</Label>
