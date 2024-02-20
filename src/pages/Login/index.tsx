@@ -100,7 +100,7 @@ function Login() {
               onChange={handlePasswordChange}
             />
           </FormGroup>
-          <ForgotPasswordLink to='/forgot-password'>Esqueceu a senha?</ForgotPasswordLink>
+          <ForgotPasswordLink to='/forgotPassword'>Esqueceu a senha?</ForgotPasswordLink>
           <SubmitButton
             type='submit'
             style={{ backgroundColor: isFormValid ? '#56BA50' : '#ABABAB' }}

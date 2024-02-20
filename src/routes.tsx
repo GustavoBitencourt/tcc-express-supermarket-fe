@@ -18,7 +18,9 @@ import Address from './pages/Account/Address'
 import PrivateRoute from './components/PrivateRoute'
 import AdminPanel from './pages/Admin'
 import Products from './pages/Admin/Products'
+import ForgotPassword from './pages/Account/ForgotPassword'
 import Orders from './pages/Admin/Orders'
+import ResetPassword from './pages/Account/ForgotPassword/ResetPassword'
 
 export function AppRoutes() {
   return (
@@ -51,6 +53,8 @@ export function AppRoutes() {
       </Route>
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
+      <Route path='forgotPassword' element={<ForgotPassword />} />
+      <Route path='resetPassword' element={<ResetPassword />} />
       <Route
         path='account'
         element={

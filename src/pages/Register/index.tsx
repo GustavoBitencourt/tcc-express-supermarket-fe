@@ -24,7 +24,7 @@ function Register() {
 
   const onSubmit = async (data: FieldValues) => {
     try {
-      // Verificar se a senha e a confirmação da senha coincidem
+      // Verifica se a senha e a confirmação da senha coincidem
       if (data.password !== data.confirmPassword) {
         setError('confirmPassword', {
           type: 'manual',
