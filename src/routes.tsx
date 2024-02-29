@@ -21,6 +21,7 @@ import Products from './pages/Admin/Products'
 import ForgotPassword from './pages/Account/ForgotPassword'
 import Orders from './pages/Admin/Orders'
 import ResetPassword from './pages/Account/ForgotPassword/ResetPassword'
+import ProductDetail from './pages/ProductDetail'
 
 export function AppRoutes() {
   return (
@@ -32,6 +33,7 @@ export function AppRoutes() {
         <Route path='hortifrutis' element={<HortifrutisPage />} />
         <Route path='padarias' element={<PadariasPage />} />
       </Route>
+      <Route path='/product/:id' element={<ProductDetail />} />
       <Route path='cart' element={<MyCartPage />} />
       <Route
         path='payment'
