@@ -7,14 +7,7 @@ export const AdminContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: gray;
-`
-
-export const AdminButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.green};
 `
 
 export const TopBar = styled.div`
@@ -33,6 +26,8 @@ export const TopBar = styled.div`
   h2 {
     margin: 3rem;
     font-size: 20px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
 
     @media (max-width: 500px) {
       margin: 0;
@@ -46,9 +41,10 @@ export const TopBar = styled.div`
 `
 
 export const AdminButton = styled(Link)`
-  margin: 10px;
+  margin-top: 20px;
   padding: 20px;
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
   background-color: ${({ theme }) => theme.colors.green};
   color: ${({ theme }) => theme.colors.white};
   text-decoration: none;
@@ -58,21 +54,10 @@ export const AdminButton = styled(Link)`
   font-size: 24px;
   transition: background-color 0.3s;
   text-align: center;
-`
 
-export const AdminButtonAccess = styled.button`
-  margin: 10px;
-  padding: 20px;
-  width: 300px;
-  background-color: ${({ theme }) => theme.colors.green};
-  color: ${({ theme }) => theme.colors.white};
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 24px;
-  transition: background-color 0.3s;
-  text-align: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.lightgreen};
+  }
 `
 
 export const PasswordModal = styled.div`
@@ -89,6 +74,8 @@ export const PasswordModal = styled.div`
     display: block;
     margin-bottom: 10px;
     color: ${({ theme }) => theme.colors.blackgray};
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
   }
 
   input {
@@ -103,22 +90,41 @@ export const PasswordModal = styled.div`
   }
 
   button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: ${({ theme }) => theme.colors.green};
+    color: ${({ theme }) => theme.colors.white};
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.green};
+      background-color: ${({ theme }) => theme.colors.lightgreen};
     }
   }
+`
 
-  .cancelButton {
-    background-color: ${({ theme }) => theme.colors.redCart};
-    margin-left: 10px;
-    &:hover {
-      background-color: #ff0000;
-    }
+export const LoginField = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+  label {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+  }
+
+  .panelText {
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    color: ${({ theme }) => theme.colors.darkgreen};
+    margin-bottom: 15px;
+    font-size: 20px;
   }
 `

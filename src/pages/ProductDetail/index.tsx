@@ -7,6 +7,8 @@ import api from '../../services/api'
 import { Sidebar } from '../../components/Sidebar'
 import { TopBar, ProductContainer, ProductInfo } from './styles'
 import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
+import { ReactComponent as MapProductIcon } from '../../assets/icon-map-product.svg'
+import { ReactComponent as ShareIconProduct } from '../../assets/share-icon-product.svg' // Importe o segundo ícone
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -44,12 +46,20 @@ const ProductDetail: React.FC = () => {
           <div className='rectangle'></div>
           <p>{currencyFormat(Number(product.price))}</p>
           {/* Adicione outras informações do produto aqui */}
-        </div>
-        <div className='important-text'>Importante</div>
-        <div className='disclaimer-text'>
-          As informações sobre o produto ou a embalagem exibidas podem não estar atualizadas ou
-          completas. Por favor, consulte sempre o produto físico para obter informações e avisos
-          mais precisos.
+          <div className='important-text'>Importante</div>
+          <div className='disclaimer-text'>
+            As informações sobre o produto ou a embalagem exibidas podem não estar atualizadas ou
+            completas. Por favor, consulte sempre o produto físico para obter informações e avisos
+            mais precisos.
+          </div>
+          <div className='button-container'>
+            <button className='search-store-button'>
+              <MapProductIcon />
+            </button>
+            <button className='search-store-button share-button'>
+              <ShareIconProduct />
+            </button>
+          </div>
         </div>
       </ProductInfo>
       <Sidebar />

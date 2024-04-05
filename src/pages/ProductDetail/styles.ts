@@ -73,7 +73,7 @@ export const ProductInfo = styled.div`
     color: ${({ theme }) => theme.colors.blackgray};
     text-align: left;
     margin-top: 1rem;
-    margin-left: 10%; /* Alinhando à esquerda */
+    margin-left: 10%;
   }
 
   .disclaimer-text {
@@ -83,6 +83,24 @@ export const ProductInfo = styled.div`
     color: #606060;
     text-align: left;
     margin-top: 1rem;
-    margin-left: 10%; /* Alinhando à esquerda */
+    margin-left: 10%;
+  }
+  .search-store-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+  .search-store-button.share-button {
+    margin-left: 1rem;
   }
 `
