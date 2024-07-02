@@ -19,6 +19,7 @@ import { ReactComponent as CloseIcon } from '../../../assets/close.svg'
 function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [isFormValid, setIsFormValid] = useState(false)
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false)
   const navigate = useNavigate()
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +31,9 @@ function ForgotPassword() {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
+    if (isButtonDisabled) return
+
+    setIsButtonDisabled(true)
     try {
       const response = await axios.post('/forgot-password', { email })
 
@@ -39,6 +43,10 @@ function ForgotPassword() {
       }
     } catch (error) {
       toast.error('O email não foi encontrado. Verifique e tente novamente.')
+    } finally {
+      setTimeout(() => {
+        setIsButtonDisabled(false)
+      }, 5000)
     }
   }
 
@@ -66,8 +74,8 @@ function ForgotPassword() {
 
           <SubmitButton
             type='submit'
-            style={{ backgroundColor: isFormValid ? '#56BA50' : '#ABABAB' }}
-            disabled={!isFormValid}
+            style={{ backgroundColor: isFormValid && !isButtonDisabled ? '#56BA50' : '#ABABAB' }}
+            disabled={!isFormValid || isButtonDisabled}
           >
             Enviar Código
           </SubmitButton>
