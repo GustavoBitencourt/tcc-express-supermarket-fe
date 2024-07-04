@@ -8,7 +8,7 @@ import { Sidebar } from '../../components/Sidebar'
 import { TopBar, ProductContainer, ProductInfo } from './styles'
 import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
 import { ReactComponent as MapProductIcon } from '../../assets/icon-map-product.svg'
-import { ReactComponent as ShareIconProduct } from '../../assets/share-icon-product.svg' // Importe o segundo ícone
+import { ReactComponent as ShareIconProduct } from '../../assets/share-icon-product.svg'
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>()

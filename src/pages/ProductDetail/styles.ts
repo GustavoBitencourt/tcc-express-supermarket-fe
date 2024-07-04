@@ -76,6 +76,12 @@ export const ProductInfo = styled.div`
     margin-left: 10%;
   }
 
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
   .disclaimer-text {
     font-size: 12px;
     font-family: 'Manrope', sans-serif;
