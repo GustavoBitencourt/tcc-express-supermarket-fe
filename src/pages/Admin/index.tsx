@@ -16,9 +16,9 @@ function AdminPanel() {
     setPasswordInput(e.target.value)
   }
 
-  const handleModalClose = () => {
-    setIsModalOpen(false)
-  }
+  // const handleModalClose = () => {
+  //   setIsModalOpen(false)
+  // }
 
   const handlePasswordSubmit = () => {
     if (loginInput === 'admin' && passwordInput === 'adminexpress') {

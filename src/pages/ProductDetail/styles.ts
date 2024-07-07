@@ -73,7 +73,8 @@ export const ProductInfo = styled.div`
     color: ${({ theme }) => theme.colors.blackgray};
     text-align: left;
     margin-top: 1rem;
-    margin-left: 10%;
+    margin-left: 5%;
+    margin-right: 10%;
   }
 
   .button-container {
@@ -89,14 +90,14 @@ export const ProductInfo = styled.div`
     color: #606060;
     text-align: left;
     margin-top: 1rem;
-    margin-left: 10%;
+    margin-left: 5%;
+    margin-right: 4%;
   }
   .search-store-button {
     display: flex;
     align-items: center;
     justify-content: center;
     background: none;
-    padding: 10px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -107,6 +108,6 @@ export const ProductInfo = styled.div`
     }
   }
   .search-store-button.share-button {
-    margin-left: 1rem;
+    margin-left: 0.1rem;
   }
 `
