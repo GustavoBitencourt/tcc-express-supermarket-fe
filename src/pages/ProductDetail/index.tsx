@@ -43,8 +43,9 @@ const ProductDetail: React.FC = () => {
         <img src={product.image} alt={product.name} />
         <div>
           <h2>{product.name}</h2>
-          <div className='rectangle'></div>
-          <p>{currencyFormat(Number(product.price))}</p>
+          <div className='rectangle'>
+            <p>{currencyFormat(Number(product.price))}</p>
+          </div>
           {/* Adicione outras informações do produto aqui */}
           <div className='important-text'>Importante</div>
           <div className='disclaimer-text'>

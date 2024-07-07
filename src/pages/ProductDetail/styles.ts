@@ -48,12 +48,9 @@ export const ProductInfo = styled.div`
     background-color: #fffbd3;
     width: 90%;
     height: 5rem;
-    padding: 20px; /* Aumentando o padding */
-    position: absolute;
-    bottom: 0; /* Alinhando ao fundo do container */
-    left: 50%; /* Centralizando horizontalmente */
-    transform: translateX(-50%); /* Ajustando a centralização horizontal */
-    z-index: -1; /* Colocando o retângulo ao fundo */
+    padding: 20px;
+    bottom: 0; 
+    z-index: -1;
     border-radius: 1rem;
   }
 
