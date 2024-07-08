@@ -117,4 +117,27 @@ export const ProductInfo = styled.div`
       margin-right: 8px;
     }
   }
+
+  .add-cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors.green};
+    border: none;
+    cursor: pointer;
+    padding: 23px 20px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5.5rem;
+
+    p {
+      font-size: 16px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      color: ${({ theme }) => theme.colors.white};
+    }
+  }
 `
