@@ -1,4 +1,3 @@
-// styles.ts
 import styled from 'styled-components'
 
 export const ProductContainer = styled.div`
@@ -30,7 +29,7 @@ export const ProductInfo = styled.div`
   flex-direction: column;
   margin-top: 2rem;
   text-align: center;
-  position: relative; /* Adicionando posição relativa */
+  position: relative;
 
   img {
     width: 50%;
@@ -42,6 +41,7 @@ export const ProductInfo = styled.div`
     font-family: 'Manrope', sans-serif;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.blackgray};
+    margin-top: 0.8rem;
   }
 
   .rectangle {
@@ -49,9 +49,12 @@ export const ProductInfo = styled.div`
     width: 90%;
     height: 5rem;
     padding: 20px;
-    bottom: 0; 
-    z-index: -1;
+    margin: 20px auto;
     border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
   }
 
   p {
@@ -59,8 +62,8 @@ export const ProductInfo = styled.div`
     font-family: 'Baloo Bhai 2', cursive;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.blackgray};
-    position: relative; /* Adicionando posição relativa */
-    z-index: 1; /* Colocando o texto sobre o retângulo */
+    position: relative;
+    z-index: 1;
   }
 
   .important-text {
@@ -71,7 +74,7 @@ export const ProductInfo = styled.div`
     text-align: left;
     margin-top: 1rem;
     margin-left: 5%;
-    margin-right: 10%;
+    margin-right: 5%;
   }
 
   .button-container {
@@ -81,15 +84,25 @@ export const ProductInfo = styled.div`
   }
 
   .disclaimer-text {
-    font-size: 12px;
+    font-size: 13px;
     font-family: 'Manrope', sans-serif;
     font-weight: regular;
     color: #606060;
     text-align: left;
     margin-top: 1rem;
     margin-left: 5%;
-    margin-right: 4%;
+    margin-right: 5%;
   }
+
+  .centralized-disclaimer-text {
+    font-size: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: regular;
+    color: #606060;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
   .search-store-button {
     display: flex;
     align-items: center;
@@ -101,10 +114,7 @@ export const ProductInfo = styled.div`
     margin-top: 1rem;
 
     svg {
-      margin-right: 10px;
+      margin-right: 8px;
     }
-  }
-  .search-store-button.share-button {
-    margin-left: 0.1rem;
   }
 `

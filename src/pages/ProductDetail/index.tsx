@@ -1,4 +1,3 @@
-// ProductDetail.tsx
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { currencyFormat } from '../../helpers/currencyFormat'
@@ -46,7 +45,6 @@ const ProductDetail: React.FC = () => {
           <div className='rectangle'>
             <p>{currencyFormat(Number(product.price))}</p>
           </div>
-          {/* Adicione outras informações do produto aqui */}
           <div className='important-text'>Importante</div>
           <div className='disclaimer-text'>
             As informações sobre o produto ou a embalagem exibidas podem não estar atualizadas ou
@@ -57,10 +55,11 @@ const ProductDetail: React.FC = () => {
             <button className='search-store-button'>
               <MapProductIcon />
             </button>
-            <button className='search-store-button share-button'>
+            <button className='search-store-button'>
               <ShareIconProduct />
             </button>
           </div>
+          <div className='centralized-disclaimer-text'>Máximo de 20 unidades por cliente (CPF)</div>
         </div>
       </ProductInfo>
       <Sidebar />
