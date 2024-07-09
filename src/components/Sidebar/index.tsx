@@ -42,7 +42,7 @@ export function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to='#' onClick={() => handleIconClick('search')}>
+            <NavLink to='/search' onClick={() => handleIconClick('search')}>
               <MagnifyingIcon className={activeIcon === 'search' ? 'active' : ''} />
               <span>Pesquisa</span>
             </NavLink>

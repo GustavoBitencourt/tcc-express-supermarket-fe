@@ -32,6 +32,18 @@ const ProductDetail: React.FC = () => {
   const { addProductIntoCart, cart } = useCart()
   const [isMapModalOpen, setMapModalOpen] = useState(false)
   const [isPriceExpanded, setIsPriceExpanded] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 800)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -108,9 +120,11 @@ const ProductDetail: React.FC = () => {
             <h2>{product.name}</h2>
             <PriceRectangle>
               <p>{currencyFormat(Number(product.price))}</p>
-              <PriceButton onClick={togglePriceExpand}>
-                <PriceIcon />
-              </PriceButton>
+              {isMobile && (
+                <PriceButton onClick={togglePriceExpand}>
+                  <PriceIcon />
+                </PriceButton>
+              )}
             </PriceRectangle>
             <div className='important-text'>Importante</div>
             <div className='disclaimer-text'>
