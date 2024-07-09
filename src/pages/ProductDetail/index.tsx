@@ -14,6 +14,7 @@ import {
   PriceButton,
   ExpandedPriceRectangle,
   ExpandedPriceContent,
+  ArrowUpButton,
 } from './styles'
 import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
 import { ReactComponent as MapProductIcon } from '../../assets/icon-map-product.svg'
@@ -21,6 +22,7 @@ import { ReactComponent as ShareIconProduct } from '../../assets/share-icon-prod
 import { ReactComponent as ImageMap } from '../../assets/image-map.svg'
 import { ReactComponent as CartIcon } from '../../assets/shopping-cart-details.svg'
 import { ReactComponent as PriceIcon } from '../../assets/expand-price-icon.svg'
+import { ReactComponent as ArrowUpIcon } from '../../assets/arrow-up.svg'
 import { useCart } from '../../hooks/useCart'
 import Modal from 'react-modal'
 
@@ -79,6 +81,9 @@ const ProductDetail: React.FC = () => {
             <h2>{product.name}</h2>
             <p>{currencyFormat(Number(product.price))}</p>
           </ExpandedPriceContent>
+          <ArrowUpButton onClick={togglePriceExpand}>
+            <ArrowUpIcon />
+          </ArrowUpButton>
         </ExpandedPriceRectangle>
       ) : (
         <ProductInfo>

@@ -35,7 +35,7 @@ export const CartCount = styled.span`
   font-weight: bold;
   position: absolute;
   top: -0rem;
-  right: 0.6rem; 
+  right: 0.6rem;
   padding: 0.2rem 0.5rem;
   z-index: 5;
 `
@@ -57,6 +57,19 @@ export const PriceRectangle = styled.div`
   justify-content: center;
   position: relative;
   margin-top: 2rem;
+`
+export const ArrowUpButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    width: 4rem;
+    height: 4rem;
+  }
 `
 
 export const PriceButton = styled.button`
@@ -95,7 +108,7 @@ export const ExpandedPriceContent = styled.div`
     font-weight: bold;
     color: ${({ theme }) => theme.colors.blackgray};
     margin-bottom: 5rem;
-    margin-top: -5rem;    
+    margin-top: -5rem;
   }
 
   p {
