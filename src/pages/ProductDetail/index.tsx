@@ -4,18 +4,19 @@ import { currencyFormat } from '../../helpers/currencyFormat'
 import { ProductData } from '../../interfaces/ProductData'
 import api from '../../services/api'
 import { Sidebar } from '../../components/Sidebar'
-import { TopBar, ProductContainer, ProductInfo } from './styles'
+import { TopBar, ProductContainer, ProductInfo, CartIconContainer, CartCount } from './styles'
 import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
 import { ReactComponent as MapProductIcon } from '../../assets/icon-map-product.svg'
 import { ReactComponent as ShareIconProduct } from '../../assets/share-icon-product.svg'
 import { ReactComponent as ImageMap } from '../../assets/image-map.svg'
+import { ReactComponent as CartIcon } from '../../assets/shopping-cart-details.svg'
 import { useCart } from '../../hooks/useCart'
 import Modal from 'react-modal'
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const [product, setProduct] = useState<ProductData | null>(null)
-  const { addProductIntoCart } = useCart()
+  const { addProductIntoCart, cart } = useCart()
   const [isMapModalOpen, setMapModalOpen] = useState(false)
 
   useEffect(() => {
@@ -31,10 +32,6 @@ const ProductDetail: React.FC = () => {
     fetchProduct()
   }, [id])
 
-  if (!product) {
-    return <div>Carregando...</div>
-  }
-
   const openMapModal = () => {
     setMapModalOpen(true)
   }
@@ -43,13 +40,22 @@ const ProductDetail: React.FC = () => {
     setMapModalOpen(false)
   }
 
+  if (!product) {
+    return <div>Carregando...</div>
+  }
+
   return (
     <ProductContainer>
       <TopBar>
         <Link to='/' className='arrow-left'>
           <LeftArrowIcon />
         </Link>
-        <Link to='/admin' className='arrow-left'></Link>
+        <Link to='/cart' className='cart-icon'>
+          <CartIconContainer>
+            <CartIcon />
+            {cart.length > 0 && <CartCount>{`${cart.length}`.padStart(2, '0')}</CartCount>}
+          </CartIconContainer>
+        </Link>
       </TopBar>
       <ProductInfo>
         <img src={product.image} alt={product.name} />

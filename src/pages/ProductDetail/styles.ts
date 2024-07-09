@@ -18,6 +18,28 @@ export const TopBar = styled.div`
   width: 100%;
 `
 
+export const CartIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  svg {
+    width: 5.5rem;
+    height: 2.5rem;
+  }
+`
+
+export const CartCount = styled.span`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 1rem;
+  font-weight: bold;
+  position: absolute;
+  top: -0rem;
+  right: 0.6rem; 
+  padding: 0.2rem 0.5rem;
+  z-index: 5;
+`
+
 export const Content = styled.div`
   flex: 1;
   padding: 20px;
