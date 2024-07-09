@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import { currencyFormat } from '../../../../helpers/currencyFormat'
 import { ProductData } from '../../../../interfaces/ProductData'
@@ -22,6 +23,7 @@ export default function SalesProductCarousel() {
   const { addProductIntoCart } = useCart()
   const [isMapModalOpen, setMapModalOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getProducts()
@@ -58,11 +60,14 @@ export default function SalesProductCarousel() {
     setMapModalOpen(false)
   }
 
+  const redirectToProductDetail = (id: number) => {
+    navigate(`/product/${id}`)
+  }
+
   return (
     <Container>
       {products.length > 0 ? (
         <div style={{ position: 'relative' }}>
-          {' '}
           <div
             className='swiper-button-prev'
             style={{
@@ -121,7 +126,11 @@ export default function SalesProductCarousel() {
             }}
           >
             {products.map((product) => (
-              <SwiperSlide key={product.id} className='product'>
+              <SwiperSlide
+                key={product.id}
+                className='product'
+                onClick={() => redirectToProductDetail(product.id)}
+              >
                 <img src={product.image} alt={product.name} />
                 <div className='product-info'>
                   <h2>{product.name}</h2>
@@ -130,11 +139,20 @@ export default function SalesProductCarousel() {
                     <button
                       type='button'
                       className='map-button'
-                      onClick={() => openMapModal(product)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        openMapModal(product)
+                      }}
                     >
                       <MapIcon />
                     </button>
-                    <button type='button' onClick={() => addProductIntoCart(product)}>
+                    <button
+                      type='button'
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        addProductIntoCart(product)
+                      }}
+                    >
                       <p>Adicionar</p>
                       <PlusIcon />
                     </button>

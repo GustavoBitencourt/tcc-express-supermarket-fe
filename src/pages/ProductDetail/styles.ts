@@ -48,7 +48,7 @@ export const Content = styled.div`
 export const PriceRectangle = styled.div`
   background-color: #fffbd3;
   width: 90%;
-  height: 5rem;
+  height: 6rem;
   padding: 20px;
   margin: 20px auto;
   border-radius: 1rem;

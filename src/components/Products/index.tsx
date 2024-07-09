@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import { currencyFormat } from '../../helpers/currencyFormat'
 import { useCart } from '../../hooks/useCart'
@@ -19,6 +20,7 @@ export function Products({ products }: ProductsProps) {
   const { cart, addProductIntoCart } = useCart()
   const [isMapModalOpen, setMapModalOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(null)
+  const navigate = useNavigate()
 
   const openMapModal = (product: ProductData) => {
     setSelectedProduct(product)
@@ -28,6 +30,10 @@ export function Products({ products }: ProductsProps) {
   const closeMapModal = () => {
     setSelectedProduct(null)
     setMapModalOpen(false)
+  }
+
+  const redirectToProductDetail = (id: number) => {
+    navigate(`/product/${id}`)
   }
 
   return (
@@ -40,7 +46,11 @@ export function Products({ products }: ProductsProps) {
             )
 
             return (
-              <div key={product.id} className='product'>
+              <div
+                key={product.id}
+                className='product'
+                onClick={() => redirectToProductDetail(product.id)}
+              >
                 {productExistent && <span>{productExistent.quantity}</span>}
                 <img src={product.image} alt={product.name} />
                 <div className='product-info'>
@@ -50,11 +60,20 @@ export function Products({ products }: ProductsProps) {
                     <button
                       type='button'
                       className='map-button'
-                      onClick={() => openMapModal(product)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        openMapModal(product)
+                      }}
                     >
                       <MapIcon />
                     </button>
-                    <button type='button' onClick={() => addProductIntoCart(product)}>
+                    <button
+                      type='button'
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        addProductIntoCart(product)
+                      }}
+                    >
                       <p>Adicionar</p>
                       <PlusIcon />
                     </button>
