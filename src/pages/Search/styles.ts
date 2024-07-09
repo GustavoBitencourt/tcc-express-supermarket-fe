@@ -41,6 +41,7 @@ export const TopBar = styled.div`
     }
   }
 `
+
 export const CartCount = styled.span`
   color: ${({ theme }) => theme.colors.darkgreen};
   font-size: 1rem;
@@ -111,6 +112,8 @@ export const ProductItem = styled.div`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.blackgray};
   text-align: left;
+  border-radius: 1rem;
+  box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
 
   img {
     width: 50px;
@@ -119,18 +122,49 @@ export const ProductItem = styled.div`
     margin-right: 1rem;
   }
 
+  &:last-child {
+    border-bottom: none;
+  }
+`
+
+export const ProductDetails = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+
   h2 {
+    font-family: 'Manrope', sans-serif;
     font-size: 1rem;
     font-weight: bold;
     margin: 0;
+    color: ${({ theme }) => theme.colors.blackgray};
   }
 
   p {
+    font-family: 'Baloo Bhai 2', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
     margin: 0;
-    font-size: 0.875rem;
+    color: ${({ theme }) => theme.colors.blackgray};
+    margin-top: 1rem;
   }
+`
 
-  &:last-child {
-    border-bottom: none;
+export const ProductButtons = styled.div`
+  display: flex;
+  align-items: center;
+
+  .search-store-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 0.5rem;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: ${({ theme }) => theme.colors.blackgray};
+    }
   }
 `
