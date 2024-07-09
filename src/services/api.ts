@@ -7,15 +7,14 @@ import { ProductData } from '../interfaces/ProductData'
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 })
+
 export const getProducts = (category?: string) => {
-  // Se a categoria for especificada, faz a solicitação com a categoria como parâmetro
   const endpoint = category ? `/products?product=${category}` : '/products'
   return api.get<ProductData[]>(endpoint)
 }
-// Função para buscar os dados de um cliente pelo ID
+
 export const getCustomer = (customerId: number) => api.get<CustomerData>(`/customers/${customerId}`)
 
-// Função para atualizar os dados de um cliente pelo ID
 export const updateCustomer = (customerId: number, userData: any) =>
   api.put<CustomerData>(`/customer/${customerId}`, userData)
 
@@ -51,4 +50,7 @@ export const processCheckout = (cart: Product[], customer: CustomerData) =>
   })
 
 export const registerUser = (userData: CustomerData) => api.post('/auth/register', userData)
+
+export const getAllProducts = () => api.get<ProductData[]>('/allproducts')
+
 export default api
