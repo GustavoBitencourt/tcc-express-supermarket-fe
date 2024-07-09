@@ -4,12 +4,23 @@ import { currencyFormat } from '../../helpers/currencyFormat'
 import { ProductData } from '../../interfaces/ProductData'
 import api from '../../services/api'
 import { Sidebar } from '../../components/Sidebar'
-import { TopBar, ProductContainer, ProductInfo, CartIconContainer, CartCount } from './styles'
+import {
+  TopBar,
+  ProductContainer,
+  ProductInfo,
+  CartIconContainer,
+  CartCount,
+  PriceRectangle,
+  PriceButton,
+  ExpandedPriceRectangle,
+  ExpandedPriceContent,
+} from './styles'
 import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
 import { ReactComponent as MapProductIcon } from '../../assets/icon-map-product.svg'
 import { ReactComponent as ShareIconProduct } from '../../assets/share-icon-product.svg'
 import { ReactComponent as ImageMap } from '../../assets/image-map.svg'
 import { ReactComponent as CartIcon } from '../../assets/shopping-cart-details.svg'
+import { ReactComponent as PriceIcon } from '../../assets/expand-price-icon.svg'
 import { useCart } from '../../hooks/useCart'
 import Modal from 'react-modal'
 
@@ -18,6 +29,7 @@ const ProductDetail: React.FC = () => {
   const [product, setProduct] = useState<ProductData | null>(null)
   const { addProductIntoCart, cart } = useCart()
   const [isMapModalOpen, setMapModalOpen] = useState(false)
+  const [isPriceExpanded, setIsPriceExpanded] = useState(false)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,6 +52,10 @@ const ProductDetail: React.FC = () => {
     setMapModalOpen(false)
   }
 
+  const togglePriceExpand = () => {
+    setIsPriceExpanded(!isPriceExpanded)
+  }
+
   if (!product) {
     return <div>Carregando...</div>
   }
@@ -57,33 +73,47 @@ const ProductDetail: React.FC = () => {
           </CartIconContainer>
         </Link>
       </TopBar>
-      <ProductInfo>
-        <img src={product.image} alt={product.name} />
-        <div>
-          <h2>{product.name}</h2>
-          <div className='rectangle'>
+      {isPriceExpanded ? (
+        <ExpandedPriceRectangle onClick={togglePriceExpand}>
+          <ExpandedPriceContent>
+            <h2>{product.name}</h2>
             <p>{currencyFormat(Number(product.price))}</p>
-          </div>
-          <div className='important-text'>Importante</div>
-          <div className='disclaimer-text'>
-            As informações sobre o produto ou a embalagem exibidas podem não estar atualizadas ou
-            completas. Por favor, consulte sempre o produto físico para obter informações e avisos
-            mais precisos.
-          </div>
-          <div className='button-container'>
-            <button className='search-store-button' onClick={openMapModal}>
-              <MapProductIcon />
+          </ExpandedPriceContent>
+        </ExpandedPriceRectangle>
+      ) : (
+        <ProductInfo>
+          <img src={product.image} alt={product.name} />
+          <div>
+            <h2>{product.name}</h2>
+            <PriceRectangle>
+              <p>{currencyFormat(Number(product.price))}</p>
+              <PriceButton onClick={togglePriceExpand}>
+                <PriceIcon />
+              </PriceButton>
+            </PriceRectangle>
+            <div className='important-text'>Importante</div>
+            <div className='disclaimer-text'>
+              As informações sobre o produto ou a embalagem exibidas podem não estar atualizadas ou
+              completas. Por favor, consulte sempre o produto físico para obter informações e avisos
+              mais precisos.
+            </div>
+            <div className='button-container'>
+              <button className='search-store-button' onClick={openMapModal}>
+                <MapProductIcon />
+              </button>
+              <button className='search-store-button'>
+                <ShareIconProduct />
+              </button>
+            </div>
+            <div className='centralized-disclaimer-text'>
+              Máximo de 20 unidades por cliente (CPF)
+            </div>
+            <button className='add-cart-button' onClick={() => addProductIntoCart(product)}>
+              <p>Adicionar</p>
             </button>
-            <button className='search-store-button'>
-              <ShareIconProduct />
-            </button>
           </div>
-          <div className='centralized-disclaimer-text'>Máximo de 20 unidades por cliente (CPF)</div>
-          <button className='add-cart-button' onClick={() => addProductIntoCart(product)}>
-            <p>Adicionar</p>
-          </button>
-        </div>
-      </ProductInfo>
+        </ProductInfo>
+      )}
       <Sidebar />
       <Modal
         isOpen={isMapModalOpen}

@@ -45,6 +45,67 @@ export const Content = styled.div`
   padding: 20px;
 `
 
+export const PriceRectangle = styled.div`
+  background-color: #fffbd3;
+  width: 90%;
+  height: 5rem;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 2rem;
+`
+
+export const PriceButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+`
+export const ExpandedPriceRectangle = styled.div`
+  background-color: #fffbd3;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+`
+
+export const ExpandedPriceContent = styled.div`
+  text-align: center;
+  transform: rotate(90deg);
+
+  h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.blackgray};
+    margin-bottom: 5rem;
+    margin-top: -5rem;    
+  }
+
+  p {
+    font-size: 13rem;
+    font-family: 'Baloo Bhai 2', cursive;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.blackgray};
+  }
+`
+
 export const ProductInfo = styled.div`
   display: flex;
   align-items: center;
