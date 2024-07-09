@@ -58,6 +58,22 @@ const ProductDetail: React.FC = () => {
     setIsPriceExpanded(!isPriceExpanded)
   }
 
+  const handleShare = async () => {
+    if (navigator.share && product) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: `${product.name} - ${currencyFormat(Number(product.price))}`,
+          url: window.location.href,
+        })
+      } catch (error) {
+        console.error('Erro ao compartilhar:', error)
+      }
+    } else {
+      alert('O compartilhamento não é suportado neste navegador.')
+    }
+  }
+
   if (!product) {
     return <div>Carregando...</div>
   }
@@ -106,7 +122,7 @@ const ProductDetail: React.FC = () => {
               <button className='search-store-button' onClick={openMapModal}>
                 <MapProductIcon />
               </button>
-              <button className='search-store-button'>
+              <button className='search-store-button' onClick={handleShare}>
                 <ShareIconProduct />
               </button>
             </div>
