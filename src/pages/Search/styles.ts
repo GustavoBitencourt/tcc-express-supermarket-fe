@@ -116,10 +116,11 @@ export const ProductItem = styled.div`
   box-shadow: 0px 8px 24px 0px rgba(112, 144, 176, 0.2);
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 4.5rem;
+    height: 4.5rem;
     object-fit: cover;
     margin-right: 1rem;
+    margin-top: 1.2rem;
   }
 
   &:last-child {
@@ -154,33 +155,35 @@ export const ProductDetails = styled.div`
 export const ProductButtons = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 0.5rem; /* Adiciona margem superior para empurrar os botões para baixo */
-  
+  margin-top: 2rem;
+
   .search-store-button {
     background: none;
     border: none;
     cursor: pointer;
-    margin-right: 0.5rem; /* Adiciona margem direita entre os botões */
-    margin-bottom: 0.5rem; /* Adiciona margem inferior */
+    margin-right: 0.5rem;
+    svg {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 
   .add-cart-button {
-    flex: none; 
+    flex: none;
     background: ${({ theme }) => theme.colors.green};
     border: none;
     width: 5.8rem;
-    height: 2.8rem; 
+    height: 2.5rem;
     border-radius: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 0.5rem; /* Adiciona margem esquerda entre os botões */
-    margin-bottom: 0.5rem; /* Adiciona margem inferior */
+    margin-left: 0.5rem;
   }
 
   .text-add {
     color: ${({ theme }) => theme.colors.white};
     margin-right: 0.5rem;
-    font-size: 0.85rem; 
+    font-size: 0.85rem;
   }
 `

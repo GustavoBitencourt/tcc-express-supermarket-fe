@@ -4,7 +4,11 @@ import arrowIcon from '../../../assets/arrow-left-category.svg'
 import shareIcon from '../../../assets/share-icon.svg'
 import { TopBarContainer, Icon } from './styles'
 
-const TopBar: React.FC = () => {
+interface TopBarProps {
+  onShareClick?: () => void
+}
+
+const TopBar: React.FC<TopBarProps> = ({ onShareClick }) => {
   const navigate = useNavigate()
 
   const handleGoBack = () => {
@@ -15,7 +19,7 @@ const TopBar: React.FC = () => {
     <TopBarContainer>
       <Icon src={arrowIcon} alt='Arrow Icon' onClick={handleGoBack} />
       <h1>Carrinho</h1>
-      <Icon src={shareIcon} alt='Share Icon' />
+      <Icon src={shareIcon} alt='Share Icon' onClick={onShareClick} />
     </TopBarContainer>
   )
 }

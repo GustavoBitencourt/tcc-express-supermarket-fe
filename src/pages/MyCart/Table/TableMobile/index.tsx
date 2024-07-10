@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import { useCart } from '../../../../hooks/useCart'
-
-// import { ConfirmOrder } from '../../../../components/OrderCloseAction/ConfirmOrder'
 import StatusIndicator from '../../../../components/StatusIndicator'
 import { currencyFormat } from '../../../../helpers/currencyFormat'
-
 import minusImg from '../../../../assets/circle-minus.svg'
 import plusImg from '../../../../assets/circle-plus.svg'
 import closeIcon from '../../../../assets/close-icon.svg'
-
 import FormComponent from './formComponent'
 import {
   Container,
@@ -18,7 +14,6 @@ import {
   LimparListaText,
   CartListText,
 } from './style'
-
 import TopBar from '../../TopBar'
 
 export function TableMobile() {
@@ -32,9 +27,23 @@ export function TableMobile() {
   }
   const totalAmount = cart.reduce((acc, item) => (acc += Number(item.subtotal)), 0)
 
+  const handleShareClick = () => {
+    const cartItems = cart.map((item) => `${item.name} - ${currencyFormat(item.price)}`).join('\n')
+    const shareData = {
+      title: 'Carrinho de Compras',
+      text: `Confira os produtos no meu carrinho:\n\n${cartItems}`,
+    }
+
+    if (navigator.share) {
+      navigator.share(shareData).catch((error) => console.error('Erro ao compartilhar:', error))
+    } else {
+      alert('O compartilhamento não é suportado neste navegador.')
+    }
+  }
+
   return (
     <>
-      <TopBar />
+      <TopBar onShareClick={handleShareClick} />
       <Container>
         <StatusIndicator activeStep={activeStep} />
         <StatusTexts>
@@ -84,8 +93,6 @@ export function TableMobile() {
             <button onClick={confirmOrder}>Confirmar itens</button>
           </div>
         </div>
-
-        {/* <ConfirmOrder /> */}
       </Container>
     </>
   )
