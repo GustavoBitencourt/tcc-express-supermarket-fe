@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   SearchContainer,
   TopBar,
@@ -32,6 +32,7 @@ const Search: React.FC = () => {
   const [searchResults, setSearchResults] = useState<ProductData[]>([])
   const [isMapModalOpen, setMapModalOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -67,6 +68,10 @@ const Search: React.FC = () => {
     setMapModalOpen(false)
   }
 
+  const handleProductClick = (id: number) => {
+    navigate(`/product/${id}`)
+  }
+
   return (
     <SearchContainer>
       <TopBar>
@@ -94,17 +99,29 @@ const Search: React.FC = () => {
       </SearchForm>
       <ResultsContainer>
         {searchResults.map((product) => (
-          <ProductItem key={product.id}>
+          <ProductItem key={product.id} onClick={() => handleProductClick(product.id)}>
             <img src={product.image} alt={product.name} />
             <ProductDetails>
               <h2>{product.name}</h2>
               <p>{currencyFormat(Number(product.price))}</p>
             </ProductDetails>
             <ProductButtons>
-              <button className='search-store-button' onClick={() => openMapModal(product)}>
+              <button
+                className='search-store-button'
+                onClick={(e) => {
+                  e.stopPropagation()
+                  openMapModal(product)
+                }}
+              >
                 <MapProductIcon />
               </button>
-              <button className='add-cart-button' onClick={() => addProductIntoCart(product)}>
+              <button
+                className='add-cart-button'
+                onClick={(e) => {
+                  e.stopPropagation()
+                  addProductIntoCart(product)
+                }}
+              >
                 <p className='text-add'>Adicionar</p>
                 <PlusIcon />
               </button>
