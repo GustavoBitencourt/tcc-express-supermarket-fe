@@ -154,17 +154,33 @@ export const ProductDetails = styled.div`
 export const ProductButtons = styled.div`
   display: flex;
   align-items: center;
-
+  margin-top: 0.5rem; /* Adiciona margem superior para empurrar os botões para baixo */
+  
   .search-store-button {
     background: none;
     border: none;
     cursor: pointer;
-    margin-left: 0.5rem;
+    margin-right: 0.5rem; /* Adiciona margem direita entre os botões */
+    margin-bottom: 0.5rem; /* Adiciona margem inferior */
+  }
 
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: ${({ theme }) => theme.colors.blackgray};
-    }
+  .add-cart-button {
+    flex: none; 
+    background: ${({ theme }) => theme.colors.green};
+    border: none;
+    width: 5.8rem;
+    height: 2.8rem; 
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem; /* Adiciona margem esquerda entre os botões */
+    margin-bottom: 0.5rem; /* Adiciona margem inferior */
+  }
+
+  .text-add {
+    color: ${({ theme }) => theme.colors.white};
+    margin-right: 0.5rem;
+    font-size: 0.85rem; 
   }
 `

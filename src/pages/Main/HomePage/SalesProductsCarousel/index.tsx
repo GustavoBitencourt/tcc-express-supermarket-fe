@@ -121,8 +121,8 @@ export default function SalesProductCarousel() {
               paddingLeft: '3%',
             }}
             navigation={{
-              prevEl: '.swiper-button-prev', // Classe CSS da seta de navegação anterior
-              nextEl: '.swiper-button-next', // Classe CSS da seta de navegação seguinte
+              prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
             }}
           >
             {products.map((product) => (

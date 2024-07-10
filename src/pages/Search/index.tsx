@@ -16,7 +16,7 @@ import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-categor
 import { ReactComponent as CartIcon } from '../../assets/shopping-cart-details.svg'
 import { ReactComponent as MagnifyingIcon } from '../../assets/magnifying-home.svg'
 import { ReactComponent as MapProductIcon } from '../../assets/map-product.svg'
-import { ReactComponent as ShareIconProduct } from '../../assets/share-icon.svg'
+import { ReactComponent as PlusIcon } from '../../assets/plus-icon.svg'
 import { ReactComponent as ImageMap } from '../../assets/image-map.svg'
 import { currencyFormat } from '../../helpers/currencyFormat'
 import { useCart } from '../../hooks/useCart'
@@ -67,22 +67,6 @@ const Search: React.FC = () => {
     setMapModalOpen(false)
   }
 
-  const handleShare = async (product: ProductData) => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: product.name,
-          text: `${product.name} - ${currencyFormat(Number(product.price))}`,
-          url: window.location.href,
-        })
-      } catch (error) {
-        console.error('Erro ao compartilhar:', error)
-      }
-    } else {
-      alert('O compartilhamento não é suportado neste navegador.')
-    }
-  }
-
   return (
     <SearchContainer>
       <TopBar>
@@ -120,11 +104,9 @@ const Search: React.FC = () => {
               <button className='search-store-button' onClick={() => openMapModal(product)}>
                 <MapProductIcon />
               </button>
-              <button className='search-store-button' onClick={() => handleShare(product)}>
-                <ShareIconProduct />
-              </button>
               <button className='add-cart-button' onClick={() => addProductIntoCart(product)}>
-                <p>Adicionar</p>
+                <p className='text-add'>Adicionar</p>
+                <PlusIcon />
               </button>
             </ProductButtons>
           </ProductItem>
