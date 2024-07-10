@@ -75,7 +75,7 @@ const ProductDetail: React.FC = () => {
       try {
         await navigator.share({
           title: product.name,
-          text: `${product.name} - ${currencyFormat(Number(product.price))}`,
+          text: `${product.name} - ${currencyFormat(Number(product.price))}\n\n`,
           url: window.location.href,
         })
       } catch (error) {
