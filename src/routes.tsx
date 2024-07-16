@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
 import EditAccount from './pages/Account/EditAccount'
+import MyOrders from './pages/MyOrders'
 import Address from './pages/Account/Address'
 import PrivateRoute from './components/PrivateRoute'
 import AdminPanel from './pages/Admin'
@@ -35,6 +36,7 @@ export function AppRoutes() {
         <Route path='padarias' element={<PadariasPage />} />
       </Route>
       <Route path='/product/:id' element={<ProductDetail />} />
+      <Route path='/myOrders' element={<MyOrders />} />
       <Route path='/search' element={<Search />} />
       <Route path='cart' element={<MyCartPage />} />
       <Route

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { CustomerData } from '../interfaces/CustomerData'
 import { Product } from '../interfaces/Product'
 import { ProductData } from '../interfaces/ProductData'
+import { OrderData } from '../interfaces/OrderData'
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -52,5 +53,8 @@ export const processCheckout = (cart: Product[], customer: CustomerData) =>
 export const registerUser = (userData: CustomerData) => api.post('/auth/register', userData)
 
 export const getAllProducts = () => api.get<ProductData[]>('/allproducts')
+
+export const getOrdersByCustomerId = (customerId: number) =>
+  api.get<OrderData[]>(`/orders/customerId/${customerId}`)
 
 export default api

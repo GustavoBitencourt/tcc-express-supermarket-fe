@@ -29,7 +29,7 @@ function AccountMenu() {
         <MenuText>Meus Dados</MenuText>
       </MenuItem>
       <MenuDivider />
-      <MenuItem to='#'>
+      <MenuItem to='/myOrders'>
         <MenuIcon src={historicIcon} alt='Histórico' />
         <MenuText>Histórico</MenuText>
       </MenuItem>
