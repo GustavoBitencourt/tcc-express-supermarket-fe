@@ -87,7 +87,14 @@ const MyOrders: React.FC = () => {
               <OrderTitle>Pedido #{order.id}</OrderTitle>
               <OrderDetails>
                 <p>Total: R${parseFloat(order.total).toFixed(2)}</p>
-                <p>Status: {order.status}</p>
+                <p>
+                  Status:{' '}
+                  {order.status === 'PAID'
+                    ? 'Concluído'
+                    : order.status === 'CANCELED'
+                    ? 'Cancelado'
+                    : order.status}
+                </p>
                 <p>Data: {new Date(order.createdAt).toLocaleDateString()}</p>
                 <h4>Produtos:</h4>
                 <ul>
