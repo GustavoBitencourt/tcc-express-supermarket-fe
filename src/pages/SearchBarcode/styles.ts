@@ -46,3 +46,19 @@ export const MessageText = styled.p`
   font-size: 38px;
   color: red;
 `
+
+export const SwitchCameraButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f0f0f0;
+  }
+`

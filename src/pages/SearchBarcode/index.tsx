@@ -10,6 +10,7 @@ import {
   CloseButton,
   ScannerOverlay,
   MessageText,
+  SwitchCameraButton,
 } from './styles'
 import { ReactComponent as CloseIcon } from '../../assets/close-icon.svg'
 
@@ -17,6 +18,7 @@ const SearchBarcode: React.FC = () => {
   const [barcode, setBarcode] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [useFrontCamera, setUseFrontCamera] = useState(true)
   const navigate = useNavigate()
   const webcamRef = useRef<Webcam>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -32,6 +34,10 @@ const SearchBarcode: React.FC = () => {
       setMessage('Código de barras inválido ou não encontrado.')
       console.log('Código de barras inválido ou não encontrado.')
     }
+  }
+
+  const switchCamera = () => {
+    setUseFrontCamera(!useFrontCamera)
   }
 
   useEffect(() => {
@@ -84,6 +90,7 @@ const SearchBarcode: React.FC = () => {
           <CloseIcon />
         </CloseButton>
         <h1>Escanear Código de Barras</h1>
+        <SwitchCameraButton onClick={switchCamera}>Trocar Câmera</SwitchCameraButton>
       </TopBar>
       <CameraContainer>
         <Webcam
@@ -92,6 +99,9 @@ const SearchBarcode: React.FC = () => {
           screenshotFormat='image/jpeg'
           width={300}
           height={300}
+          videoConstraints={{
+            facingMode: useFrontCamera ? 'user' : 'environment',
+          }}
         />
         <ScannerOverlay>
           <canvas ref={canvasRef} style={{ display: 'none' }} />
