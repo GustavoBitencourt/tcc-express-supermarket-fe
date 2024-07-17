@@ -48,7 +48,7 @@ export function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to='#' onClick={() => handleIconClick('price')}>
+            <NavLink to='/searchBarCode' onClick={() => handleIconClick('price')}>
               <PriceIcon className={activeIcon === 'price' ? 'active' : ''} />
               <span>Leitor de Preços</span>
             </NavLink>

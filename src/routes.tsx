@@ -23,6 +23,7 @@ import ForgotPassword from './pages/Account/ForgotPassword'
 import Orders from './pages/Admin/Orders'
 import ResetPassword from './pages/Account/ForgotPassword/ResetPassword'
 import ProductDetail from './pages/ProductDetail'
+import SearchBarcode from './pages/SearchBarcode'
 import Search from './pages/Search'
 
 export function AppRoutes() {
@@ -38,6 +39,7 @@ export function AppRoutes() {
       <Route path='/product/:id' element={<ProductDetail />} />
       <Route path='/myOrders' element={<MyOrders />} />
       <Route path='/search' element={<Search />} />
+      <Route path='/searchBarCode' element={<SearchBarcode />} />
       <Route path='cart' element={<MyCartPage />} />
       <Route
         path='payment'
