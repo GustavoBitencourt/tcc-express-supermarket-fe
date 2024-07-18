@@ -10,3 +10,9 @@ export const BarcodeText = styled.p`
   font-size: 24px;
   font-weight: bold;
 `
+
+export const SearchCode = styled.p`
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+`

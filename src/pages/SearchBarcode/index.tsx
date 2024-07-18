@@ -1,13 +1,16 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Webcam from 'react-webcam'
 import { BrowserMultiFormatReader } from '@zxing/library'
-import { Container, BarcodeText } from './styles'
+import { Container, BarcodeText, SearchCode } from './styles'
 
 const SearchBarcode: React.FC = () => {
   const webcamRef = useRef<Webcam>(null)
   const [barcode, setBarcode] = useState<string | null>(null)
+  const [cameraOn, setCameraOn] = useState<boolean>(true)
 
   const handleScan = useCallback(async () => {
+    if (!cameraOn) return
+
     const imageSrc = webcamRef.current?.getScreenshot()
     if (imageSrc) {
       const img = new Image()
@@ -25,13 +28,14 @@ const SearchBarcode: React.FC = () => {
           const result = await codeReader.decodeFromImage(undefined, imageData)
           if (result) {
             setBarcode(result.getText())
+            setCameraOn(false)
           }
         } catch (err) {
-          console.error('Erro ao escanear o código de barras:', err)
+          console.log('Erro ao escanear o código de barras:', err)
         }
       }
     }
-  }, [webcamRef])
+  }, [webcamRef, cameraOn])
 
   useEffect(() => {
     const interval = setInterval(handleScan, 1000)
@@ -41,17 +45,19 @@ const SearchBarcode: React.FC = () => {
   return (
     <Container>
       <h1>Escaneie o Código de Barras</h1>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat='image/jpeg'
-        videoConstraints={{ facingMode: 'environment' }}
-        style={{ width: '100%' }}
-      />
+      {cameraOn ? (
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat='image/jpeg'
+          videoConstraints={{ facingMode: 'environment' }}
+          style={{ width: '100%' }}
+        />
+      ) : null}
       {barcode ? (
         <BarcodeText>Código de barras escaneado: {barcode}</BarcodeText>
       ) : (
-        <p>Procurando código de barras...</p>
+        <SearchCode>Procurando código de barras...</SearchCode>
       )}
     </Container>
   )
