@@ -1,116 +1,59 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Webcam from 'react-webcam'
-import Quagga from 'quagga'
-import {
-  SearchBarcodeContainer,
-  TopBar,
-  CameraContainer,
-  ResultText,
-  CloseButton,
-  ScannerOverlay,
-  MessageText,
-  SwitchCameraButton,
-} from './styles'
-import { ReactComponent as CloseIcon } from '../../assets/close-icon.svg'
+import { BrowserMultiFormatReader } from '@zxing/library'
+import { Container, BarcodeText } from './styles'
 
 const SearchBarcode: React.FC = () => {
-  const [barcode, setBarcode] = useState('')
-  const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [useFrontCamera, setUseFrontCamera] = useState(true)
-  const navigate = useNavigate()
   const webcamRef = useRef<Webcam>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [barcode, setBarcode] = useState<string | null>(null)
 
-  const handleDetected = (result: string | null) => {
-    setLoading(false)
-    if (result) {
-      setBarcode(result)
-      setMessage('Código de barras detectado!')
-      console.log(`Código de barras detectado: ${result}`)
-      navigate(`/product/${result}`)
-    } else {
-      setMessage('Código de barras inválido ou não encontrado.')
-      console.log('Código de barras inválido ou não encontrado.')
-    }
-  }
+  const handleScan = useCallback(async () => {
+    const imageSrc = webcamRef.current?.getScreenshot()
+    if (imageSrc) {
+      const img = new Image()
+      img.src = imageSrc
+      img.onload = async () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = img.width
+        canvas.height = img.height
+        const ctx = canvas.getContext('2d')
+        ctx?.drawImage(img, 0, 0, img.width, img.height)
+        const imageData = canvas.toDataURL('image/jpeg')
 
-  const switchCamera = () => {
-    setUseFrontCamera(!useFrontCamera)
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (barcode) {
-        // Se um código de barras válido foi encontrado, pare a captura
-        return
-      }
-      const imageSrc = webcamRef.current?.getScreenshot()
-      if (imageSrc && canvasRef.current) {
-        setLoading(true)
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
-        const img = new Image()
-        img.src = imageSrc
-        img.onload = () => {
-          context?.drawImage(img, 0, 0, canvas.width, canvas.height)
-          const imageData = context?.getImageData(0, 0, canvas.width, canvas.height)
-          if (imageData) {
-            Quagga.decodeSingle(
-              {
-                src: imageSrc,
-                numOfWorkers: 0,
-                inputStream: {
-                  size: 800, // restringir o tamanho da entrada para 800px de largura (lado longo)
-                },
-                decoder: {
-                  readers: ['code_128_reader'], // Lista de leitores ativos
-                },
-              },
-              function (result: any) {
-                if (result && result.codeResult) {
-                  handleDetected(result.codeResult.code)
-                } else {
-                  handleDetected(null)
-                }
-              },
-            )
+        try {
+          const codeReader = new BrowserMultiFormatReader()
+          const result = await codeReader.decodeFromImage(undefined, imageData)
+          if (result) {
+            setBarcode(result.getText())
           }
+        } catch (err) {
+          console.error('Erro ao escanear o código de barras:', err)
         }
       }
-    }, 500) // Aumentar a frequência para 500ms
+    }
+  }, [webcamRef])
+
+  useEffect(() => {
+    const interval = setInterval(handleScan, 1000)
     return () => clearInterval(interval)
-  }, [navigate, barcode]) // Adicione 'barcode' às dependências do useEffect
+  }, [handleScan])
 
   return (
-    <SearchBarcodeContainer>
-      <TopBar>
-        <CloseButton onClick={() => navigate(-1)}>
-          <CloseIcon />
-        </CloseButton>
-        <h1>Escanear Código de Barras</h1>
-        <SwitchCameraButton onClick={switchCamera}>Trocar Câmera</SwitchCameraButton>
-      </TopBar>
-      <CameraContainer>
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat='image/jpeg'
-          width={300}
-          height={300}
-          videoConstraints={{
-            facingMode: useFrontCamera ? 'user' : 'environment',
-          }}
-        />
-        <ScannerOverlay>
-          <canvas ref={canvasRef} style={{ display: 'none' }} />
-        </ScannerOverlay>
-      </CameraContainer>
-      {loading && <MessageText>Lendo o código de barras...</MessageText>}
-      {message && <MessageText>{message}</MessageText>}
-      {barcode && <ResultText>Código de Barras: {barcode}</ResultText>}
-    </SearchBarcodeContainer>
+    <Container>
+      <h1>Escaneie o Código de Barras</h1>
+      <Webcam
+        audio={false}
+        ref={webcamRef}
+        screenshotFormat='image/jpeg'
+        videoConstraints={{ facingMode: 'environment' }}
+        style={{ width: '100%' }}
+      />
+      {barcode ? (
+        <BarcodeText>Código de barras escaneado: {barcode}</BarcodeText>
+      ) : (
+        <p>Procurando código de barras...</p>
+      )}
+    </Container>
   )
 }
 
