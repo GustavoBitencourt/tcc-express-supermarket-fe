@@ -7,6 +7,8 @@ const SearchBarcode: React.FC = () => {
   const webcamRef = useRef<Webcam>(null)
   const [barcode, setBarcode] = useState<string | null>(null)
   const [cameraOn, setCameraOn] = useState<boolean>(true)
+  const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
+  const [deviceId, setDeviceId] = useState<string | undefined>()
 
   const handleScan = useCallback(async () => {
     if (!cameraOn) return
@@ -42,15 +44,32 @@ const SearchBarcode: React.FC = () => {
     return () => clearInterval(interval)
   }, [handleScan])
 
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      setDevices(devices.filter((device) => device.kind === 'videoinput'))
+    })
+  }, [])
+
+  const handleDeviceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setDeviceId(event.target.value)
+  }
+
   return (
     <Container>
       <h1>Escaneie o Código de Barras</h1>
+      <select onChange={handleDeviceChange}>
+        {devices.map((device) => (
+          <option key={device.deviceId} value={device.deviceId}>
+            {device.label || device.deviceId}
+          </option>
+        ))}
+      </select>
       {cameraOn ? (
         <Webcam
           audio={false}
           ref={webcamRef}
           screenshotFormat='image/jpeg'
-          videoConstraints={{ facingMode: 'user' }}
+          videoConstraints={{ deviceId: deviceId || devices[0]?.deviceId }}
           style={{ width: '100%' }}
         />
       ) : null}
