@@ -46,7 +46,9 @@ const SearchBarcode: React.FC = () => {
 
   useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
-      setDevices(devices.filter((device) => device.kind === 'videoinput'))
+      const videoDevices = devices.filter((device) => device.kind === 'videoinput')
+      setDevices(videoDevices)
+      setDeviceId(videoDevices[videoDevices.length - 1]?.deviceId)
     })
   }, [])
 
@@ -56,8 +58,8 @@ const SearchBarcode: React.FC = () => {
 
   return (
     <Container>
-      <h1>Escaneie o Código de Barras</h1>
-      <select onChange={handleDeviceChange}>
+      <SearchCode>Escaneie o Código de Barras</SearchCode>
+      <select onChange={handleDeviceChange} value={deviceId}>
         {devices.map((device) => (
           <option key={device.deviceId} value={device.deviceId}>
             {device.label || device.deviceId}
