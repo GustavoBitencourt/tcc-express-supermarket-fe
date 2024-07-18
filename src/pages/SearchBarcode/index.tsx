@@ -50,7 +50,7 @@ const SearchBarcode: React.FC = () => {
           audio={false}
           ref={webcamRef}
           screenshotFormat='image/jpeg'
-          videoConstraints={{ facingMode: 'usuario' }}
+          videoConstraints={{ facingMode: 'user' }}
           style={{ width: '100%' }}
         />
       ) : null}
