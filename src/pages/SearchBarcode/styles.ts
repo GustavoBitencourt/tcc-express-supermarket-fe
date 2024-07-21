@@ -6,7 +6,7 @@ export const Container = styled.div`
 `
 
 export const BarcodeText = styled.p`
-  color: red;
+  color: blue; /* Texto em azul */
   font-size: 24px;
   font-weight: bold;
 `

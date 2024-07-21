@@ -1,14 +1,66 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Webcam from 'react-webcam'
 import { BrowserMultiFormatReader } from '@zxing/library'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { getAllProducts } from '../../services/api'
 import { Container, BarcodeText, SearchCode } from './styles'
 
 const SearchBarcode: React.FC = () => {
   const webcamRef = useRef<Webcam>(null)
-  const [barcode, setBarcode] = useState<string | null>(null)
+  const navigate = useNavigate()
   const [cameraOn, setCameraOn] = useState<boolean>(true)
+  const [description, setDescription] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
   const [deviceId, setDeviceId] = useState<string | undefined>()
+
+  const fetchProductDescription = async (code: string) => {
+    try {
+      const response = await axios.get(`https://api.cosmos.bluesoft.com.br/gtins/${code}.json`, {
+        headers: {
+          'User-Agent': 'Cosmos-API-Request',
+          'Content-Type': 'application/json',
+          'X-Cosmos-Token': '57Cj2rhSthh5WkOUMrDqmA',
+        },
+      })
+      if (response.status === 200) {
+        const desc = response.data.description
+        setDescription(desc)
+        setError(null)
+        searchProductByDescription(desc)
+      }
+    } catch (err: any) {
+      if (err.response && err.response.status === 404) {
+        setDescription(null)
+        setError('Produto não encontrado')
+      } else {
+        setDescription(null)
+        setError('Produto não encontrado, procure um funcionário para verificar o preço')
+      }
+    }
+  }
+
+  const searchProductByDescription = async (desc: string) => {
+    try {
+      const productsResponse = await getAllProducts()
+      const products = productsResponse.data
+
+      const words = desc.split(' ').filter((word) => word.length > 3)
+      for (const word of words) {
+        const regex = new RegExp(`\\b${word.toLowerCase()}\\b`)
+        const foundProduct = products.find((product: any) => regex.test(product.name.toLowerCase()))
+        if (foundProduct) {
+          console.log(`Palavra encontrada: ${word}`)
+          console.log(`Produto correspondente: ${foundProduct.name}`)
+          navigate(`/product/${foundProduct.id}`)
+          return
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao buscar produtos:', error)
+    }
+  }
 
   const handleScan = useCallback(async () => {
     if (!cameraOn) return
@@ -29,8 +81,9 @@ const SearchBarcode: React.FC = () => {
           const codeReader = new BrowserMultiFormatReader()
           const result = await codeReader.decodeFromImage(undefined, imageData)
           if (result) {
-            setBarcode(result.getText())
+            const scannedBarcode = result.getText()
             setCameraOn(false)
+            fetchProductDescription(scannedBarcode)
           }
         } catch (err) {
           console.log('Erro ao escanear o código de barras:', err)
@@ -66,19 +119,19 @@ const SearchBarcode: React.FC = () => {
           </option>
         ))}
       </select>
-      {cameraOn ? (
+      {cameraOn && deviceId ? (
         <Webcam
           audio={false}
           ref={webcamRef}
           screenshotFormat='image/jpeg'
-          videoConstraints={{ deviceId: deviceId || devices[0]?.deviceId }}
+          videoConstraints={{ deviceId }}
           style={{ width: '100%' }}
         />
       ) : null}
-      {barcode ? (
-        <BarcodeText>Código de barras escaneado: {barcode}</BarcodeText>
+      {description ? (
+        <BarcodeText>{description}</BarcodeText>
       ) : (
-        <SearchCode>Procurando código de barras...</SearchCode>
+        <SearchCode>{error ? error : 'Procurando código de barras...'}</SearchCode>
       )}
     </Container>
   )
