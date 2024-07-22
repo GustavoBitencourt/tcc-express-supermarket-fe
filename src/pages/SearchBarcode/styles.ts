@@ -16,3 +16,17 @@ export const SearchCode = styled.p`
   font-size: 24px;
   font-weight: bold;
 `
+
+export const Button = styled.button`
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.green};
+  color: white;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.lightgreen};
+  }
+`

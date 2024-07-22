@@ -4,7 +4,7 @@ import { BrowserMultiFormatReader } from '@zxing/library'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { getAllProducts } from '../../services/api'
-import { Container, BarcodeText, SearchCode } from './styles'
+import { Container, BarcodeText, SearchCode, Button } from './styles'
 
 const SearchBarcode: React.FC = () => {
   const webcamRef = useRef<Webcam>(null)
@@ -57,8 +57,13 @@ const SearchBarcode: React.FC = () => {
           return
         }
       }
+      // Se nenhum produto for encontrado
+      setDescription(null)
+      setError('Produto não encontrado, procure um funcionário para verificar o preço')
     } catch (error) {
       console.error('Erro ao buscar produtos:', error)
+      setDescription(null)
+      setError('Erro ao buscar produtos')
     }
   }
 
@@ -109,6 +114,12 @@ const SearchBarcode: React.FC = () => {
     setDeviceId(event.target.value)
   }
 
+  const handleRetryScan = () => {
+    setDescription(null)
+    setError(null)
+    setCameraOn(true)
+  }
+
   return (
     <Container>
       <SearchCode>Escaneie o Código de Barras</SearchCode>
@@ -128,11 +139,14 @@ const SearchBarcode: React.FC = () => {
           style={{ width: '100%' }}
         />
       ) : null}
-      {description ? (
+      {error ? (
+        <SearchCode>{error}</SearchCode>
+      ) : description ? (
         <BarcodeText>{description}</BarcodeText>
       ) : (
-        <SearchCode>{error ? error : 'Procurando código de barras...'}</SearchCode>
+        <SearchCode>Procurando código de barras...</SearchCode>
       )}
+      {!cameraOn && <Button onClick={handleRetryScan}>Scanear Outro Produto</Button>}
     </Container>
   )
 }
