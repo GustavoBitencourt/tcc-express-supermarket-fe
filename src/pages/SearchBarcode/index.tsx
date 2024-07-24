@@ -4,7 +4,20 @@ import { BrowserMultiFormatReader } from '@zxing/library'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { getAllProducts } from '../../services/api'
-import { Container, BarcodeText, SearchCode, Button } from './styles'
+import {
+  Container,
+  Overlay,
+  IconContainer,
+  BarcodeText,
+  ErrorMessage,
+  Button,
+  ManualButton,
+  InputContainer,
+  Input,
+  ButtonContainer,
+} from './styles'
+import { ReactComponent as LeftArrowIcon } from '../../assets/arrow-left-category.svg'
+import { ReactComponent as CamIcon } from '../../assets/cam-icon.svg'
 
 const SearchBarcode: React.FC = () => {
   const webcamRef = useRef<Webcam>(null)
@@ -14,6 +27,8 @@ const SearchBarcode: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
   const [deviceId, setDeviceId] = useState<string | undefined>()
+  const [manualInput, setManualInput] = useState<string>('')
+  const [manualMode, setManualMode] = useState<boolean>(false)
 
   const fetchProductDescription = async (code: string) => {
     try {
@@ -57,7 +72,6 @@ const SearchBarcode: React.FC = () => {
           return
         }
       }
-      // Se nenhum produto for encontrado
       setDescription(null)
       setError('Produto não encontrado, procure um funcionário para verificar o preço')
     } catch (error) {
@@ -110,43 +124,95 @@ const SearchBarcode: React.FC = () => {
     })
   }, [])
 
-  const handleDeviceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setDeviceId(event.target.value)
+  const handleDeviceChange = () => {
+    if (devices.length > 1) {
+      const currentIndex = devices.findIndex((device) => device.deviceId === deviceId)
+      const nextIndex = (currentIndex + 1) % devices.length
+      setDeviceId(devices[nextIndex].deviceId)
+    }
   }
 
   const handleRetryScan = () => {
     setDescription(null)
     setError(null)
     setCameraOn(true)
+    setManualMode(false)
+  }
+
+  const handleManualInput = async () => {
+    if (manualInput) {
+      setCameraOn(false)
+      await fetchProductDescription(manualInput)
+    }
+  }
+
+  const handleManualMode = () => {
+    setCameraOn(false)
+    setManualMode(true)
+  }
+
+  const handleRetryManualInput = () => {
+    setManualInput('')
+    setError(null)
+    setManualMode(true)
   }
 
   return (
     <Container>
-      <SearchCode>Escaneie o Código de Barras</SearchCode>
-      <select onChange={handleDeviceChange} value={deviceId}>
-        {devices.map((device) => (
-          <option key={device.deviceId} value={device.deviceId}>
-            {device.label || device.deviceId}
-          </option>
-        ))}
-      </select>
-      {cameraOn && deviceId ? (
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat='image/jpeg'
-          videoConstraints={{ deviceId }}
-          style={{ width: '100%' }}
-        />
+      {cameraOn && deviceId && !manualMode ? (
+        <>
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat='image/jpeg'
+            videoConstraints={{ deviceId }}
+            style={{ width: '100%', height: '100%' }}
+          />
+          <Overlay>
+            <IconContainer onClick={() => navigate(-1)}>
+              <LeftArrowIcon />
+            </IconContainer>
+            <IconContainer onClick={handleDeviceChange}>
+              <CamIcon />
+            </IconContainer>
+          </Overlay>
+        </>
+      ) : manualMode ? (
+        <>
+          <InputContainer>
+            <Input
+              type='text'
+              value={manualInput}
+              onChange={(e) => setManualInput(e.target.value)}
+              placeholder='Digite o código de barras'
+            />
+            <Button onClick={handleManualInput}>Confirmar</Button>
+          </InputContainer>
+          <Overlay>
+            <IconContainer onClick={() => navigate(-1)}>
+              <LeftArrowIcon />
+            </IconContainer>
+          </Overlay>
+        </>
       ) : null}
       {error ? (
-        <SearchCode>{error}</SearchCode>
+        <>
+          <ErrorMessage>{error}</ErrorMessage>
+          <ButtonContainer>
+            <Button onClick={handleRetryScan}>Scanear Outro Produto</Button>
+            <Button onClick={handleRetryManualInput}>Digitar Outro Código</Button>
+          </ButtonContainer>
+        </>
       ) : description ? (
         <BarcodeText>{description}</BarcodeText>
       ) : (
-        <SearchCode>Procurando código de barras...</SearchCode>
+        !manualMode && (
+          <ManualButton onClick={handleManualMode}>Digite o código de barras</ManualButton>
+        )
       )}
-      {!cameraOn && <Button onClick={handleRetryScan}>Scanear Outro Produto</Button>}
+      {!cameraOn && !manualMode && !error && (
+        <Button onClick={handleRetryScan}>Scanear Outro Produto</Button>
+      )}
     </Container>
   )
 }
