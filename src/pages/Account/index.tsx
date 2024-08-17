@@ -31,7 +31,7 @@ function Account() {
           <LeftArrowIcon />
         </Link>
         <TopBarText>Meu Perfil</TopBarText>
-        <Link to='/admin' className='arrow-left'>
+        <Link to='#' className='arrow-left'>
           <SettingsIcon src={settingsIcon} alt='Settings' />
         </Link>
       </TopBar>

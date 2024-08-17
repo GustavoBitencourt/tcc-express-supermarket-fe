@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { AdminContainer, AdminButton, TopBar, PasswordModal, LoginField } from './styles'
+import { AdminContainer, PasswordModal, LoginField, LogoImage } from './styles'
+import { useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo-admin.svg'
 
 function AdminPanel() {
@@ -7,6 +8,8 @@ function AdminPanel() {
   const [isModalOpen, setIsModalOpen] = useState(true)
   const [loginInput, setLoginInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
+
+  const navigate = useNavigate()
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput(e.target.value)
@@ -16,14 +19,11 @@ function AdminPanel() {
     setPasswordInput(e.target.value)
   }
 
-  // const handleModalClose = () => {
-  //   setIsModalOpen(false)
-  // }
-
   const handlePasswordSubmit = () => {
     if (loginInput === 'admin' && passwordInput === 'adminexpress') {
       setIsPasswordCorrect(true)
       setIsModalOpen(false)
+      navigate('/admin/menu')
     } else {
       alert('Login ou senha incorretos. Acesso negado.')
       setPasswordInput('')
@@ -32,17 +32,11 @@ function AdminPanel() {
 
   return (
     <AdminContainer>
-      <TopBar>
-        <img src={Logo} alt='Logo' />
-        <div>
-          <h2>Painel Administrativo</h2>
-        </div>
-        <img src={Logo} alt='Logo' />
-      </TopBar>
       {!isPasswordCorrect && (
         <>
           {isModalOpen && (
             <PasswordModal>
+              <LogoImage src={Logo} alt='Logo' />
               <LoginField>
                 <p className='panelText'>Painel Administrativo</p>
                 <label htmlFor='login'>Login:</label>
@@ -69,13 +63,6 @@ function AdminPanel() {
               </button>
             </PasswordModal>
           )}
-        </>
-      )}
-      {isPasswordCorrect && (
-        <>
-          <AdminButton to='/admin/orders'>Pedidos</AdminButton>
-          <AdminButton to='/admin/products'>Produtos</AdminButton>
-          <AdminButton to='#'>Clientes</AdminButton>
         </>
       )}
     </AdminContainer>

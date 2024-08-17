@@ -18,6 +18,7 @@ import MyOrders from './pages/MyOrders'
 import Address from './pages/Account/Address'
 import PrivateRoute from './components/PrivateRoute'
 import AdminPanel from './pages/Admin'
+import AdminMenu from './pages/Admin/Menu'
 import Products from './pages/Admin/Products'
 import ForgotPassword from './pages/Account/ForgotPassword'
 import Orders from './pages/Admin/Orders'
@@ -88,6 +89,7 @@ export function AppRoutes() {
         }
       />
       <Route path='admin' element={<AdminPanel />} />
+      <Route path='admin/menu' element={<AdminMenu />} />
       <Route path='admin/products' element={<Products />} />
       <Route path='admin/orders' element={<Orders />} />
     </Routes>
