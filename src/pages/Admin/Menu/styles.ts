@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 20rem;
+  padding: 0 28rem;
   background-color: ${({ theme }) => theme.colors.green};
 
   svg {
@@ -17,6 +17,8 @@ export const HeaderContainer = styled.div`
 
   h1 {
     margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
   }
 `
 
@@ -38,6 +40,8 @@ export const AdminButton = styled(Link)`
 `
 
 export const PurchasesButtonStyled = styled(AdminButton)`
+  margin-left: 10rem;
+
   svg {
     width: 100%;
     height: 100%;
