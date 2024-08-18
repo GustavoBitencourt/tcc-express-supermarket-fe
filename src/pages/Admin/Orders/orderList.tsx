@@ -2,8 +2,15 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import { format } from 'date-fns'
-import { StyledTable, StyledTableRow, ProductListContainer, AccessProducts } from './styles'
-import { useNavigate } from 'react-router-dom'
+import {
+  StyledTable,
+  StyledTableRow,
+  ProductListContainer,
+  ExpandButton,
+  StyledShrinkIcon,
+  StyledExpandIconColumn,
+} from './styles'
+import { ReactComponent as ExpandIcon } from '../../../assets/expand-icon.svg'
 
 interface Order {
   id: number
@@ -76,14 +83,9 @@ const fetchOrders = async (): Promise<Order[]> => {
 const ListOrders: React.FC = () => {
   const { data: orders, isLoading, isError } = useQuery('orders', fetchOrders)
   const [expandedOrderId, setExpandedOrderId] = useState<number | null>(null)
-  const navigate = useNavigate()
 
   const handleToggleExpansion = (orderId: number) => {
     setExpandedOrderId((prevId) => (prevId === orderId ? null : orderId))
-  }
-
-  const handleGoToProducts = () => {
-    navigate('/admin/products')
   }
 
   if (isLoading) {
@@ -139,9 +141,11 @@ const ListOrders: React.FC = () => {
                   <td>{order.orderItems[0].id}</td>
                   <td>{order.orderItems[0].quantity}</td>
                   <td>{order.orderItems[0].product.name}</td>
-                  <td>
-                    <button type='button'>Expandir</button>
-                  </td>
+                  <StyledExpandIconColumn isExpanded={expandedOrderId === order.id}>
+                    <ExpandButton isExpanded={expandedOrderId === order.id}>
+                      {expandedOrderId === order.id ? <StyledShrinkIcon /> : <ExpandIcon />}
+                    </ExpandButton>
+                  </StyledExpandIconColumn>
                 </StyledTableRow>
                 {expandedOrderId === order.id && (
                   <StyledTableRow>
@@ -152,7 +156,9 @@ const ListOrders: React.FC = () => {
                             <th>ID do Produto</th>
                             <th>Quantidade do Produto</th>
                             <th>Nome do Produto</th>
-                            <th>Preço do Produto</th>
+                            <th style={{ backgroundColor: '#125C40', color: '#fff' }}>
+                              Preço do Produto
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -173,7 +179,6 @@ const ListOrders: React.FC = () => {
             ))}
         </tbody>
       </StyledTable>
-      <AccessProducts onClick={handleGoToProducts}>Acessar Produtos</AccessProducts>
     </ProductListContainer>
   )
 }

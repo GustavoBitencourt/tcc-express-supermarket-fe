@@ -10,7 +10,7 @@ function Orders() {
   return (
     <AdminContainer>
       <TopBar>
-        <Link to='/admin'>
+        <Link to='/admin/menu'>
           <img src={MenuIcon} alt='Menu Icon' />
         </Link>
         <AdminTextContainer>
@@ -18,7 +18,7 @@ function Orders() {
           <AdminTitle>Painel Administrativo</AdminTitle>
           <OrderControl>&gt; Controle de pedidos</OrderControl>
         </AdminTextContainer>
-        <Link to='/admin/logout'>
+        <Link to='/admin'>
           <img src={LogoutIcon} alt='Logout Icon' />
         </Link>
       </TopBar>

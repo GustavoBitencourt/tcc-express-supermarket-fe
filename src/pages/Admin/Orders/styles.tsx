@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ReactComponent as ShrinkIcon } from '../../../assets/shrink-icon.svg'
 
 export const AdminContainer = styled.div`
   display: flex;
@@ -70,6 +71,8 @@ export const StyledTable = styled.table`
   margin-top: 1rem;
   background-color: white;
   color: ${({ theme }) => theme.colors.blackgray};
+  border-radius: 1rem;
+  overflow: hidden;
 
   th,
   td {
@@ -82,9 +85,13 @@ export const StyledTable = styled.table`
   }
 
   th {
-    background-color: ${({ theme }) => theme.colors.gray800};
+    background-color: ${({ theme }) => theme.colors.darkgreen};
     color: ${({ theme }) => theme.colors.white};
     font-size: 12px;
+
+    &:last-child {
+      background-color: ${({ theme }) => theme.colors.gray450};
+    }
   }
 
   tr:nth-child(even) {
@@ -118,15 +125,45 @@ export const ProductListContainer = styled.div`
   max-height: calc(100vh - 80px);
 `
 
-export const AccessProducts = styled.div`
-  background-color: ${({ theme }) => theme.colors.green};
-  color: white;
-  font-size: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  position: fixed;
-  left: 20rem;
-  top: 4.7rem;
+export const ExpandButton = styled.button<{ isExpanded: boolean }>`
+  background-color: ${({ isExpanded, theme }) => (isExpanded ? '#8d3e3e' : theme.colors.green)};
+  color: ${({ theme }) => theme.colors.white};
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+
+  svg {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    background-color: ${({ isExpanded, theme }) =>
+      isExpanded ? '#552525' : theme.colors.darkgreen};
+  }
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export const StyledShrinkIcon = styled(ShrinkIcon)`
+  background-color: #8d3e3e;
+`
+
+export const StyledExpandIconColumn = styled.td<{ isExpanded: boolean }>`
+  background-color: ${({ isExpanded, theme }) => (isExpanded ? '#8d3e3e' : theme.colors.green)};
+  color: ${({ theme }) => theme.colors.white};
+  text-align: center;
+
+  button {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: ${({ isExpanded, theme }) =>
+      isExpanded ? '#552525' : theme.colors.darkgreen};
+  }
 `
