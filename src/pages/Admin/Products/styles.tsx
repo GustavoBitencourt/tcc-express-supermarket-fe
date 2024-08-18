@@ -4,9 +4,10 @@ export const AdminContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start;
+  min-height: 100vh;
   background-color: gray;
+  overflow-x: hidden;
 `
 
 export const TopBar = styled.div`
@@ -16,24 +17,56 @@ export const TopBar = styled.div`
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 2rem;
   height: 4rem;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green};
   color: ${({ theme }) => theme.colors.white};
 
-  h2 {
-    margin: 3rem;
-    font-size: 20px;
-
-    @media (max-width: 500px) {
-      margin: 0;
-    }
-  }
-
   img {
     width: 80px;
     height: 50px;
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+
+  a:first-child img {
+    width: 35px;
+    height: auto;
+  }
+`
+
+export const AdminTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h2 + h2 {
+    margin-left: 0.5rem;
+  }
+`
+
+export const AdminTitle = styled.h2`
+  font-weight: 200;
+  font-size: 20px;
+  color: ${({ theme }) => theme.colors.white};
+
+  @media (max-width: 500px) {
+    margin: 0;
+    text-align: center;
+  }
+`
+
+export const ProductControl = styled.h2`
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  color: ${({ theme }) => theme.colors.white};
+
+  @media (max-width: 500px) {
+    margin: 0;
+    text-align: center;
   }
 `
 
