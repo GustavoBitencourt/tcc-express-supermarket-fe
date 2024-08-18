@@ -1,5 +1,44 @@
 import styled from 'styled-components'
 
+export const ActionIcon = styled.span<{ backgroundColor: string }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.backgroundColor};
+  width: 100%;
+  height: 100%;
+
+  cursor: pointer;
+
+  svg {
+    width: 5rem;
+    height: 5rem;
+  }
+`
+
+export const ActionTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    text-align: center;
+    padding: 0;
+    border: none;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+`
+
 export const AdminContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,12 +109,6 @@ export const ProductControl = styled.h2`
   }
 `
 
-export const ProductListContainer = styled.div`
-  margin-top: 7rem;
-  overflow-y: auto;
-  max-height: calc(100vh - 80px);
-`
-
 export const EditFormContainer = styled.div`
   position: relative;
   display: flex;
@@ -107,7 +140,7 @@ export const EditFormContainer = styled.div`
     width: 10rem;
     font-size: 11px;
     padding: 8px;
-    border: 1px solid #ccc;
+
     border-radius: 5px;
     font-weight: 800;
     font-family: 'Manrope', sans-serif;
@@ -139,7 +172,7 @@ export const CloseIcon = styled.div`
   position: absolute;
   cursor: pointer;
   top: 10px;
-  right: 10px; /* Posicionei o ícone no canto superior direito */
+  right: 10px;
 
   svg {
     font-size: 20px;
@@ -147,17 +180,30 @@ export const CloseIcon = styled.div`
   }
 `
 
+export const ProductListContainer = styled.div`
+  margin-top: 7rem;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+`
+
 export const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-top: 1rem;
   background-color: white;
   color: ${({ theme }) => theme.colors.blackgray};
+  border-radius: 10px;
+  overflow: hidden;
 
   th,
   td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 0.5px solid #ababab;
+    padding: 15px;
     text-align: left;
     font-size: 12px;
     font-weight: bold;
@@ -165,9 +211,14 @@ export const StyledTable = styled.table`
   }
 
   th {
-    background-color: ${({ theme }) => theme.colors.gray800};
+    background-color: ${({ theme }) => theme.colors.darkgreen};
     color: ${({ theme }) => theme.colors.white};
     font-size: 12px;
+    height: 4rem;
+
+    &:last-child {
+      background-color: ${({ theme }) => theme.colors.gray450};
+    }
   }
 
   tr:nth-child(even) {
@@ -192,7 +243,7 @@ export const StyledTable = styled.table`
 `
 
 export const StyledTableRow = styled.tr`
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra em cada linha */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `
 
 export const AddProductButton = styled.div`

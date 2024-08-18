@@ -2,11 +2,18 @@ import React, { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { FaEdit, FaTrash } from 'react-icons/fa'
 import Modal from 'react-modal'
 import EditProductForm from './editProductForm'
 import AddProductForm from './addProductForm'
-import { ProductListContainer, StyledTable, AddProductButton, AccessOrdersButton } from './styles'
+import EditIcon from '../../../assets/edit-icon-admin.svg'
+import DeleteIcon from '../../../assets/delete-icon-admin.svg'
+import {
+  ProductListContainer,
+  StyledTable,
+  AddProductButton,
+  AccessOrdersButton,
+  ActionIcon,
+} from './styles'
 
 interface Product {
   id: number
@@ -173,23 +180,34 @@ const ProductList: React.FC = () => {
                 <td style={{ color: 'green', fontFamily: 'Manrope', fontWeight: 'bold' }}>
                   {formatCurrency(product.price)}
                 </td>
-                <td>
-                  <span
-                    style={{ cursor: 'pointer', marginLeft: '10px', color: '#4a88da' }}
-                    title='Editar Produto'
-                    onClick={() => handleEditProduct(product.id)}
+                <td style={{ padding: 0 }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-around',
+                      height: '100%',
+                      width: '100%',
+                    }}
                   >
-                    <FaEdit style={{ marginRight: '5px' }} />
-                    Editar
-                  </span>
-                  <span
-                    style={{ cursor: 'pointer', marginLeft: '10px', color: '#F34235' }}
-                    title='Deletar Produto'
-                    onClick={() => handleDeleteProduct(product.id)}
-                  >
-                    <FaTrash style={{ marginRight: '5px' }} />
-                    Excluir
-                  </span>
+                    <ActionIcon
+                      backgroundColor='#56BA50'
+                      title='Editar Produto'
+                      onClick={() => handleEditProduct(product.id)}
+                    >
+                      <img src={EditIcon} alt='Editar' style={{ width: '2rem', height: '5rem' }} />
+                    </ActionIcon>
+                    <ActionIcon
+                      backgroundColor='#8D3E3E'
+                      title='Deletar Produto'
+                      onClick={() => handleDeleteProduct(product.id)}
+                    >
+                      <img
+                        src={DeleteIcon}
+                        alt='Excluir'
+                        style={{ width: '2rem', height: '5rem' }}
+                      />
+                    </ActionIcon>
+                  </div>
                 </td>
               </tr>
             ))}
