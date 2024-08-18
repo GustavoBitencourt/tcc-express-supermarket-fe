@@ -31,6 +31,11 @@ export const TopBar = styled.div`
     margin-left: 5rem;
     margin-right: 5rem;
   }
+
+  a:first-child img {
+    width: 35px;
+    height: auto;
+  }
 `
 
 export const AdminTextContainer = styled.div`
