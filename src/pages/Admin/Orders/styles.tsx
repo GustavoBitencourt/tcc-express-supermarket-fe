@@ -5,9 +5,10 @@ export const AdminContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start;
+  min-height: 100vh;
   background-color: gray;
+  overflow-x: hidden;
 `
 
 export const TopBar = styled.div`
@@ -76,11 +77,12 @@ export const StyledTable = styled.table`
 
   th,
   td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 1px solid #ababab;
+    padding: 13px;
     text-align: left;
     font-size: 12px;
     font-weight: bold;
+    height: 5rem;
     color: ${({ theme }) => theme.colors.black};
   }
 
@@ -96,10 +98,6 @@ export const StyledTable = styled.table`
 
   tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-
-  tr:hover {
-    background-color: #f5f5f5;
   }
 
   @media (max-width: 768px) {
@@ -121,7 +119,6 @@ export const StyledTableRow = styled.tr`
 
 export const ProductListContainer = styled.div`
   margin-top: 7rem;
-  overflow-y: auto;
   max-height: calc(100vh - 80px);
 `
 
