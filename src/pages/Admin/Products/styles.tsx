@@ -184,13 +184,16 @@ export const ProductListContainer = styled.div`
   margin-top: 7rem;
   max-height: calc(100vh - 80px);
   overflow-y: auto;
+  overflow-x: auto;
   display: flex;
   justify-content: center;
   padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
 `
 
 export const StyledTable = styled.table`
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
   border-collapse: separate;
   border-spacing: 0;
@@ -199,6 +202,7 @@ export const StyledTable = styled.table`
   color: ${({ theme }) => theme.colors.blackgray};
   border-radius: 10px;
   overflow: hidden;
+  table-layout: fixed;
 
   th,
   td {
@@ -229,7 +233,13 @@ export const StyledTable = styled.table`
     background-color: #f5f5f5;
   }
 
+  th:first-child,
+  td:first-child {
+    width: 30rem;
+  }
+
   @media (max-width: 768px) {
+    width: 100%;
     th,
     td {
       display: block;
@@ -246,28 +256,43 @@ export const StyledTableRow = styled.tr`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `
 
-export const AddProductButton = styled.div`
-  background-color: ${({ theme }) => theme.colors.green};
-  color: white;
-  font-size: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  text-decoration: none;
+export const AddProductButton = styled.button`
   position: fixed;
-  right: 20rem;
-  top: 4.7rem;
+  bottom: 2rem;
+  right: 5rem;
+  width: 200px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.green};
+  border: 2px solid ${({ theme }) => theme.colors.white};
+  border-radius: 20px;
   cursor: pointer;
-`
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 
-export const AccessOrdersButton = styled.div`
-  background-color: ${({ theme }) => theme.colors.green};
-  color: white;
-  font-size: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  position: fixed;
-  left: 20rem;
-  top: 4.7rem;
-  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.darkgreen};
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+    font-size: 14px;
+    padding: 8px;
+    bottom: 15px;
+    right: 15px;
+  }
 `

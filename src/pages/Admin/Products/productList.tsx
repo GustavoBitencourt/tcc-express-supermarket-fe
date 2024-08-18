@@ -7,13 +7,7 @@ import EditProductForm from './editProductForm'
 import AddProductForm from './addProductForm'
 import EditIcon from '../../../assets/edit-icon-admin.svg'
 import DeleteIcon from '../../../assets/delete-icon-admin.svg'
-import {
-  ProductListContainer,
-  StyledTable,
-  AddProductButton,
-  AccessOrdersButton,
-  ActionIcon,
-} from './styles'
+import { ProductListContainer, StyledTable, AddProductButton, ActionIcon } from './styles'
 
 interface Product {
   id: number
@@ -140,9 +134,6 @@ const ProductList: React.FC = () => {
   return (
     <ProductListContainer>
       <div>
-        <AccessOrdersButton onClick={() => navigate('/admin/orders')}>
-          Acessar Pedidos
-        </AccessOrdersButton>
         <AddProductButton onClick={handleAddProduct}>Adicionar Novo Produto</AddProductButton>
         {isAddModalOpen && (
           <Modal
@@ -194,7 +185,11 @@ const ProductList: React.FC = () => {
                       title='Editar Produto'
                       onClick={() => handleEditProduct(product.id)}
                     >
-                      <img src={EditIcon} alt='Editar' style={{ width: '2rem', height: '5rem' }} />
+                      <img
+                        src={EditIcon}
+                        alt='Editar'
+                        style={{ width: '3.5rem', height: '5rem' }}
+                      />
                     </ActionIcon>
                     <ActionIcon
                       backgroundColor='#8D3E3E'
@@ -204,7 +199,7 @@ const ProductList: React.FC = () => {
                       <img
                         src={DeleteIcon}
                         alt='Excluir'
-                        style={{ width: '2rem', height: '5rem' }}
+                        style={{ width: '3.5rem', height: '5rem' }}
                       />
                     </ActionIcon>
                   </div>
