@@ -1,5 +1,118 @@
 import styled from 'styled-components'
 
+export const FormContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 25px;
+  border: 2px solid ${({ theme }) => theme.colors.darkgreen};
+  margin: 5rem auto;
+  width: 60%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+`
+
+export const InputRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  align-items: center;
+`
+
+export const InputLabel = styled.label`
+  font-size: 14px;
+  font-weight: bold;
+  width: 15%;
+  color: ${({ theme }) => theme.colors.blackgray};
+  margin-bottom: 0.2rem;
+`
+
+export const InputField = styled.input`
+  width: 60%;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray400};
+  transition: border-color 0.3s ease;
+  margin-top: 0.2rem;
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.darkgreen};
+    outline: none;
+  }
+`
+
+export const StyledButton = styled.button<{ cancel?: boolean }>`
+  background-color: ${({ cancel, theme }) => (cancel ? '#8D3E3E' : theme.colors.green)};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${({ cancel, theme }) => (cancel ? '#7C2F2F' : theme.colors.darkgreen)};
+  }
+`
+
+export const CloseIcon = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 15px;
+  right: 15px;
+
+  svg {
+    font-size: 22px;
+    color: ${({ theme }) => theme.colors.darkgreen};
+  }
+`
+
+export const FormRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+`
+
+export const FormLabel = styled.label`
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.black};
+  width: 40%;
+  font-size: 12px;
+`
+
+export const FormInput = styled.input`
+  width: 60%;
+  padding: 0.5rem;
+  border: 1px solid #ababab;
+  border-radius: 5px;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.blackgray};
+`
+
+export const FormButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.gray800};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  margin-right: 1rem;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.green};
+  }
+`
+
 export const ActionIcon = styled.span<{ backgroundColor: string }>`
   display: flex;
   align-items: center;
@@ -140,7 +253,6 @@ export const EditFormContainer = styled.div`
     width: 10rem;
     font-size: 11px;
     padding: 8px;
-
     border-radius: 5px;
     font-weight: 800;
     font-family: 'Manrope', sans-serif;
@@ -165,18 +277,6 @@ export const EditFormContainer = styled.div`
     display: flex;
     justify-content: space-around;
     margin-top: 1rem;
-  }
-`
-
-export const CloseIcon = styled.div`
-  position: absolute;
-  cursor: pointer;
-  top: 10px;
-  right: 10px;
-
-  svg {
-    font-size: 20px;
-    color: ${({ theme }) => theme.colors.white};
   }
 `
 
