@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { ReactComponent as ShrinkIcon } from '../../../assets/shrink-icon.svg'
 
 export const AdminContainer = styled.div`
   display: flex;
@@ -73,13 +72,13 @@ export const OrderControl = styled.h2`
 
 export const StyledTable = styled.table`
   width: 90%;
-  margin: 0 auto;
   border-collapse: collapse;
   margin-top: 1rem;
   background-color: white;
   color: ${({ theme }) => theme.colors.blackgray};
   border-radius: 1rem;
   overflow: hidden;
+  margin: 0 auto;
 
   th,
   td {
@@ -96,15 +95,6 @@ export const StyledTable = styled.table`
     background-color: ${({ theme }) => theme.colors.darkgreen};
     color: ${({ theme }) => theme.colors.white};
     font-size: 12px;
-
-    &:last-child {
-      background-color: ${({ theme }) => theme.colors.gray450};
-    }
-  }
-
-  th:nth-child(9),
-  td:nth-child(9) {
-    width: 15%;
   }
 
   tr:nth-child(even) {
@@ -122,6 +112,11 @@ export const StyledTable = styled.table`
       text-align: left;
     }
   }
+
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 30rem;
+  }
 `
 
 export const StyledTableRow = styled.tr`
@@ -131,47 +126,4 @@ export const StyledTableRow = styled.tr`
 export const ProductListContainer = styled.div`
   margin-top: 7rem;
   max-height: calc(100vh - 80px);
-`
-
-export const ExpandButton = styled.button<{ isExpanded: boolean }>`
-  background-color: ${({ isExpanded, theme }) => (isExpanded ? '#8d3e3e' : theme.colors.green)};
-  color: ${({ theme }) => theme.colors.white};
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  svg {
-    margin-right: 0.5rem;
-  }
-
-  &:hover {
-    background-color: ${({ isExpanded, theme }) =>
-      isExpanded ? '#552525' : theme.colors.darkgreen};
-  }
-
-  &:focus {
-    outline: none;
-  }
-`
-
-export const StyledShrinkIcon = styled(ShrinkIcon)`
-  background-color: #8d3e3e;
-`
-
-export const StyledExpandIconColumn = styled.td<{ isExpanded: boolean }>`
-  background-color: ${({ isExpanded, theme }) => (isExpanded ? '#8d3e3e' : theme.colors.green)};
-  color: ${({ theme }) => theme.colors.white};
-  text-align: center;
-
-  button {
-    color: inherit;
-  }
-
-  &:hover {
-    background-color: ${({ isExpanded, theme }) =>
-      isExpanded ? '#552525' : theme.colors.darkgreen};
-  }
 `

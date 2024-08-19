@@ -30,7 +30,7 @@ function AdminMenu() {
         <ProductsButtonStyled to='/admin/products'>
           <ProductsButton />
         </ProductsButtonStyled>
-        <CustomersButtonStyled to='#'>
+        <CustomersButtonStyled to='/admin/customers'>
           <CustomersButton />
         </CustomersButtonStyled>
       </ButtonsContainer>
