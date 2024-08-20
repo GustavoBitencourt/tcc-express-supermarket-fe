@@ -15,4 +15,5 @@ export interface CustomerData {
   creditCardHolder: string
   creditCardExpiration: string
   creditCardSecurityCode: string
+  cart?: any[]
 }

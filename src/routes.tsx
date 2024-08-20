@@ -10,6 +10,7 @@ import HomePage from './pages/Main/HomePage/index'
 import MyCartPage from './pages/MyCart'
 import OrderSuccessPage from './pages/Orders/Success'
 import PaymentPage from './pages/Payment'
+import ShippingPage from './pages/Shipping'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
@@ -43,6 +44,14 @@ export function AppRoutes() {
       <Route path='/search' element={<Search />} />
       <Route path='/searchBarCode' element={<SearchBarcode />} />
       <Route path='cart' element={<MyCartPage />} />
+      <Route
+        path='shipping'
+        element={
+          <PrivateRoute>
+            <ShippingPage />
+          </PrivateRoute>
+        }
+      />
       <Route
         path='payment'
         element={

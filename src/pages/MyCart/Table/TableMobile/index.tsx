@@ -15,12 +15,15 @@ import {
   CartListText,
 } from './style'
 import TopBar from '../../TopBar'
+import { useNavigate } from 'react-router-dom'
 
 export function TableMobile() {
   const { cart, confirmOrder, removeProductFromCart, productCartIncrement, productCartDecrement } =
     useCart()
   const [activeStep] = useState(1)
   const [selectedOption, setSelectedOption] = useState('option1')
+
+  const navigate = useNavigate()
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option)
@@ -39,6 +42,11 @@ export function TableMobile() {
     } else {
       alert('O compartilhamento não é suportado neste navegador.')
     }
+  }
+
+  const handleConfirmOrder = () => {
+    confirmOrder()
+    navigate('/shipping', { state: { cart, selectedOption } })
   }
 
   return (
@@ -90,7 +98,7 @@ export function TableMobile() {
         <div className='subtotal'>
           <span>Subtotal:</span> {currencyFormat(totalAmount)}
           <div className='confirm-button'>
-            <button onClick={confirmOrder}>Confirmar itens</button>
+            <button onClick={handleConfirmOrder}>Confirmar itens</button>
           </div>
         </div>
       </Container>
