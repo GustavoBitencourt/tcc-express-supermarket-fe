@@ -10,6 +10,7 @@ import HomePage from './pages/Main/HomePage/index'
 import MyCartPage from './pages/MyCart'
 import OrderSuccessPage from './pages/Orders/Success'
 import PaymentPage from './pages/Payment'
+import CustomerCartDataPage from './pages/CustomerCartData'
 import ShippingPage from './pages/Shipping'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -49,6 +50,14 @@ export function AppRoutes() {
         element={
           <PrivateRoute>
             <ShippingPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='customerCartData'
+        element={
+          <PrivateRoute>
+            <CustomerCartDataPage />
           </PrivateRoute>
         }
       />

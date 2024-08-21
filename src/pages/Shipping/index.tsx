@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form'
-import { IMaskInput } from 'react-imask'
 import { getCustomer } from '../../services/api'
 import { CustomerData } from '../../interfaces/CustomerData'
 import { Head } from '../../components/Head'
@@ -21,7 +20,7 @@ import {
 } from './styles'
 import TopBar from '../MyCart/TopBar'
 import StatusIndicator from '../../components/StatusIndicator'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as PickupIconUnselect } from '../../assets/pickup-icon-unselect.svg'
 import { ReactComponent as DeliveryIconUnselect } from '../../assets/delivery-icon-unselect.svg'
@@ -30,14 +29,20 @@ import { ReactComponent as DeliveryIconSelect } from '../../assets/delivery-icon
 
 export default function Shipping() {
   const { payOrder } = useCart()
+  const navigate = useNavigate()
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
+    getValues,
+    trigger,
   } = useForm<FieldValues>({
     resolver: yupResolver(schema),
+    mode: 'onChange',
   })
+
   const [activeStep] = useState(2)
+  const [pickupTimeMessage, setPickupTimeMessage] = useState<string>('')
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
   const [isLoading, setIsLoading] = useState(true)
@@ -134,6 +139,71 @@ export default function Shipping() {
 
   const handleDeliveryMethodChange = (method: 'pickup' | 'delivery') => {
     setSelectedDeliveryMethod(method)
+    if (method === 'pickup') {
+      calculatePickupTime()
+    }
+  }
+
+  const calculatePickupTime = () => {
+    const now = new Date()
+    const currentHour = now.getHours()
+    const currentMinutes = now.getMinutes()
+
+    if (currentHour >= 23 || currentHour < 9 || (currentHour === 9 && currentMinutes < 30)) {
+      setPickupTimeMessage('Seu pedido estará disponível para retirada amanhã a partir das 10:00.')
+    } else {
+      const pickupTime = new Date(now.getTime() + 30 * 60000)
+      const pickupHour = pickupTime.getHours().toString().padStart(2, '0')
+      const pickupMinutes = pickupTime.getMinutes().toString().padStart(2, '0')
+      setPickupTimeMessage(
+        `Seu pedido estará disponível para retirada a partir das ${pickupHour}:${pickupMinutes}.`,
+      )
+    }
+  }
+
+  interface NavigationState {
+    cart: any[]
+    shippingMethod: 'pickup' | 'delivery'
+    addressData?: CustomerData
+  }
+
+  const handleConfirm = () => {
+    const getFormData = () => {
+      return {
+        zipCode: getValues('zipCode') || '',
+        street: getValues('street') || '',
+        number: getValues('number') || '',
+        complement: getValues('complement') || '',
+        neighborhood: getValues('neighborhood') || '',
+        city: getValues('city') || '',
+        state: getValues('state') || '',
+        creditCardNumber: '',
+        creditCardHolder: '',
+        creditCardExpiration: '',
+        creditCardSecurityCode: '',
+      } as CustomerData
+    }
+
+    const isFormValid =
+      selectedDeliveryMethod === 'pickup' ||
+      (getValues('zipCode') &&
+        getValues('street') &&
+        getValues('number') &&
+        getValues('neighborhood') &&
+        getValues('city') &&
+        getValues('state'))
+
+    if (!isFormValid) {
+      trigger()
+      return
+    }
+
+    const stateData: NavigationState = {
+      cart,
+      shippingMethod: selectedDeliveryMethod,
+      addressData: selectedDeliveryMethod === 'delivery' ? getFormData() : undefined,
+    }
+    navigate('/customerCartData', { state: stateData })
   }
 
   return (
@@ -166,10 +236,23 @@ export default function Shipping() {
               </IconButton>
             </IconWrapper>
 
+            {selectedDeliveryMethod === 'pickup' && pickupTimeMessage && (
+              <TextCenter>{pickupTimeMessage}</TextCenter>
+            )}
+
+            {selectedDeliveryMethod === 'pickup' || selectedDeliveryMethod === 'delivery' ? (
+              <ConfirmButton
+                onClick={handleConfirm}
+                disabled={selectedDeliveryMethod === 'delivery' && !isValid}
+              >
+                Confirmar
+              </ConfirmButton>
+            ) : null}
+
             {selectedDeliveryMethod === 'delivery' && (
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <TitleText>Endereço de entrega</TitleText>
-                {/* Campos do formulário de endereço */}
+
                 <div className='field'>
                   <AddressLabel htmlFor='zipCode'>CEP</AddressLabel>
                   <Controller
@@ -177,10 +260,9 @@ export default function Shipping() {
                     control={control}
                     defaultValue={addressData.zipCode}
                     render={({ field: { onChange, onBlur, value } }) => (
-                      <IMaskInput
+                      <input
                         type='text'
                         id='zipCode'
-                        mask={'00000-000'}
                         onChange={onChange}
                         onBlur={onBlur}
                         value={value}
@@ -253,27 +335,27 @@ export default function Shipping() {
                   </div>
                 </div>
 
-                <div className='grouped'>
-                  <div className='field'>
-                    <AddressLabel htmlFor='neighborhood'>Bairro</AddressLabel>
-                    <Controller
-                      name='neighborhood'
-                      control={control}
-                      defaultValue={addressData.neighborhood}
-                      render={({ field: { onChange, onBlur, value } }) => (
-                        <input
-                          type='text'
-                          id='neighborhood'
-                          onChange={onChange}
-                          onBlur={onBlur}
-                          value={value}
-                          className='custom-input-address'
-                        />
-                      )}
-                    />
-                    {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
-                  </div>
+                <div className='field'>
+                  <AddressLabel htmlFor='neighborhood'>Bairro</AddressLabel>
+                  <Controller
+                    name='neighborhood'
+                    control={control}
+                    defaultValue={addressData.neighborhood}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <input
+                        type='text'
+                        id='neighborhood'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value={value}
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                  {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
+                </div>
 
+                <div className='grouped'>
                   <div className='field'>
                     <AddressLabel htmlFor='city'>Cidade</AddressLabel>
                     <Controller
@@ -294,7 +376,7 @@ export default function Shipping() {
                     {errors.city && <p className='error'>{errors.city.message}</p>}
                   </div>
 
-                  <div className='field'>
+                  <div className='field' style={{ marginBottom: '7rem' }}>
                     <AddressLabel htmlFor='state'>Estado</AddressLabel>
                     <Controller
                       name='state'
@@ -342,19 +424,8 @@ export default function Shipping() {
                     {errors.state && <p className='error'>{errors.state.message}</p>}
                   </div>
                 </div>
-
-                <ConfirmButton>Confirmar</ConfirmButton>
+                <ConfirmButton onClick={handleConfirm}>Confirmar</ConfirmButton>
               </Form>
-            )}
-
-            {selectedDeliveryMethod === 'pickup' && (
-              <ConfirmButton
-                onClick={() => {
-                  payOrder({ ...addressData, cart })
-                }}
-              >
-                Confirmar
-              </ConfirmButton>
             )}
           </Inner>
         )}
