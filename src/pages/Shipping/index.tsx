@@ -219,12 +219,12 @@ export default function Shipping() {
         selectedDeliveryMethod === 'delivery'
           ? getFormData()
           : {
-              zipCode: 'Retira na Loja',
+              zipCode: '96045000',
               street: 'Retira na Loja',
               number: 'Retira na Loja',
               complement: 'Retira na Loja',
-              neighborhood: 'Retira na Loja',
-              city: 'Retira na Loja',
+              neighborhood: 'Fragata',
+              city: 'Pelotas',
               state: 'RS',
               creditCardNumber: '',
               creditCardHolder: '',

@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
-
-import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { IMaskInput } from 'react-imask'
+import IMask from 'imask'
 import { getCustomer } from '../../services/api'
-
 import { CustomerData } from '../../interfaces/CustomerData'
-
 import { Head } from '../../components/Head'
 import { PayOrder } from '../../components/OrderCloseAction/PayOrder'
 import { OrderHeader } from '../../components/OrderHeader'
-
 import { useCart } from '../../hooks/useCart'
-
 import { FieldValues, schema } from './validationSchema'
-
-import IMask from 'imask'
 import { Container, Form, Inner, AddressLabel, TitleText } from './styles'
 import TopBar from '../MyCart/TopBar'
 import StatusIndicator from '../../components/StatusIndicator'
 
 export default function Payment() {
+  const location = useLocation()
   const { payOrder } = useCart()
   const {
     control,
@@ -29,10 +25,8 @@ export default function Payment() {
   } = useForm<FieldValues>({
     resolver: yupResolver(schema),
   })
-  const [activeStep] = useState(4)
-  const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
-  const [isLoading, setIsLoading] = useState(true)
 
+  const [isLoading, setIsLoading] = useState(true)
   const [addressData, setAddressData] = useState<CustomerData>({
     fullName: '',
     document: '',
@@ -52,95 +46,57 @@ export default function Payment() {
     creditCardSecurityCode: '',
   })
 
-  const watchFullName = useWatch({
-    control,
-    name: 'fullName',
-  })
-  const watchEmail = useWatch({
-    control,
-    name: 'email',
-  })
-  const watchDocument = useWatch({
-    control,
-    name: 'document',
-  })
-  const watchMobile = useWatch({
-    control,
-    name: 'mobile',
-  })
-  const watchZipCode = useWatch({
-    control,
-    name: 'zipCode',
-  })
-  const watchStreet = useWatch({
-    control,
-    name: 'street',
-  })
-  const watchComplement = useWatch({
-    control,
-    name: 'complement',
-  })
-  const watchNeighborhood = useWatch({
-    control,
-    name: 'neighborhood',
-  })
-  const watchNumber = useWatch({
-    control,
-    name: 'number',
-  })
-  const watchCity = useWatch({
-    control,
-    name: 'city',
-  })
-  const watchState = useWatch({
-    control,
-    name: 'state',
-  })
-
   useEffect(() => {
-    const userId = localStorage.getItem('id')
-    if (userId) {
-      const userIdAsNumber = parseInt(userId, 10)
-      getCustomer(userIdAsNumber)
-        .then((response) => {
-          if (response.status === 200) {
-            const addressDataFromApi = response.data
-            fillFormData(addressDataFromApi)
-          } else {
-            console.error('Failed to fetch user data')
-          }
-        })
-        .catch((error) => {
-          console.error('Network or other error', error)
-        })
-        .finally(() => {
-          setIsLoading(false)
-        })
-    }
-  }, [])
+    if (location.state && location.state.customer) {
+      const customerData = location.state.customer
 
-  const fillFormData = (data: CustomerData) => {
-    setAddressData((prevData: CustomerData) => ({
-      ...prevData,
-      fullName: watchFullName || data.fullName,
-      email: watchEmail || data.email,
-      mobile: watchMobile || data.mobile,
-      document: watchDocument || data.document,
-      zipCode: watchZipCode || data.zipCode,
-      street: watchStreet || data.street,
-      number: watchNumber || data.number,
-      complement: watchComplement || data.complement,
-      neighborhood: watchNeighborhood || data.neighborhood,
-      city: watchCity || data.city,
-      state: watchState || data.state,
-    }))
-  }
+      // Preenchendo os campos de endereço e mantendo os campos de pagamento vazios
+      setAddressData({
+        ...customerData,
+        creditCardNumber: '',
+        creditCardHolder: '',
+        creditCardExpiration: '',
+        creditCardSecurityCode: '',
+      })
+      setIsLoading(false)
+    } else {
+      const userId = localStorage.getItem('id')
+      if (userId) {
+        const userIdAsNumber = parseInt(userId, 10)
+        getCustomer(userIdAsNumber)
+          .then((response) => {
+            if (response.status === 200) {
+              const addressDataFromApi = response.data
+
+              // Preenchendo os campos de endereço e mantendo os campos de pagamento vazios
+              setAddressData({
+                ...addressDataFromApi,
+                creditCardNumber: '',
+                creditCardHolder: '',
+                creditCardExpiration: '',
+                creditCardSecurityCode: '',
+              })
+            } else {
+              console.error('Failed to fetch user data')
+            }
+          })
+          .catch((error) => {
+            console.error('Network or other error', error)
+          })
+          .finally(() => {
+            setIsLoading(false)
+          })
+      }
+    }
+  }, [location.state])
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
 
   return (
     <>
       <TopBar />
       <Container>
-        <StatusIndicator activeStep={activeStep} />
+        <StatusIndicator activeStep={4} />
         <Head title='Pagamento' />
         <OrderHeader showHeader={false} />
         {isLoading ? (
@@ -373,50 +329,22 @@ export default function Payment() {
                     control={control}
                     defaultValue={addressData.state}
                     render={({ field: { onChange, onBlur, value } }) => (
-                      <select
+                      <input
+                        type='text'
                         id='state'
-                        className='custom-input-address'
                         onChange={onChange}
                         onBlur={onBlur}
                         value={value}
-                      >
-                        <option value=''>Selecione</option>
-                        <option value='AC'>Acre</option>
-                        <option value='AL'>Alagoas</option>
-                        <option value='AP'>Amapá</option>
-                        <option value='AM'>Amazonas</option>
-                        <option value='BA'>Bahia</option>
-                        <option value='CE'>Ceará</option>
-                        <option value='ES'>Espírito Santo</option>
-                        <option value='GO'>Goiás</option>
-                        <option value='MA'>Maranhão</option>
-                        <option value='MT'>Mato Grosso</option>
-                        <option value='MS'>Mato Grosso do Sul</option>
-                        <option value='MG'>Minas Gerais</option>
-                        <option value='PA'>Pará</option>
-                        <option value='PB'>Paraíba</option>
-                        <option value='PR'>Paraná</option>
-                        <option value='PE'>Pernambuco</option>
-                        <option value='PI'>Piauí</option>
-                        <option value='RJ'>Rio de Janeiro</option>
-                        <option value='RN'>Rio Grande do Norte</option>
-                        <option value='RS'>Rio Grande do Sul</option>
-                        <option value='RO'>Rondônia</option>
-                        <option value='RR'>Roraima</option>
-                        <option value='SC'>Santa Catarina</option>
-                        <option value='SP'>São Paulo</option>
-                        <option value='SE'>Sergipe</option>
-                        <option value='TO'>Tocantins</option>
-                        <option value='DF'>Distrito Federal</option>
-                      </select>
+                        className='custom-input-address'
+                      />
                     )}
                   />
                   {errors.state && <p className='error'>{errors.state.message}</p>}
                 </div>
               </div>
-
               <TitleText>Pagamento</TitleText>
 
+              {/* Campos do formulário de pagamento */}
               <div className='field'>
                 <AddressLabel htmlFor='creditCardNumber'>Número do cartão</AddressLabel>
                 <Controller
@@ -501,7 +429,7 @@ export default function Payment() {
                   )}
                 </div>
 
-                <div className='field'>
+                <div className='field' style={{ marginBottom: '8rem' }}>
                   <AddressLabel htmlFor='creditCardSecurityCode'>
                     Código de segurança (CVV)
                   </AddressLabel>
@@ -526,6 +454,7 @@ export default function Payment() {
                   )}
                 </div>
               </div>
+
               <PayOrder />
             </Form>
           </Inner>
