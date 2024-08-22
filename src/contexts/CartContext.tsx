@@ -124,7 +124,7 @@ export function CartProvider({ children }: CartProviderProps) {
   async function payOrder(customer: CustomerData) {
     try {
       const response = await processCheckout(cart, customer)
-
+      console.log(cart, customer)
       if (response.data.status !== 'PAID') {
         toast.error('Erro ao processar o pagamento, por favor, tente novamente mais tarde.')
         return

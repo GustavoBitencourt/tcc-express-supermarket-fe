@@ -18,8 +18,8 @@ export default function CustomerCartData() {
   const {
     cart,
     shippingMethod,
-    addressData: initialAddressData,
-  } = location.state || { cart: [], shippingMethod: 'pickup', addressData: {} }
+    customer: initialCustomerData,
+  } = location.state || { cart: [], shippingMethod: 'pickup', customer: {} }
 
   const {
     control,
@@ -38,7 +38,7 @@ export default function CustomerCartData() {
     document: '',
     mobile: '',
     email: '',
-    ...initialAddressData,
+    ...initialCustomerData,
   })
 
   const watchFullName = useWatch({
@@ -92,8 +92,22 @@ export default function CustomerCartData() {
 
   const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    console.log(cart, shippingMethod, addressData)
-    navigate('/payment', { state: { cart, shippingMethod, addressData } })
+
+    const updatedCustomerData = {
+      ...addressData,
+      fullName: watchFullName || addressData.fullName,
+      email: watchEmail || addressData.email,
+      mobile: watchMobile || addressData.mobile,
+      document: watchDocument || addressData.document,
+    }
+
+    navigate('/payment', {
+      state: {
+        cart: cart,
+        customer: updatedCustomerData,
+        shippingMethod: shippingMethod,
+      },
+    })
   }
 
   return (

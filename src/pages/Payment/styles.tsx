@@ -48,3 +48,18 @@ export const Form = styled.form`
     }
   }
 `
+
+export const PaymentOptions = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+`
+
+export const IconWrapper = styled.div`
+  cursor: pointer;
+  margin: 0 0.4rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`

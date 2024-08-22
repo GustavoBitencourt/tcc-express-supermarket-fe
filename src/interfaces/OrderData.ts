@@ -17,5 +17,6 @@ export interface OrderData {
   createdAt: string
   updatedAt: string
   customerId: number
+  paymentMethod?: string | null
   orderItems: OrderItem[]
 }

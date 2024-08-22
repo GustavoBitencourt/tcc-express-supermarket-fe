@@ -162,9 +162,23 @@ export default function Shipping() {
   }
 
   interface NavigationState {
-    cart: any[]
+    cart: any
     shippingMethod: 'pickup' | 'delivery'
-    addressData?: CustomerData
+    customer:
+      | CustomerData
+      | {
+          zipCode: string
+          street: string
+          number: string
+          complement: string
+          neighborhood: string
+          city: string
+          state: string
+          creditCardNumber: string
+          creditCardHolder: string
+          creditCardExpiration: string
+          creditCardSecurityCode: string
+        }
   }
 
   const handleConfirm = () => {
@@ -201,8 +215,24 @@ export default function Shipping() {
     const stateData: NavigationState = {
       cart,
       shippingMethod: selectedDeliveryMethod,
-      addressData: selectedDeliveryMethod === 'delivery' ? getFormData() : undefined,
+      customer:
+        selectedDeliveryMethod === 'delivery'
+          ? getFormData()
+          : {
+              zipCode: 'Retira na Loja',
+              street: 'Retira na Loja',
+              number: 'Retira na Loja',
+              complement: 'Retira na Loja',
+              neighborhood: 'Retira na Loja',
+              city: 'Retira na Loja',
+              state: 'RS',
+              creditCardNumber: '',
+              creditCardHolder: '',
+              creditCardExpiration: '',
+              creditCardSecurityCode: '',
+            },
     }
+
     navigate('/customerCartData', { state: stateData })
   }
 
