@@ -11,9 +11,23 @@ import { PayOrder } from '../../components/OrderCloseAction/PayOrder'
 import { OrderHeader } from '../../components/OrderHeader'
 import { useCart } from '../../hooks/useCart'
 import { FieldValues, schema } from './validationSchema'
-import { Container, Form, Inner, AddressLabel, TitleText } from './styles'
+import {
+  Container,
+  Form,
+  Inner,
+  AddressLabel,
+  TitleText,
+  PaymentOptions,
+  PaymentButton,
+} from './styles'
 import TopBar from '../MyCart/TopBar'
 import StatusIndicator from '../../components/StatusIndicator'
+import { ReactComponent as CardIconUnselect } from '../../assets/card-icon-unselect.svg'
+import { ReactComponent as CardIconSelect } from '../../assets/card-icon-select.svg'
+import { ReactComponent as MoneyIconUnselect } from '../../assets/money-icon-unselect.svg'
+import { ReactComponent as MoneyIconSelect } from '../../assets/money-icon-select.svg'
+import { ReactComponent as PixIconUnselect } from '../../assets/pix-icon-unselect.svg'
+import { ReactComponent as PixIconSelect } from '../../assets/pix-icon-select.svg'
 
 export default function Payment() {
   const location = useLocation()
@@ -27,6 +41,9 @@ export default function Payment() {
   })
 
   const [isLoading, setIsLoading] = useState(true)
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
+    'card' | 'money' | 'pix' | null
+  >(null)
   const [addressData, setAddressData] = useState<CustomerData>({
     fullName: '',
     document: '',
@@ -50,7 +67,6 @@ export default function Payment() {
     if (location.state && location.state.customer) {
       const customerData = location.state.customer
 
-      // Preenchendo os campos de endereço e mantendo os campos de pagamento vazios
       setAddressData({
         ...customerData,
         creditCardNumber: '',
@@ -68,7 +84,6 @@ export default function Payment() {
             if (response.status === 200) {
               const addressDataFromApi = response.data
 
-              // Preenchendo os campos de endereço e mantendo os campos de pagamento vazios
               setAddressData({
                 ...addressDataFromApi,
                 creditCardNumber: '',
@@ -90,6 +105,10 @@ export default function Payment() {
     }
   }, [location.state])
 
+  const handlePaymentMethodSelect = (method: 'card' | 'money' | 'pix') => {
+    setSelectedPaymentMethod(method)
+  }
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
 
   return (
@@ -103,20 +122,37 @@ export default function Payment() {
           <div>Carregando...</div>
         ) : (
           <Inner>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <TitleText>Informações pessoais</TitleText>
+            <div className='field'>
+              <Controller
+                name='fullName'
+                control={control}
+                defaultValue={addressData.fullName}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input
+                    type='hidden'
+                    id='fullName'
+                    autoComplete='name'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    className='custom-input-address'
+                  />
+                )}
+              />
+              {errors.fullName && <p className='error'>{errors.fullName.message}</p>}
+            </div>
 
+            <div className='grouped'>
               <div className='field'>
-                <AddressLabel htmlFor='fullName'>Nome e sobrenome</AddressLabel>
                 <Controller
-                  name='fullName'
+                  name='email'
                   control={control}
-                  defaultValue={addressData.fullName}
+                  defaultValue={addressData.email}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <input
-                      type='text'
-                      id='fullName'
-                      autoComplete='name'
+                      type='hidden'
+                      id='email'
+                      autoComplete='email'
                       onChange={onChange}
                       onBlur={onBlur}
                       value={value}
@@ -124,91 +160,20 @@ export default function Payment() {
                     />
                   )}
                 />
-                {errors.fullName && <p className='error'>{errors.fullName.message}</p>}
+                {errors.email && <p className='error'>{errors.email.message}</p>}
               </div>
-
-              <div className='grouped'>
-                <div className='field'>
-                  <AddressLabel htmlFor='email'>E-mail</AddressLabel>
-                  <Controller
-                    name='email'
-                    control={control}
-                    defaultValue={addressData.email}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <input
-                        type='email'
-                        id='email'
-                        autoComplete='email'
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.email && <p className='error'>{errors.email.message}</p>}
-                </div>
-
-                <div className='field'>
-                  <AddressLabel htmlFor='mobile'>Celular</AddressLabel>
-                  <Controller
-                    name='mobile'
-                    control={control}
-                    defaultValue={addressData.mobile}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <IMaskInput
-                        type='tel'
-                        id='mobile'
-                        autoComplete='phone'
-                        mask={'(00) 90000-0000'}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.mobile && <p className='error'>{errors.mobile.message}</p>}
-                </div>
-
-                <div className='field'>
-                  <AddressLabel htmlFor='document'>CPF/CNPJ</AddressLabel>
-                  <Controller
-                    name='document'
-                    control={control}
-                    defaultValue={addressData.document}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <IMaskInput
-                        type='text'
-                        id='document'
-                        mask={[
-                          { mask: '000.000.000-00', maxLength: 11 },
-                          { mask: '00.000.000/0000-00' },
-                        ]}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.document && <p className='error'>{errors.document.message}</p>}
-                </div>
-              </div>
-
-              <TitleText>Endereço de entrega</TitleText>
 
               <div className='field'>
-                <AddressLabel htmlFor='zipCode'>CEP</AddressLabel>
                 <Controller
-                  name='zipCode'
+                  name='mobile'
                   control={control}
-                  defaultValue={addressData.zipCode}
+                  defaultValue={addressData.mobile}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <IMaskInput
-                      type='text'
-                      id='zipCode'
-                      mask={'00000-000'}
+                      type='hidden'
+                      id='mobile'
+                      autoComplete='phone'
+                      mask={'(00) 90000-0000'}
                       onChange={onChange}
                       onBlur={onBlur}
                       value={value}
@@ -216,19 +181,22 @@ export default function Payment() {
                     />
                   )}
                 />
-                {errors.zipCode && <p className='error'>{errors.zipCode.message}</p>}
+                {errors.mobile && <p className='error'>{errors.mobile.message}</p>}
               </div>
 
               <div className='field'>
-                <AddressLabel htmlFor='street'>Endereço</AddressLabel>
                 <Controller
-                  name='street'
+                  name='document'
                   control={control}
-                  defaultValue={addressData.street}
+                  defaultValue={addressData.document}
                   render={({ field: { onChange, onBlur, value } }) => (
-                    <input
-                      type='text'
-                      id='street'
+                    <IMaskInput
+                      type='hidden'
+                      id='document'
+                      mask={[
+                        { mask: '000.000.000-00', maxLength: 11 },
+                        { mask: '00.000.000/0000-00' },
+                      ]}
                       onChange={onChange}
                       onBlur={onBlur}
                       value={value}
@@ -236,147 +204,59 @@ export default function Payment() {
                     />
                   )}
                 />
-                {errors.street && <p className='error'>{errors.street.message}</p>}
+                {errors.document && <p className='error'>{errors.document.message}</p>}
               </div>
+            </div>
 
-              <div className='grouped'>
-                <div className='field'>
-                  <AddressLabel htmlFor='number'>Número</AddressLabel>
-                  <Controller
-                    name='number'
-                    control={control}
-                    defaultValue={addressData.number}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <input
-                        type='text'
-                        id='number'
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
+            <div className='field'>
+              <Controller
+                name='zipCode'
+                control={control}
+                defaultValue={addressData.zipCode}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <IMaskInput
+                    type='hidden'
+                    id='zipCode'
+                    mask={'00000-000'}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    className='custom-input-address'
                   />
-                  {errors.number && <p className='error'>{errors.number.message}</p>}
-                </div>
-
-                <div className='field'>
-                  <AddressLabel htmlFor='complement'>Complemento</AddressLabel>
-                  <Controller
-                    name='complement'
-                    control={control}
-                    defaultValue={addressData.complement}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <input
-                        type='text'
-                        id='complement'
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.complement && <p className='error'>{errors.complement.message}</p>}
-                </div>
-              </div>
-
-              <div className='grouped'>
-                <div className='field'>
-                  <AddressLabel htmlFor='neighborhood'>Bairro</AddressLabel>
-                  <Controller
-                    name='neighborhood'
-                    control={control}
-                    defaultValue={addressData.neighborhood}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <input
-                        type='text'
-                        id='neighborhood'
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
-                </div>
-
-                <div className='field'>
-                  <AddressLabel htmlFor='city'>Cidade</AddressLabel>
-                  <Controller
-                    name='city'
-                    control={control}
-                    defaultValue={addressData.city}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <input
-                        type='text'
-                        id='city'
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.city && <p className='error'>{errors.city.message}</p>}
-                </div>
-
-                <div className='field'>
-                  <AddressLabel htmlFor='state'>Estado</AddressLabel>
-                  <Controller
-                    name='state'
-                    control={control}
-                    defaultValue={addressData.state}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <input
-                        type='text'
-                        id='state'
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.state && <p className='error'>{errors.state.message}</p>}
-                </div>
-              </div>
-              <TitleText>Pagamento</TitleText>
-
-              {/* Campos do formulário de pagamento */}
-              <div className='field'>
-                <AddressLabel htmlFor='creditCardNumber'>Número do cartão</AddressLabel>
-                <Controller
-                  name='creditCardNumber'
-                  control={control}
-                  defaultValue=''
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <input
-                      type='text'
-                      id='creditCardNumber'
-                      onChange={onChange}
-                      onBlur={onBlur}
-                      value={value}
-                      className='custom-input-address'
-                    />
-                  )}
-                />
-                {errors.creditCardNumber && (
-                  <p className='error'>{errors.creditCardNumber.message}</p>
                 )}
-              </div>
+              />
+              {errors.zipCode && <p className='error'>{errors.zipCode.message}</p>}
+            </div>
 
+            <div className='field'>
+              <Controller
+                name='street'
+                control={control}
+                defaultValue={addressData.street}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <input
+                    type='hidden'
+                    id='street'
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    className='custom-input-address'
+                  />
+                )}
+              />
+              {errors.street && <p className='error'>{errors.street.message}</p>}
+            </div>
+
+            <div className='grouped'>
               <div className='field'>
-                <AddressLabel htmlFor='creditCardHolder'>Nome impresso no cartão</AddressLabel>
                 <Controller
-                  name='creditCardHolder'
+                  name='number'
                   control={control}
-                  defaultValue=''
+                  defaultValue={addressData.number}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <input
-                      type='text'
-                      id='creditCardHolder'
+                      type='hidden'
+                      id='number'
                       onChange={onChange}
                       onBlur={onBlur}
                       value={value}
@@ -384,79 +264,216 @@ export default function Payment() {
                     />
                   )}
                 />
-                {errors.creditCardHolder && (
-                  <p className='error'>{errors.creditCardHolder.message}</p>
-                )}
+                {errors.number && <p className='error'>{errors.number.message}</p>}
               </div>
 
-              <div className='grouped'>
+              <div className='field'>
+                <Controller
+                  name='complement'
+                  control={control}
+                  defaultValue={addressData.complement}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <input
+                      type='hidden'
+                      id='complement'
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      className='custom-input-address'
+                    />
+                  )}
+                />
+                {errors.complement && <p className='error'>{errors.complement.message}</p>}
+              </div>
+            </div>
+
+            <div className='grouped'>
+              <div className='field'>
+                <Controller
+                  name='neighborhood'
+                  control={control}
+                  defaultValue={addressData.neighborhood}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <input
+                      type='hidden'
+                      id='neighborhood'
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      className='custom-input-address'
+                    />
+                  )}
+                />
+                {errors.neighborhood && <p className='error'>{errors.neighborhood.message}</p>}
+              </div>
+
+              <div className='field'>
+                <Controller
+                  name='city'
+                  control={control}
+                  defaultValue={addressData.city}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <input
+                      type='hidden'
+                      id='city'
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      className='custom-input-address'
+                    />
+                  )}
+                />
+                {errors.city && <p className='error'>{errors.city.message}</p>}
+              </div>
+
+              <div className='field'>
+                <Controller
+                  name='state'
+                  control={control}
+                  defaultValue={addressData.state}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <input
+                      type='hidden'
+                      id='state'
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      className='custom-input-address'
+                    />
+                  )}
+                />
+                {errors.state && <p className='error'>{errors.state.message}</p>}
+              </div>
+            </div>
+
+            <TitleText>Escolha sua forma de pagamento:</TitleText>
+            <PaymentOptions>
+              <PaymentButton onClick={() => handlePaymentMethodSelect('card')}>
+                {selectedPaymentMethod === 'card' ? <CardIconSelect /> : <CardIconUnselect />}
+              </PaymentButton>
+              <PaymentButton onClick={() => handlePaymentMethodSelect('money')}>
+                {selectedPaymentMethod === 'money' ? <MoneyIconSelect /> : <MoneyIconUnselect />}
+              </PaymentButton>
+              <PaymentButton onClick={() => handlePaymentMethodSelect('pix')}>
+                {selectedPaymentMethod === 'pix' ? <PixIconSelect /> : <PixIconUnselect />}
+              </PaymentButton>
+            </PaymentOptions>
+
+            {selectedPaymentMethod === 'card' && (
+              <Form onSubmit={handleSubmit(onSubmit)}>
                 <div className='field'>
-                  <AddressLabel htmlFor='creditCardExpiration'>Validade (MM/AA)</AddressLabel>
+                  <AddressLabel htmlFor='creditCardNumber'>Número do cartão</AddressLabel>
                   <Controller
-                    name='creditCardExpiration'
+                    name='creditCardNumber'
                     control={control}
                     defaultValue=''
                     render={({ field: { onChange, onBlur, value } }) => (
-                      <IMaskInput
+                      <input
                         type='text'
-                        id='creditCardExpiration'
-                        mask={[
-                          {
-                            mask: 'MM/YY',
-                            blocks: {
-                              MM: {
-                                mask: IMask.MaskedRange,
-                                from: 1,
-                                to: 12,
-                              },
-                              YY: {
-                                mask: IMask.MaskedRange,
-                                from: new Date().getFullYear() - 2000,
-                                to: 99,
+                        id='creditCardNumber'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value={value}
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                  {errors.creditCardNumber && (
+                    <p className='error'>{errors.creditCardNumber.message}</p>
+                  )}
+                </div>
+
+                <div className='field'>
+                  <AddressLabel htmlFor='creditCardHolder'>Nome impresso no cartão</AddressLabel>
+                  <Controller
+                    name='creditCardHolder'
+                    control={control}
+                    defaultValue=''
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <input
+                        type='text'
+                        id='creditCardHolder'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value={value}
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                  {errors.creditCardHolder && (
+                    <p className='error'>{errors.creditCardHolder.message}</p>
+                  )}
+                </div>
+
+                <div className='grouped'>
+                  <div className='field'>
+                    <AddressLabel htmlFor='creditCardExpiration'>Validade (MM/AA)</AddressLabel>
+                    <Controller
+                      name='creditCardExpiration'
+                      control={control}
+                      defaultValue=''
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <IMaskInput
+                          type='text'
+                          id='creditCardExpiration'
+                          mask={[
+                            {
+                              mask: 'MM/YY',
+                              blocks: {
+                                MM: {
+                                  mask: IMask.MaskedRange,
+                                  from: 1,
+                                  to: 12,
+                                },
+                                YY: {
+                                  mask: IMask.MaskedRange,
+                                  from: new Date().getFullYear() - 2000,
+                                  to: 99,
+                                },
                               },
                             },
-                          },
-                        ]}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
+                          ]}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          value={value}
+                          className='custom-input-address'
+                        />
+                      )}
+                    />
+                    {errors.creditCardExpiration && (
+                      <p className='error'>{errors.creditCardExpiration.message}</p>
                     )}
-                  />
-                  {errors.creditCardExpiration && (
-                    <p className='error'>{errors.creditCardExpiration.message}</p>
-                  )}
+                  </div>
+
+                  <div className='field'>
+                    <AddressLabel htmlFor='creditCardSecurityCode'>
+                      Código de segurança (CVV)
+                    </AddressLabel>
+                    <Controller
+                      name='creditCardSecurityCode'
+                      control={control}
+                      defaultValue=''
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <IMaskInput
+                          type='text'
+                          id='creditCardSecurityCode'
+                          mask={'0000'}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          value={value}
+                          className='custom-input-address'
+                        />
+                      )}
+                    />
+                    {errors.creditCardSecurityCode && (
+                      <p className='error'>{errors.creditCardSecurityCode.message}</p>
+                    )}
+                  </div>
                 </div>
 
-                <div className='field' style={{ marginBottom: '8rem' }}>
-                  <AddressLabel htmlFor='creditCardSecurityCode'>
-                    Código de segurança (CVV)
-                  </AddressLabel>
-                  <Controller
-                    name='creditCardSecurityCode'
-                    control={control}
-                    defaultValue=''
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <IMaskInput
-                        type='text'
-                        id='creditCardSecurityCode'
-                        mask={'0000'}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={value}
-                        className='custom-input-address'
-                      />
-                    )}
-                  />
-                  {errors.creditCardSecurityCode && (
-                    <p className='error'>{errors.creditCardSecurityCode.message}</p>
-                  )}
-                </div>
-              </div>
-
-              <PayOrder />
-            </Form>
+                <PayOrder />
+              </Form>
+            )}
           </Inner>
         )}
       </Container>

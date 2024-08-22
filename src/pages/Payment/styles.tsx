@@ -55,7 +55,7 @@ export const PaymentOptions = styled.div`
   margin: 2rem 0;
 `
 
-export const IconWrapper = styled.div`
+export const PaymentButton = styled.div`
   cursor: pointer;
   margin: 0 0.4rem;
 
