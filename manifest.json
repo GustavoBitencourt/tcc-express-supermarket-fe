@@ -1,8 +1,7 @@
 {
-  "short_name": "Aplicação React",
-  "name": "Aplicação React tsx",
-  "icons": [
-    {
+  "short_name": "Mercado Expresso",
+  "name": "Mercado Expresso tsx",
+  "icons": [{
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
