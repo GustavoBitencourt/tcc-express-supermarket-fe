@@ -36,6 +36,28 @@ export const TitleText = styled.div`
   color: ${({ theme }) => theme.colors.blackgray};
 `
 
+export const SubTitleText = styled.div`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.darkgreen};
+`
+
+export const QrCodeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+
+  svg {
+    width: 15rem;
+    height: 14rem;
+  }
+`
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

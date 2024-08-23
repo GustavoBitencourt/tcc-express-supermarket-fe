@@ -19,6 +19,8 @@ import {
   TitleText,
   PaymentOptions,
   PaymentButton,
+  SubTitleText,
+  QrCodeContainer,
 } from './styles'
 import TopBar from '../MyCart/TopBar'
 import StatusIndicator from '../../components/StatusIndicator'
@@ -28,6 +30,7 @@ import { ReactComponent as MoneyIconUnselect } from '../../assets/money-icon-uns
 import { ReactComponent as MoneyIconSelect } from '../../assets/money-icon-select.svg'
 import { ReactComponent as PixIconUnselect } from '../../assets/pix-icon-unselect.svg'
 import { ReactComponent as PixIconSelect } from '../../assets/pix-icon-select.svg'
+import { ReactComponent as PixQrCode } from '../../assets/pix.svg'
 
 export default function Payment() {
   const location = useLocation()
@@ -109,7 +112,15 @@ export default function Payment() {
     setSelectedPaymentMethod(method)
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log('aqui', data)
+    if (selectedPaymentMethod === 'pix') {
+      data.creditCardNumber = 'pix'
+    } else if (selectedPaymentMethod === 'money') {
+      data.creditCardNumber = 'pix'
+    }
+    payOrder(data as CustomerData)
+  }
 
   return (
     <>
@@ -361,7 +372,7 @@ export default function Payment() {
 
             {selectedPaymentMethod === 'card' && (
               <Form onSubmit={handleSubmit(onSubmit)}>
-                <div className='field'>
+                <div className='field' style={{ marginTop: '2rem' }}>
                   <AddressLabel htmlFor='creditCardNumber'>Número do cartão</AddressLabel>
                   <Controller
                     name='creditCardNumber'
@@ -445,7 +456,7 @@ export default function Payment() {
                     )}
                   </div>
 
-                  <div className='field'>
+                  <div className='field' style={{ marginBottom: '10rem' }}>
                     <AddressLabel htmlFor='creditCardSecurityCode'>
                       Código de segurança (CVV)
                     </AddressLabel>
@@ -471,6 +482,207 @@ export default function Payment() {
                   </div>
                 </div>
 
+                <PayOrder />
+              </Form>
+            )}
+
+            {selectedPaymentMethod === 'money' && (
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <SubTitleText>
+                  Pagamento será feito na mesma hora de receber o seu pedido
+                </SubTitleText>
+                <div className='field' style={{ marginTop: '2rem', marginBottom: '15rem' }}>
+                  <Controller
+                    name='creditCardNumber'
+                    control={control}
+                    defaultValue='111111111111'
+                    render={({ field: { onChange, onBlur } }) => (
+                      <input
+                        type='hidden'
+                        id='creditCardNumber'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value='111111111111'
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className='field'>
+                  <Controller
+                    name='creditCardHolder'
+                    control={control}
+                    defaultValue='nome generico'
+                    render={({ field: { onChange, onBlur } }) => (
+                      <input
+                        type='hidden'
+                        id='creditCardHolder'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value='nome generico'
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className='grouped'>
+                  <div className='field'>
+                    <Controller
+                      name='creditCardExpiration'
+                      control={control}
+                      defaultValue='12/30'
+                      render={({ field: { onChange, onBlur } }) => (
+                        <IMaskInput
+                          type='hidden'
+                          id='creditCardExpiration'
+                          mask={[
+                            {
+                              mask: 'MM/YY',
+                              blocks: {
+                                MM: {
+                                  mask: IMask.MaskedRange,
+                                  from: 1,
+                                  to: 12,
+                                },
+                                YY: {
+                                  mask: IMask.MaskedRange,
+                                  from: new Date().getFullYear() - 2000,
+                                  to: 99,
+                                },
+                              },
+                            },
+                          ]}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          value='12/30'
+                          className='custom-input-address'
+                        />
+                      )}
+                    />
+                  </div>
+
+                  <div className='field' style={{ marginBottom: '10rem' }}>
+                    <Controller
+                      name='creditCardSecurityCode'
+                      control={control}
+                      defaultValue='123'
+                      render={({ field: { onChange, onBlur } }) => (
+                        <IMaskInput
+                          type='hidden'
+                          id='creditCardSecurityCode'
+                          mask={'0000'}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          value='123'
+                          className='custom-input-address'
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+                <PayOrder />
+              </Form>
+            )}
+
+            {selectedPaymentMethod === 'pix' && (
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <SubTitleText>Pagamento por pix via QR Code abaixo</SubTitleText>
+                <QrCodeContainer>
+                  <PixQrCode />
+                </QrCodeContainer>
+                <div className='field' style={{ marginTop: '2rem' }}>
+                  <Controller
+                    name='creditCardNumber'
+                    control={control}
+                    defaultValue='111111111111'
+                    render={({ field: { onChange, onBlur } }) => (
+                      <input
+                        type='hidden'
+                        id='creditCardNumber'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value='111111111111'
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className='field'>
+                  <Controller
+                    name='creditCardHolder'
+                    control={control}
+                    defaultValue='nome generico'
+                    render={({ field: { onChange, onBlur } }) => (
+                      <input
+                        type='hidden'
+                        id='creditCardHolder'
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value='nome generico'
+                        className='custom-input-address'
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className='grouped'>
+                  <div className='field'>
+                    <Controller
+                      name='creditCardExpiration'
+                      control={control}
+                      defaultValue='12/30'
+                      render={({ field: { onChange, onBlur } }) => (
+                        <IMaskInput
+                          type='hidden'
+                          id='creditCardExpiration'
+                          mask={[
+                            {
+                              mask: 'MM/YY',
+                              blocks: {
+                                MM: {
+                                  mask: IMask.MaskedRange,
+                                  from: 1,
+                                  to: 12,
+                                },
+                                YY: {
+                                  mask: IMask.MaskedRange,
+                                  from: new Date().getFullYear() - 2000,
+                                  to: 99,
+                                },
+                              },
+                            },
+                          ]}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          value='12/30'
+                          className='custom-input-address'
+                        />
+                      )}
+                    />
+                  </div>
+
+                  <div className='field' style={{ marginBottom: '10rem' }}>
+                    <Controller
+                      name='creditCardSecurityCode'
+                      control={control}
+                      defaultValue='123'
+                      render={({ field: { onChange, onBlur } }) => (
+                        <IMaskInput
+                          type='hidden'
+                          id='creditCardSecurityCode'
+                          mask={'0000'}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          value='123'
+                          className='custom-input-address'
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
                 <PayOrder />
               </Form>
             )}
