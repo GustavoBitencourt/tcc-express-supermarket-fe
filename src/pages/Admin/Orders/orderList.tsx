@@ -18,6 +18,8 @@ interface Order {
   total: number
   updatedAt: string
   customerId: number
+  paymentMethod?: string
+  shippingMethod?: string
   customer: {
     fullName: string
     mobile: string
@@ -60,6 +62,8 @@ const fetchOrders = async (): Promise<Order[]> => {
       total: order.total,
       updatedAt: order.updatedAt,
       customerId: order.customerId,
+      paymentMethod: order.paymentMethod,
+      shippingMethod: order.shippingMethod,
       customer: {
         fullName: order.customer.fullName,
         mobile: order.customer.mobile,
@@ -100,6 +104,41 @@ const ListOrders: React.FC = () => {
     orders.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
   }
 
+  const getStatusText = (status: string): string => {
+    switch (status) {
+      case 'PAID':
+        return 'Confirmado'
+      case 'CANCELED':
+        return 'Cancelado'
+      default:
+        return status
+    }
+  }
+
+  const getPaymentMethodText = (paymentMethod?: string): string => {
+    switch (paymentMethod) {
+      case 'money':
+        return 'Dinheiro'
+      case 'pix':
+        return 'Pix'
+      case 'card':
+        return 'Cartão'
+      default:
+        return paymentMethod || ''
+    }
+  }
+
+  const getShippingMethodText = (shippingMethod?: string): string => {
+    switch (shippingMethod) {
+      case 'pickup':
+        return 'Retirada'
+      case 'delivery':
+        return 'Entrega'
+      default:
+        return shippingMethod || ''
+    }
+  }
+
   return (
     <ProductListContainer>
       <StyledTable>
@@ -107,6 +146,8 @@ const ListOrders: React.FC = () => {
           <tr>
             <th>ID do Pedido</th>
             <th>Status</th>
+            <th>Forma de Pagamento</th>
+            <th>Método de Entrega</th>
             <th>Valor Total</th>
             <th>Data e Hora</th>
             <th>ID do Cliente</th>
@@ -128,7 +169,9 @@ const ListOrders: React.FC = () => {
               <React.Fragment key={order.id}>
                 <StyledTableRow onClick={() => handleToggleExpansion(order.id)}>
                   <td>{order.id}</td>
-                  <td>{order.status}</td>
+                  <td>{getStatusText(order.status)}</td>
+                  <td>{getPaymentMethodText(order.paymentMethod)}</td>
+                  <td>{getShippingMethodText(order.shippingMethod)}</td>
                   <td>{formatCurrency(order.total)}</td>
                   <td>{format(new Date(order.updatedAt), 'dd/MM/yyyy HH:mm:ss')}</td>
                   <td>{order.customerId}</td>
@@ -149,7 +192,7 @@ const ListOrders: React.FC = () => {
                 </StyledTableRow>
                 {expandedOrderId === order.id && (
                   <StyledTableRow>
-                    <td colSpan={15}>
+                    <td colSpan={17}>
                       <table>
                         <thead>
                           <tr>
