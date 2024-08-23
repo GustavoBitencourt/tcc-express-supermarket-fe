@@ -64,18 +64,19 @@ export default function Payment() {
     creditCardHolder: '',
     creditCardExpiration: '',
     creditCardSecurityCode: '',
+    shippingMethod: '',
   })
 
   useEffect(() => {
     if (location.state && location.state.customer) {
       const customerData = location.state.customer
-
       setAddressData({
         ...customerData,
         creditCardNumber: '',
         creditCardHolder: '',
         creditCardExpiration: '',
         creditCardSecurityCode: '',
+        shippingMethod: '',
       })
       setIsLoading(false)
     } else {
@@ -93,6 +94,7 @@ export default function Payment() {
                 creditCardHolder: '',
                 creditCardExpiration: '',
                 creditCardSecurityCode: '',
+                shippingMethod: '',
               })
             } else {
               console.error('Failed to fetch user data')
@@ -113,12 +115,16 @@ export default function Payment() {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log('aqui', data)
     if (selectedPaymentMethod === 'pix') {
+      data.paymentMethod = 'pix'
       data.creditCardNumber = 'pix'
     } else if (selectedPaymentMethod === 'money') {
+      data.paymentMethod = 'money'
       data.creditCardNumber = 'pix'
+    } else if (selectedPaymentMethod === 'card') {
+      data.paymentMethod = 'card'
     }
+    data.shippingMethod = location.state.shippingMethod
     payOrder(data as CustomerData)
   }
 

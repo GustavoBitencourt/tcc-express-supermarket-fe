@@ -64,6 +64,8 @@ export const schema = yup
       .transform((value) => value.replace(/[^\d]+/g, ''))
       .min(3, 'O CVV deve possuir entre 3 e 4 dígitos.')
       .max(4, 'O CVV deve possuir entre 3 e 4 dígitos.'),
+    shippingMethod: yup.string().optional(),
+    paymentMethod: yup.string().optional(),
   })
   .required()
 

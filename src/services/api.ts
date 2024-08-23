@@ -48,6 +48,8 @@ export const processCheckout = (cart: Product[], customer: CustomerData) =>
       ).getFullYear()}`,
       creditCardSecurityCode: customer.creditCardSecurityCode,
     },
+    shippingMethod: customer.shippingMethod,
+    paymentMethod: customer.paymentMethod,
   })
 
 export const registerUser = (userData: CustomerData) => api.post('/auth/register', userData)
