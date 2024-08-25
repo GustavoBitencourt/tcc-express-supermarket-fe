@@ -47,7 +47,7 @@ const StatusContainer = styled.div`
   margin-top: 5.53rem;
   height: 7.5rem;
   width: 100%;
-  overflow-x: hidden;
+  position: relative;
 `
 
 interface StatusItemProps {
@@ -59,12 +59,13 @@ const StatusItem = styled.div<StatusItemProps>`
   text-align: center;
   font-weight: bold;
   font-size: 12px;
-  color: ${(props) => (props.active ? ' #56BA50' : '#CBCBCB')};
+  color: ${(props) => (props.active ? '#56BA50' : '#CBCBCB')};
+  position: relative;
 
   .status-number {
     background-color: #fffbd3;
     border: ${(props) => (props.active ? '2px solid #56BA50' : '2px solid #CBCBCB')};
-    color: ${(props) => (props.active ? ' #56BA50' : '#CBCBCB')};
+    color: ${(props) => (props.active ? '#56BA50' : '#CBCBCB')};
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -72,15 +73,21 @@ const StatusItem = styled.div<StatusItemProps>`
     align-items: center;
     justify-content: center;
     margin: 0 auto 12px;
+    position: relative;
+    z-index: 1;
   }
 `
 
 const LineStatus = styled.div`
-  width: 100%;
+  position: absolute;
+  top: 40%;
+  margin-left: 13%;
+  left: 0;
+  width: 73%;
+  transform: translateY(-50%);
   height: 2px;
   background-color: #cbcbcb;
-  position: relative;
-  top: -10px;
+  z-index: 0;
 `
 
 export default StatusIndicator
