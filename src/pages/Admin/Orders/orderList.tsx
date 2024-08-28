@@ -157,9 +157,7 @@ const ListOrders: React.FC = () => {
             <th>Rua</th>
             <th>Número</th>
             <th>Bairro</th>
-            <th>ID do Produto</th>
-            <th>Quantidade do Produto</th>
-            <th>Nome do Produto</th>
+
             <th>Ações</th>
           </tr>
         </thead>
@@ -181,9 +179,6 @@ const ListOrders: React.FC = () => {
                   <td>{order.customer.street}</td>
                   <td>{order.customer.number}</td>
                   <td>{order.customer.neighborhood}</td>
-                  <td>{order.orderItems[0].id}</td>
-                  <td>{order.orderItems[0].quantity}</td>
-                  <td>{order.orderItems[0].product.name}</td>
                   <StyledExpandIconColumn isExpanded={expandedOrderId === order.id}>
                     <ExpandButton isExpanded={expandedOrderId === order.id}>
                       {expandedOrderId === order.id ? <StyledShrinkIcon /> : <ExpandIcon />}
